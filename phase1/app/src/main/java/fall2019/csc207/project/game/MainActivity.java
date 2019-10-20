@@ -1,6 +1,7 @@
 package fall2019.csc207.project.game;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
