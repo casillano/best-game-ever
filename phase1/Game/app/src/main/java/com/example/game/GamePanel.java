@@ -13,7 +13,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Background background;
     private Player player;
     private Point playerPoint;
-    private Monster monster;
+    private SlimeMonster slimeMonster;
 
     public GamePanel(Context context) {
         super(context);
@@ -31,7 +31,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
 
         player = new Player();
-        monster = new Monster();
+        slimeMonster = new SlimeMonster();
         background = new Background();
         playerPoint = new Point(size.x/2, size.y);
     }
@@ -75,7 +75,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
         background.update();
         player.update(playerPoint);
-        monster.update(player);
+        slimeMonster.update(player);
 
     }
 
@@ -85,6 +85,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawColor(Color.WHITE);
         background.draw(canvas);
         player.draw(canvas);
-        monster.draw(canvas);
+        slimeMonster.draw(canvas);
     }
 }

@@ -7,12 +7,10 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.view.Display;
-
 
 import java.lang.Math;
 
-public class Monster implements GameObject {
+public class SlimeMonster implements GameObject {
     private Rect rectangle;
     private AnimationManager animationManager;
     private int speed;
@@ -20,26 +18,24 @@ public class Monster implements GameObject {
     private HealthBar healthBar;
     private int damage;
 
-    Monster() {
+    SlimeMonster() {
         speed = 5;
         damage = 1;
         Bitmap idleImg = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
-                R.drawable.idle);
+                R.drawable.slime);
         this.rectangle = new Rect(Constants.DISPLAY_SIZE.x/2 - 50, 50, Constants.DISPLAY_SIZE.x/2 + 50, 150);
         Bitmap walk1 = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
-                R.drawable.walkright1);
-        Bitmap walk2 = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
-                R.drawable.walkright2);
+                R.drawable.slime_walk);
 
         Animation idle = new Animation(new Bitmap[]{idleImg}, 2);
-        Animation walkRight = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
+        Animation walkleft = new Animation(new Bitmap[]{idleImg, walk1}, 0.5f);
         Matrix m = new Matrix();
         m.preScale(-1, 1);
+        idleImg = Bitmap.createBitmap(idleImg, 0, 0, idleImg.getWidth(), idleImg.getHeight(), m,
+                false);
         walk1 = Bitmap.createBitmap(walk1, 0, 0, walk1.getWidth(), walk1.getHeight(), m,
                 false);
-        walk2 = Bitmap.createBitmap(walk2, 0, 0, walk2.getWidth(), walk2.getHeight(), m,
-                false);
-        Animation walkleft = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
+        Animation walkRight = new Animation(new Bitmap[]{idleImg, walk1}, 0.5f);
 
         // All animations in Player
         animationManager = new AnimationManager((new Animation[]{idle, walkRight, walkleft}));
