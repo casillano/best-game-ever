@@ -15,7 +15,7 @@ public class Player implements GameObject {
     private Rect rectangle;
     private AnimationManager animationManager;
     private int speed;
-    private int max_health = 1280;
+    private int max_health = 100;
     HealthBar healthBar;
 
     Player() {
