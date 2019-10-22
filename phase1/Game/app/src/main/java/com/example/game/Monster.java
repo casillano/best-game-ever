@@ -25,7 +25,7 @@ public class Monster implements GameObject {
         damage = 1;
         Bitmap idleImg = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
                 R.drawable.idle);
-        this.rectangle = new Rect(Constants.DISPLAY_SIZE.x/2 - 100, 50, Constants.DISPLAY_SIZE.x/2 + 50, 150);
+        this.rectangle = new Rect(Constants.DISPLAY_SIZE.x/2 - 50, 50, Constants.DISPLAY_SIZE.x/2 + 50, 150);
         Bitmap walk1 = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
                 R.drawable.walkright1);
         Bitmap walk2 = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
