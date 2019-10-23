@@ -96,7 +96,8 @@ public class Player implements GameObject {
 
     }
 
-    Point get_center_location() {
-        return new Point(rectangle.centerX(), rectangle.centerY());
+    Rect getRectangle() {
+        return rectangle;
     }
+
 }

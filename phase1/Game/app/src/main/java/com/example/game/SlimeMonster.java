@@ -23,7 +23,8 @@ public class SlimeMonster implements GameObject {
         damage = 1;
         Bitmap idleImg = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
                 R.drawable.slime);
-        this.rectangle = new Rect(Constants.DISPLAY_SIZE.x/2 - 50, 50, Constants.DISPLAY_SIZE.x/2 + 50, 150);
+        this.rectangle = new Rect(Constants.DISPLAY_SIZE.x/2 - 50, 50,
+                Constants.DISPLAY_SIZE.x/2 + 50, 150);
         Bitmap walk1 = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
                 R.drawable.slime_walk);
 
@@ -62,10 +63,10 @@ public class SlimeMonster implements GameObject {
     void update(Player player) {
         double oldLeft = rectangle.left;
         float[] normal = new float[2];
-        normal[0] = player.get_center_location().x - rectangle.centerX();
-        normal[1] = player.get_center_location().y - rectangle.centerY();
+        normal[0] = player.getRectangle().centerX() - rectangle.centerX();
+        normal[1] = player.getRectangle().centerY() - rectangle.centerY();
         float magnitude = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
-        if (magnitude <= 100){
+        if (magnitude <= (float)(rectangle.width()/2 + player.getRectangle().width()/2)){
             player.healthBar.take_damage(this.damage); //NEEDS SOME REVISION!!!!
         }
         if (magnitude < speed) {
