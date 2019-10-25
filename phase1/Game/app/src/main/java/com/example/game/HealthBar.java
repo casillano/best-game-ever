@@ -45,7 +45,7 @@ public class HealthBar implements GameObject {
         curr_health -= dmg;
         curr_health = Math.max(0, curr_health);
         float scale = ((float) curr_health / (float) max_health) * length;
-        int change = (rectangle.right - (rectangle.left + (int) (scale)))/2;
+        int change = (rectangle.right - (rectangle.left + (int) (scale))) / 2;
         rectangle.right = rectangle.right - change;
         rectangle.left = rectangle.left + change;
 

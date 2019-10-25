@@ -1,4 +1,5 @@
 package com.example.game;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,8 +11,8 @@ public class Background implements GameObject {
     private Animation idle;
     private AnimationManager animationManager;
 
-    Background() {
-        Bitmap idleImg = BitmapFactory.decodeResource(Constants.CURRENT_CONTEXT.getResources(),
+    Background(Context context) {
+        Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.grass);
         this.rectangle = new Rect(0,0,Constants.DISPLAY_SIZE.x, Constants.DISPLAY_SIZE.y);
         idle = new Animation(new Bitmap[]{idleImg}, 2);

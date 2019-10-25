@@ -1,4 +1,5 @@
 package com.example.game;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,15 +14,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Background background;
     private Player player;
     private Point playerPoint;
-    private SlimeMonster slimeMonster;
+    private SlimeMeleeMonster slimeMonster;
 
     public GamePanel(Context context) {
         super(context);
 
         getHolder().addCallback(this);
-
-        Constants.CURRENT_CONTEXT = context;
-        Display display = ((MainActivity) Constants.CURRENT_CONTEXT).getWindowManager().getDefaultDisplay();
+        Display display = ((MainActivity) context).getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         Constants.DISPLAY_SIZE = size;
@@ -30,10 +29,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         setFocusable(true);
 
-        player = new Player();
-        slimeMonster = new SlimeMonster();
-        background = new Background();
-        playerPoint = new Point(size.x/2, size.y);
+        player = new Player(context);
+        slimeMonster = new SlimeMeleeMonster(context);
+        background = new Background(context);
+        playerPoint = new Point(size.x / 2, size.y);
     }
 
     @Override
@@ -42,7 +41,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
         thread.setRunning(true);
         thread.start();
-
 
 
     }
@@ -54,10 +52,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        try{
+        try {
             thread.setRunning(false);
             thread.join();
-        } catch(Exception e) {e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -67,7 +67,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                playerPoint.set((int)event.getX(), (int)event.getY());
+                playerPoint.set((int) event.getX(), (int) event.getY());
         }
         return true;
     }
