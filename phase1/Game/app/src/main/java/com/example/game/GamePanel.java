@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
+public class GamePanel extends Panel{
     private MainThread thread;
     private Background background;
     private Player player;
