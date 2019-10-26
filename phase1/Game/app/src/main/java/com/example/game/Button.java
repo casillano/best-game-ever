@@ -29,8 +29,11 @@ public class Button {
 
     public void draw(Canvas canvas){
         paint.setStrokeWidth(3);
+        backPaint.setColor(Color.rgb(0, 0, 0));
         canvas.drawRect(x - 6, y - 6, x + width + 6, y + height + 6, backPaint);
         canvas.drawRect(x, y, x + width, y + height, paint);
+        paint.setTextSize(10);
+        canvas.drawText(name, x, y, backPaint);
     }
 
     boolean isClicked(int xCo, int yCo){

@@ -15,10 +15,12 @@ public class GamePanel extends Panel{
     private Player player;
     private Point playerPoint;
     private SlimeMeleeMonster slimeMonster;
+    private Button quitButton;
+    private MainActivity myContext;
 
     public GamePanel(Context context) {
         super(context);
-
+        myContext = (MainActivity) context;
         getHolder().addCallback(this);
         Display display = ((MainActivity) context).getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -33,6 +35,7 @@ public class GamePanel extends Panel{
         slimeMonster = new SlimeMeleeMonster(context);
         background = new Background(context);
         playerPoint = new Point(size.x / 2, size.y);
+        quitButton = new Button(850, 50, 100, 100, "X");
     }
 
     @Override
@@ -69,6 +72,9 @@ public class GamePanel extends Panel{
             case MotionEvent.ACTION_MOVE:
                 playerPoint.set((int) event.getX(), (int) event.getY());
         }
+        if(quitButton.isClicked((int) event.getX(), (int) event.getY())){
+            myContext.setContentView(new MenuPanel(myContext));
+        }
         return true;
     }
 
@@ -86,5 +92,6 @@ public class GamePanel extends Panel{
         background.draw(canvas);
         player.draw(canvas);
         slimeMonster.draw(canvas);
+        quitButton.draw(canvas);
     }
 }
