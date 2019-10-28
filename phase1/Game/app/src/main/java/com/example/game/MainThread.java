@@ -36,8 +36,10 @@ public class MainThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.gamePanel.update();
-                    this.gamePanel.draw(canvas);
+                    if (gamePanel != null && canvas != null) {  //Need to revise this!
+                        this.gamePanel.update();
+                        this.gamePanel.draw(canvas);
+                    }
                 }
 
             } catch (Exception e) {
