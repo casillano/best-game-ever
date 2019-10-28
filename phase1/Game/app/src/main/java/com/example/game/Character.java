@@ -16,7 +16,7 @@ public class Character implements GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawRect(rectangle, new Paint()); // SHOWS ALL CHARACTER RECTs
+        // canvas.drawRect(rectangle, new Paint()); // SHOWS ALL CHARACTER RECTs
         animationManager.draw(canvas, rectangle);
         healthBar.draw(canvas);
     }
