@@ -42,7 +42,6 @@ public class MenuPanel extends Panel{
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.drawColor(Color.WHITE);
         background.draw(canvas);
         gameButton.draw(canvas);
     }

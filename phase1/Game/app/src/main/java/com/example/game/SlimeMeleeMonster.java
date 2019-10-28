@@ -9,13 +9,13 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 class SlimeMeleeMonster extends MeleeMonster {
-    SlimeMeleeMonster(Context context) {
+    SlimeMeleeMonster(Context context, int x, int y) {
         speed = 5;
         damage = 1;
         Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.slime);
-        setRectangle(new Rect(Constants.DISPLAY_SIZE.x / 2 - 50, 50,
-                Constants.DISPLAY_SIZE.x / 2 + 50, 150));
+        setRectangle(new Rect(x - 50, y - 50,
+                x + 50, y + 50));
         Bitmap walk1 = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.slime_walk);
 

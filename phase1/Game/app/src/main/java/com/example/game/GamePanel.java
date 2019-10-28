@@ -9,14 +9,16 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+
 public class GamePanel extends Panel{
     private MainThread thread;
     private Background background;
     private Player player;
     private Point playerPoint;
-    private SlimeMeleeMonster slimeMonster;
     private Button quitButton;
     private MainActivity myContext;
+    private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
 
     public GamePanel(Context context) {
         super(context);
@@ -32,7 +34,8 @@ public class GamePanel extends Panel{
         setFocusable(true);
 
         player = new Player(context);
-        slimeMonster = new SlimeMeleeMonster(context);
+        monsters.add(new SlimeMeleeMonster(context, 100, 100));
+        monsters.add(new SlimeMeleeMonster(context, 1000, 1000));
         background = new Background(context);
         playerPoint = new Point(size.x / 2, size.y);
         quitButton = new Button(850, 50, 100, 100, "X");
@@ -81,7 +84,9 @@ public class GamePanel extends Panel{
     public void update() {
         background.update();
         player.update(playerPoint);
-        slimeMonster.update(player);
+        for (SlimeMeleeMonster m : monsters) {
+            m.update(player);
+        }
 
     }
 
@@ -91,7 +96,9 @@ public class GamePanel extends Panel{
         canvas.drawColor(Color.WHITE);
         background.draw(canvas);
         player.draw(canvas);
-        slimeMonster.draw(canvas);
+        for (SlimeMeleeMonster m : monsters) {
+            m.draw(canvas);
+        }
         quitButton.draw(canvas);
     }
 }

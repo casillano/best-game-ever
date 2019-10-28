@@ -28,7 +28,7 @@ public class MazePanel extends Panel {
         setFocusable(true);
 
         player = new Player(context);
-        slimeMonster = new SlimeMeleeMonster(context);
+        //slimeMonster = new SlimeMeleeMonster(context);
         background = new Background(context);
         playerPoint = new Point(size.x / 2, size.y);
         quitButton = new Button(850, 50, 100, 100, "X");
