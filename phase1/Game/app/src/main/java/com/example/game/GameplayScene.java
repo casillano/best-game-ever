@@ -75,6 +75,7 @@ public class GameplayScene implements Scene {
         }
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 0;
+            xp = 0;
             manager.resetScenes();
         }
     }
