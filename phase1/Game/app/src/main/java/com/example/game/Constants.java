@@ -1,4 +1,5 @@
 package com.example.game;
+
 import android.graphics.Point;
 
 class Constants {

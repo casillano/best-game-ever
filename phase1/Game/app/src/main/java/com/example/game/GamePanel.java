@@ -9,7 +9,7 @@ import android.view.SurfaceHolder;
 import android.content.Context;
 import android.view.SurfaceView;
 
-public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
+public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private Background background;
     private Button gameButton;
@@ -33,7 +33,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback{
         return true;
     }
 
-    public void update(){
+    public void update() {
         manager.update();
     }
 

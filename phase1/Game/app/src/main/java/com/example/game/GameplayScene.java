@@ -18,7 +18,7 @@ public class GameplayScene implements Scene {
     private int score = 0;
     private SceneManager manager;
 
-    public GameplayScene(Context context, SceneManager manager) {
+    GameplayScene(Context context, SceneManager manager) {
         player = new Player(context);
         this.manager = manager;
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
@@ -55,7 +55,7 @@ public class GameplayScene implements Scene {
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
-        canvas.drawText(score+"", 75, 75, paint);
+        canvas.drawText(score + "", 75, 75, paint);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GameplayScene implements Scene {
             case MotionEvent.ACTION_MOVE:
                 playerPoint.set((int) event.getX(), (int) event.getY());
         }
-        if(quitButton.isClicked((int) event.getX(), (int) event.getY())){
+        if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 0;
             manager.reset_scenes();
         }

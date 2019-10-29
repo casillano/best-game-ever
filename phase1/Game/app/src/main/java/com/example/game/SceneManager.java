@@ -1,4 +1,5 @@
 package com.example.game;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -23,13 +24,19 @@ class SceneManager {
     }
 
     void update() {
-        scenes.get(ACTIVE_SCENE).update();
-    }
-    void draw(Canvas canvas) {
-        scenes.get(ACTIVE_SCENE).draw(canvas);
+        if (scenes.size() > 0) {
+            scenes.get(ACTIVE_SCENE).update();
+        }
     }
 
-    void reset_scenes(){
+    void draw(Canvas canvas) {
+        if (scenes.size() > 0) {
+            scenes.get(ACTIVE_SCENE).draw(canvas);
+        }
+
+    }
+
+    void reset_scenes() {
         scenes.clear();
         scenes.add(new MenuScene(context, this));
         scenes.add(new GameplayScene(context, this));

@@ -1,4 +1,5 @@
 package com.example.game;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
@@ -8,7 +9,7 @@ public class MenuScene implements Scene {
     private Button gameButton;
     private SceneManager manager;
 
-    public MenuScene(Context context, SceneManager manager) {
+    MenuScene(Context context, SceneManager manager) {
         this.manager = manager;
         background = new Background(context);
         gameButton = new Button(100, 1000, 880, 150, "GAME 1");

@@ -1,6 +1,6 @@
 package com.example.game;
 
-public class ChaseStrategy implements Strategy{
+public class ChaseStrategy implements Strategy {
     @Override
     public void move(Player player, Character character) {
         double oldLeft = character.getRectangle().left;

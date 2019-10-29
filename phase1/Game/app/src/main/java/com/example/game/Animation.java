@@ -35,7 +35,9 @@ class Animation {
     }
 
     void update() {
-        if (!isPlaying) {return;}
+        if (!isPlaying) {
+            return;
+        }
         if (System.currentTimeMillis() - lastFrame > frameTime * 1000) {
             frameIndex++;
             frameIndex = frameIndex >= frames.length ? 0 : frameIndex;
@@ -44,8 +46,10 @@ class Animation {
     }
 
     void draw(Canvas canvas, Rect destination) {
-        if(!isPlaying) {return;}
-        canvas.drawBitmap(frames[frameIndex],null, destination, new Paint());
+        if (!isPlaying) {
+            return;
+        }
+        canvas.drawBitmap(frames[frameIndex], null, destination, new Paint());
     }
 
 }
