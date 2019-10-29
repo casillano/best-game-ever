@@ -17,10 +17,12 @@ public class GameplayScene implements Scene {
     private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
     private int score = 0;
     private SceneManager manager;
+    private int xp;
 
     GameplayScene(Context context, SceneManager manager) {
         player = new Player(context);
         this.manager = manager;
+        xp = manager.getXp();
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
         monsters.add(new SlimeMeleeMonster(context, 1000, 1000));
         background = new Background(context);
@@ -33,8 +35,9 @@ public class GameplayScene implements Scene {
         score++;
         System.out.println(score);
         if (score > 200) {
+            xp = score + player.getHealth();
             SceneManager.ACTIVE_SCENE = 0;
-            manager.reset_scenes();
+            manager.resetScenes();
         }
         background.update();
         player.update(playerPoint);
@@ -55,7 +58,7 @@ public class GameplayScene implements Scene {
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
-        canvas.drawText(score + "", 75, 75, paint);
+        canvas.drawText("SCORE: " + score, 30, 100, paint);
     }
 
     @Override
@@ -72,7 +75,11 @@ public class GameplayScene implements Scene {
         }
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 0;
-            manager.reset_scenes();
+            manager.resetScenes();
         }
+    }
+
+    int getXp(){
+        return xp;
     }
 }

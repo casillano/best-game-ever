@@ -9,7 +9,7 @@ public class ChaseStrategy implements Strategy {
         normal[1] = player.getRectangle().centerY() - character.getRectangle().centerY();
         float magnitude = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
         if (magnitude <= (float) (character.getRectangle().width() / 2 + player.getRectangle().width() / 2)) {
-            player.healthBar.take_damage(character.damage);
+            player.healthBar.takeDamage(character.damage);
         }
         if (magnitude < character.speed) {
             character.getAnimationManager().playAnimation(0);

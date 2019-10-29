@@ -75,4 +75,8 @@ class Player extends Character {
         getAnimationManager().update();
 
     }
+
+    int getHealth(){
+        return healthBar.getCurrHealth();
+    }
 }

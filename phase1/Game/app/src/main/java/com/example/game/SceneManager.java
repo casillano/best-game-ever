@@ -1,8 +1,11 @@
 package com.example.game;
 
 import android.content.Context;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Canvas;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 
@@ -10,13 +13,21 @@ class SceneManager {
     private ArrayList<Scene> scenes;
     static int ACTIVE_SCENE;
     private Context context;
+    private SharedPreferences pref;
+    private Editor editor;
+    private GameplayScene game1;
+    private MenuScene menu;
+    private int xp;
 
     SceneManager(Context context) {
         this.context = context;
+        pref = PreferenceManager.getDefaultSharedPreferences(context);
         ACTIVE_SCENE = 0;
         scenes = new ArrayList<>();
-        scenes.add(new MenuScene(context, this));
-        scenes.add(new GameplayScene(context, this));
+        addAllScenes();
+        editor = pref.edit();
+        xp = pref.getInt("xp", -1);
+        System.out.println("XP:" + pref.getInt("xp", -1));
     }
 
     void receiveTouch(MotionEvent event) {
@@ -38,10 +49,22 @@ class SceneManager {
 
     }
 
-    void reset_scenes() {
+    void resetScenes() {
+        xp += game1.getXp();
+        editor.putInt("xp", xp);
+        editor.apply();
         scenes.clear();
-        scenes.add(new MenuScene(context, this));
-        scenes.add(new GameplayScene(context, this));
+        addAllScenes();
     }
 
+    private void addAllScenes(){
+        game1 = new GameplayScene(context, this);
+        menu = new MenuScene(context, this);
+        scenes.add(menu);
+        scenes.add(game1);
+    }
+
+    int getXp(){
+        return pref.getInt("xp", -1);
+    }
 }
