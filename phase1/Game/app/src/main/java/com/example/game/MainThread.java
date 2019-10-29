@@ -7,11 +7,11 @@ public class MainThread extends Thread {
     private final int MAX_FPS = 31;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
-    private Panel gamePanel;
-    private boolean running;
+    private GamePanel gamePanel;
+    private boolean running = true;
     private Canvas canvas;
 
-    MainThread(SurfaceHolder surfaceHolder, Panel gamePanel) {
+    MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel) {
         super();
         this.surfaceHolder = surfaceHolder;
         this.gamePanel = gamePanel;

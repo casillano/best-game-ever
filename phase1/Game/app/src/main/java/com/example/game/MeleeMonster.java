@@ -1,10 +1,10 @@
 package com.example.game;
 
 class MeleeMonster extends Character {
-    private Context context;
+    private StrategyContext context;
 
     MeleeMonster() {
-        this.context = new Context(new ChaseStrategy());
+        this.context = new StrategyContext(new ChaseStrategy());
     }
 
     void update(Player player) {
