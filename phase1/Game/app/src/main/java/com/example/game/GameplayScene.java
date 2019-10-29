@@ -33,9 +33,9 @@ public class GameplayScene implements Scene {
     @Override
     public void update() {
         score++;
-        System.out.println(score);
         if (score > 200) {
-            xp = score + player.getHealth();
+            if(player.getHealth() > 5) xp = score + player.getHealth();
+            else xp = 0;
             SceneManager.ACTIVE_SCENE = 0;
             manager.resetScenes();
         }
