@@ -20,7 +20,9 @@ class SceneManager {
     }
 
     void receiveTouch(MotionEvent event) {
-        scenes.get(ACTIVE_SCENE).receiveTouch(event);
+        if (scenes.size() > 0) {
+            scenes.get(ACTIVE_SCENE).receiveTouch(event);
+        }
     }
 
     void update() {

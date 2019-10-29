@@ -10,7 +10,7 @@ import android.graphics.Rect;
 
 class SlimeMeleeMonster extends MeleeMonster {
     SlimeMeleeMonster(Context context, int x, int y) {
-        speed = 5;
+        speed = 10;
         damage = 1;
         Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.slime);
