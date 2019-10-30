@@ -17,6 +17,7 @@ class SceneManager {
     private Editor editor;
     private GameplayScene game1;
     private MenuScene menu;
+    private MazeScene maze;
     private int xp;
 
     SceneManager(Context context) {
@@ -60,8 +61,10 @@ class SceneManager {
     private void addAllScenes(){
         game1 = new GameplayScene(context, this);
         menu = new MenuScene(context, this);
+        maze = new MazeScene(context, this);
         scenes.add(menu);
         scenes.add(game1);
+        scenes.add(maze);
     }
 
     int getXp(){
