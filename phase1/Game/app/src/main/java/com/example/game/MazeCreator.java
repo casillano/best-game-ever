@@ -86,7 +86,7 @@ public class MazeCreator {
 
         current = cells[0][0];
         current.visited = true;
-        do {
+        while (!stack.empty()){
             next = getNeighbour(current);
             if (next != null) {
                 removeWall(current, next);
@@ -96,7 +96,7 @@ public class MazeCreator {
             } else {
                 current = stack.pop();
             }
-        } while (!stack.empty());
+        }
     }
 
     private Cell getNeighbour(Cell cell) {
