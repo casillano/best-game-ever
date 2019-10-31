@@ -28,7 +28,7 @@ public class MazeScene implements Scene {
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
-        mazeCreator = new MazeCreator(context);
+        mazeCreator = new MazeCreator();
     }
 
     @Override
@@ -39,6 +39,7 @@ public class MazeScene implements Scene {
     @Override
     public void draw(Canvas canvas) {
         canvas.drawColor(Color.GREEN);
+        quitButton.draw(canvas);
         mazeCreator.drawMaze(canvas);
     }
 
