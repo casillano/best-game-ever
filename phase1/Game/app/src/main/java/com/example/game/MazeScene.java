@@ -21,7 +21,6 @@ public class MazeScene implements Scene {
     private int xp;
 
     MazeScene(Context context, SceneManager manager) {
-        player = new Player(context);
         this.manager = manager;
         xp = manager.getXp();
 

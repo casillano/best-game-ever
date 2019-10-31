@@ -27,7 +27,7 @@ public class ChaseStrategy implements Strategy {
                 (character.getRectangle().centerY() + move_y) + character.getRectangle().height() / 2);
         character.healthBar.move(move_x, move_y);
 
-        int state = 0; // 0 idle, 1 walking , 2 walking left
+        int state = 0; // 0 blueidle, 1 walking , 2 walking left
         if (character.getRectangle().left - oldLeft > 0) {
             state = 1;
         } else if (character.getRectangle().left - oldLeft < 0) {

@@ -12,18 +12,39 @@ import android.graphics.Rect;
 import java.lang.Math;
 
 class Player extends Character {
-
-    Player(Context context) {
+    Bitmap idleImg, walk1,walk2;
+    Player(Context context, String col) {
         speed = 15;
-        Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.idle);
+
         setRectangle(new Rect(Constants.DISPLAY_SIZE.x / 2 - 50,
                 Constants.DISPLAY_SIZE.y - 50, Constants.DISPLAY_SIZE.x / 2 + 50,
                 Constants.DISPLAY_SIZE.y + 50));
-        Bitmap walk1 = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.walkright1);
-        Bitmap walk2 = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.walkright2);
+        if (col.equals("blue")) {
+            idleImg = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.blueidle);
+        walk1 = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.bluewalk1);
+        walk2 = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.bluewalk2);
+        }
+
+        else if (col.equals("green")) {
+            idleImg = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.greenidle);
+            walk1 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.greenwalk1);
+            walk2 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.greenwalk2);
+        }
+
+        else if (col.equals("pink")) {
+            idleImg = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.pinkidle);
+            walk1 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.pinkwalk1);
+            walk2 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.pinkwalk2);
+        }
 
         Animation idle = new Animation(new Bitmap[]{idleImg}, 2);
         Animation walkRight = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
@@ -64,7 +85,7 @@ class Player extends Character {
                 (getRectangle().centerY() + move_y) + getRectangle().height() / 2);
         healthBar.move(move_x, move_y);
 
-        int state = 0; // 0 idle, 1 walking , 2 walking left
+        int state = 0; // 0 blueidle, 1 walking , 2 walking left
         if (getRectangle().left - oldLeft > 0) {
             state = 1;
         } else if (getRectangle().left - oldLeft < 0) {
