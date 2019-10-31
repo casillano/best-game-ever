@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 public class MenuScene implements Scene {
     private Background background;
-    private Button gameButton, game2Button;
+    private Button gameButton, game2Button, game3Button;
     private SceneManager manager;
     private int xp;
 
@@ -17,6 +17,7 @@ public class MenuScene implements Scene {
         background = new Background(context);
         gameButton = new Button(100, 1000, 880, 150, "GAME 1");
         game2Button = new Button(100, 1200, 880, 150, "GAME 2");
+        game3Button = new Button(100, 1400, 880, 150, "GAME 3");
         xp = manager.getXp();
     }
 
@@ -30,6 +31,7 @@ public class MenuScene implements Scene {
         background.draw(canvas);
         gameButton.draw(canvas);
         game2Button.draw(canvas);
+        game3Button.draw(canvas);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
@@ -48,6 +50,9 @@ public class MenuScene implements Scene {
         }
         else if (game2Button.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 2;
+        }
+        else if (game3Button.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 3;
         }
     }
 }
