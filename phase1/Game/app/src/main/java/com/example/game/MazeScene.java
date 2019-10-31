@@ -32,7 +32,6 @@ public class MazeScene implements Scene {
 
     @Override
     public void update() {
-        player.update(playerPoint);
     }
 
     @Override
