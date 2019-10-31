@@ -40,4 +40,8 @@ class Button {
         backPaint.setColor(Color.rgb(255, 255, 255));
         return (x < xCo && x + width > xCo && y < yCo && y + height > yCo);
     }
+
+    String getName() {
+        return name;
+    }
 }

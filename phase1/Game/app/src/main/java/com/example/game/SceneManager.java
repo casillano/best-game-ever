@@ -18,6 +18,7 @@ class SceneManager {
     private GameplayScene game1;
     private MenuScene menu;
     private MazeScene maze;
+    private GlassScene game3;
     private CustomizationScene store;
     private int xp;
 
@@ -63,11 +64,12 @@ class SceneManager {
         game1 = new GameplayScene(context, this);
         menu = new MenuScene(context, this);
         maze = new MazeScene(context, this);
+        game3 = new GlassScene(context, this);
         store  = new CustomizationScene(context, this);
         scenes.add(menu);
         scenes.add(game1);
         scenes.add(maze);
-        scenes.add(game1);
+        scenes.add(game3);
         scenes.add(store);
     }
 
