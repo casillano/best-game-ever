@@ -26,7 +26,7 @@ public class GlassScene implements Scene{
     private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
 
     GlassScene(Context context, SceneManager manager) {
-        player = new Player(context);
+        player = new Player(context, Constants.playerColor);
         this.manager = manager;
         xp = manager.getXp();
         Random rand = new Random();

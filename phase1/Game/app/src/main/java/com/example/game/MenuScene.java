@@ -8,8 +8,7 @@ import android.view.MotionEvent;
 
 public class MenuScene implements Scene {
     private Background background;
-    private Button gameButton, game2Button, game3Button;
-    private Button gameButton, game2Button, storeButton;
+    private Button gameButton, game2Button, game3Button,storeButton;
     private SceneManager manager;
     private int xp;
 
