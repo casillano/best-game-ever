@@ -15,7 +15,7 @@ class SceneManager {
     private Context context;
     static private SharedPreferences pref;
     private Editor editor;
-    private GameplayScene game1;
+    private GameOneScene game1;
     static private MenuScene menu;
     private MazeScene maze;
     private GlassScene game3;
@@ -66,7 +66,7 @@ class SceneManager {
     }
 
     private void addAllScenes(){
-        game1 = new GameplayScene(context, this);
+        game1 = new GameOneScene(context, this);
         menu = new MenuScene(context, this);
         maze = new MazeScene(context, this);
         game3 = new GlassScene(context, this);

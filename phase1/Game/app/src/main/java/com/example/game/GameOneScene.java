@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
-public class GameplayScene implements Scene {
+public class GameOneScene implements Scene {
     private Background background;
     private Player player;
     private Point playerPoint;
@@ -19,12 +19,11 @@ public class GameplayScene implements Scene {
     private SceneManager manager;
     private int xp;
 
-    GameplayScene(Context context, SceneManager manager) {
+    GameOneScene(Context context, SceneManager manager) {
         player = new Player(context, Constants.playerColor);
         this.manager = manager;
         xp = 0;
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
-        monsters.add(new SlimeMeleeMonster(context, 1000, 1000));
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
@@ -33,9 +32,13 @@ public class GameplayScene implements Scene {
     @Override
     public void update() {
         score++;
-        if (score > 200) {
-            if(player.getHealth() > 5) xp = score + player.getHealth();
-            else xp = 0;
+        if (player.getHealth() < 1) {
+            xp = score;
+            SceneManager.ACTIVE_SCENE = 1;
+            manager.resetScenes();
+        }
+        else if (score > 500) {
+            xp = score + player.getHealth();
             SceneManager.ACTIVE_SCENE = 1;
             manager.resetScenes();
         }
