@@ -22,6 +22,7 @@ class MazeCreator {
   private static final int COLS = 7, ROWS = 11;
   private Paint paint;
   private int cellSize;
+  private Rect finishLine;
   //keep track of all walls for collision detection
   private ArrayList<Rect> walls;
   private Random random;
@@ -59,6 +60,7 @@ class MazeCreator {
           paint2.setColor(Color.RED);
           Rect finish = new Rect(x*cellSize, y* cellSize, (x+1)*cellSize, (y+1)*cellSize);
           canvas.drawRect(finish, paint2);
+          finishLine = finish;
         }
         if (cells[x][y].topWall) {
           Rect r = new Rect(x * cellSize, y * cellSize, (x + 1) * cellSize, y * cellSize + 9);
@@ -169,6 +171,15 @@ class MazeCreator {
       next.leftWall = false;
     }
   }
+
+  boolean checkCollisions(Player player) {
+    return MazeCollisions.checkCollisions(walls, player);
+  }
+
+  boolean checkFinished(Player player) {
+    return MazeCollisions.checkFinished(player, finishLine);
+  }
+
 
   private class Cell {
     boolean topWall = true, leftWall = true, botWall = true, rightWall = true, visited = false;
