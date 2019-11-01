@@ -19,7 +19,7 @@ public class MenuScene implements Scene {
         game2Button = new Button(100, 1200, 880, 150, "GAME 2");
         game3Button = new Button(100, 1400, 880, 150, "GAME 3");
         storeButton = new Button(100, 1600, 880, 150, " Store");
-        changeUser = new Button(100, 1800, 880, 150, "CHANGE USER");
+        changeUser = new Button(500, 1800, 480, 150, "CHANGE USER");
         xp = manager.getXp();
     }
 

@@ -27,6 +27,7 @@ public class Login implements Scene{
     private Button emailButton;
     private String cursorEmail = "|";
     private String cursorPassword = "";
+    private boolean noUserName = false;
     private int count = 0;
 
     Login(Context context, SceneManager manager) {
@@ -55,7 +56,7 @@ public class Login implements Scene{
             buttons.add(new Button(105 * i +70, 1540, 100, 100, String.valueOf(s.charAt(29 + i))));
         }
 //        Making the SignIn button
-        signIn = new Button(30, 1900, 1000, 100, "Sign in / Login");
+        signIn = new Button(30, 1900, 600, 100, "Login/Signin");
         erase = new Button(800, 1700, 200, 100, "<--");
         emailButton = new Button(30, 700, 1000, 100, "e-mail:");
         passwordButton = new Button(30, 940, 1000, 100, "password:");
@@ -102,6 +103,10 @@ public class Login implements Scene{
         canvas.drawRect(30, 1055, 1030, 1155, p2);
         canvas.drawText("" + email + cursorEmail, 30, 890, paint);
         canvas.drawText("" + passwordDisplay + cursorPassword, 30, 1120, paint);
+        if(noUserName) {
+            canvas.drawText("You need to enter ", 30, 300, paint);
+            canvas.drawText("username and password", 30, 360, paint);
+        }
     }
 
     public void receiveTouch(MotionEvent event) {
@@ -136,8 +141,13 @@ public class Login implements Scene{
             }
         }
         if (signIn.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 1;
-            SceneManager.setUserInfo(email, password);
+            if(email != "" && password != "") {
+                SceneManager.ACTIVE_SCENE = 1;
+                SceneManager.setUserInfo(email, password);
+            }
+            else{
+                noUserName = true;
+            }
         }
     }
 
@@ -145,6 +155,7 @@ public class Login implements Scene{
         password = "";
         email = "";
         passwordDisplay = "";
+        noUserName = false;
     }
     @Override
     public void terminate() {
