@@ -26,7 +26,7 @@ public class CustomizationScene implements Scene {
         quitButton = new Button(850, 50, 100, 100, "X");
         custom1Btn = new Button(150, 800, 300, 100, "green");
         custom2Btn = new Button(700, 800, 300, 100, "blue");
-        custom3Btn = new Button(500, 1500, 300, 100, "pink");
+        custom3Btn = new Button(400, 300, 300, 100, "pink");
 
     }
 
