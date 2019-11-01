@@ -10,6 +10,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
+
 public class GlassScene implements Scene{
 
     private Background background;
@@ -22,13 +24,17 @@ public class GlassScene implements Scene{
     private Button enter;
     private SceneManager manager;
     private String userInput;
+    private int guess;
     private int xp;
+    private int counter;
     private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
 
     GlassScene(Context context, SceneManager manager) {
+        guess = 0;
+        counter = 0;
         player = new Player(context, Constants.playerColor);
         this.manager = manager;
-        xp = manager.getXp();
+        xp = 0;
         Random rand = new Random();
         numMonsters = rand.nextInt(20);
         userInput = "";
@@ -89,9 +95,31 @@ public class GlassScene implements Scene{
         }
         for (int i = 0; i < buttons.length; i++) {
             if (buttons[i].isClicked((int) event.getX(), (int) event.getY())) {
-                userInput += buttons[i].getName();
+                if(counter % 2 == 0) {
+                    userInput += buttons[i].getName();
+                }
+                counter += 1;
             }
         }
+        if (enter.isClicked((int) event.getX(), (int) event.getY())) {
+            try {
+                guess = Integer.parseInt(userInput);
+            }catch (NumberFormatException e){
+            }
+            if (guess == monsters.size()) {
+               xp = 200;
+           }
+           else {
+               xp = 0;
+           }
+            System.out.println("guess" + guess + "num" + monsters.size());
+            SceneManager.ACTIVE_SCENE = 0;
+            manager.resetScenes();
+        }
+    }
+
+    int getXp(){
+        return xp;
     }
 
 
