@@ -86,13 +86,13 @@ public class GlassScene implements Scene{
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 0;
+        SceneManager.ACTIVE_SCENE = 1;
     }
 
     @Override
     public void receiveTouch(MotionEvent event) {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.ACTIVE_SCENE = 1;
             xp = 0;
             manager.resetScenes();
         }
@@ -116,7 +116,7 @@ public class GlassScene implements Scene{
                xp = 0;
            }
 //            System.out.println("guess" + guess + "num" + monsters.size());
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.ACTIVE_SCENE = 1;
             manager.resetScenes();
         }
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
