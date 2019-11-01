@@ -38,6 +38,10 @@ public class MenuScene implements Scene {
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
         canvas.drawText("XP: " + xp, 30, 100, paint);
+        paint.setTextSize(200);
+        canvas.drawText("BEST", 300, 400, paint);
+        canvas.drawText("GAME", 250, 550, paint);
+        canvas.drawText("EVER!", 280, 700, paint);
     }
 
     @Override

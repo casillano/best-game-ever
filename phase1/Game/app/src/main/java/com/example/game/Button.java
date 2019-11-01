@@ -33,7 +33,7 @@ class Button {
         canvas.drawRect(x - 6, y - 6, x + width + 6, y + height + 6, backPaint);
         canvas.drawRect(x, y, x + width, y + height, paint);
         backPaint.setTextSize(100);
-        canvas.drawText(name, x + (width - 100 * name.length()), y + (int) ((height + 80) / 2), backPaint);
+        canvas.drawText(name, x + (width - 50 * name.length())/2, y + (int) ((height + 80) / 2), backPaint);
     }
 
     boolean isClicked(int xCo, int yCo) {

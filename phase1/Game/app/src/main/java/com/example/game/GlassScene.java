@@ -22,6 +22,7 @@ public class GlassScene implements Scene{
     private int score = 0;
     private Button[] buttons ;
     private Button enter;
+    private Button erase;
     private SceneManager manager;
     private String userInput;
     private int guess;
@@ -43,7 +44,8 @@ public class GlassScene implements Scene{
             monsters.add(new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000)));
             monsters.add(new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000)));
         }
-        enter = new Button(500, 1700, 200, 200, "Enter");
+        enter = new Button(400, 1700, 300, 100, "Enter");
+        erase = new Button(400, 1900, 300, 100, "Erase");
         buttons = new Button[10];
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = new Button(100*i + 37, 1500, 100, 100, i+"");
@@ -74,6 +76,7 @@ public class GlassScene implements Scene{
             m.draw(canvas);
         }
         quitButton.draw(canvas);
+        erase.draw(canvas);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
@@ -115,6 +118,9 @@ public class GlassScene implements Scene{
             System.out.println("guess" + guess + "num" + monsters.size());
             SceneManager.ACTIVE_SCENE = 0;
             manager.resetScenes();
+        }
+        if (erase.isClicked((int) event.getX(), (int) event.getY())) {
+            userInput = "";
         }
     }
 
