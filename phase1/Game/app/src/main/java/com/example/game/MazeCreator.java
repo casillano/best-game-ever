@@ -58,7 +58,7 @@ class MazeCreator {
         if (x == COLS - 1 && y == ROWS - 1) {
           Paint paint2 = new Paint();
           paint2.setColor(Color.RED);
-          Rect finish = new Rect(x*cellSize, y* cellSize, (x+1)*cellSize, (y+1)*cellSize);
+          Rect finish = new Rect(x * cellSize, y * cellSize, (x + 1) * cellSize, (y + 1) * cellSize);
           canvas.drawRect(finish, paint2);
           finishLine = finish;
         }
@@ -173,11 +173,17 @@ class MazeCreator {
   }
 
   boolean checkCollisions(Player player) {
-    return MazeCollisions.checkCollisions(walls, player);
+    if (walls.size() > 0) {
+      return MazeCollisions.checkCollisions(walls, player);
+    }
+    return false;
   }
 
   boolean checkFinished(Player player) {
-    return MazeCollisions.checkFinished(player, finishLine);
+    if (walls.size() > 0) {
+      return MazeCollisions.checkFinished(player, finishLine);
+    }
+    return false;
   }
 
 

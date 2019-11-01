@@ -17,14 +17,14 @@ public class MazeScene implements Scene {
   private int score = 0;
   private Rect r = new Rect();
   private SceneManager manager;
-  private boolean gameOver = false, winner = false;
+  private boolean gameOver = false, winner = false, movingPlayer = false;
   private MazeCreator mazeCreator;
   private int xp;
 
   MazeScene(Context context, SceneManager manager) {
     this.manager = manager;
     xp = 0;
-
+    player = new Player(context, Constants.playerColor);
     background = new Background(context);
     playerPoint = new Point(50, 50);
     quitButton = new Button(850, 50, 100, 100, "X");
@@ -33,16 +33,21 @@ public class MazeScene implements Scene {
 
   @Override
   public void update() {
+    background.update();
     player.update(playerPoint);
 
     //pop up showing loser, then return to main menu
     if (mazeCreator.checkCollisions(player)) {
       gameOver = true;
+      terminate();
+      manager.resetScenes();
 
     }
     //pop up showing winner
     if (mazeCreator.checkFinished(player)) {
       gameOver = true;
+      terminate();
+      manager.resetScenes();
       winner = true;
     }
   }
@@ -72,17 +77,17 @@ public class MazeScene implements Scene {
     player.draw(canvas);
     mazeCreator.drawMaze(canvas);
 
-    if (gameOver) {
-      canvas.drawColor(Color.GREEN);
-      Paint paint = new Paint();
-      paint.setTextSize(30);
-      paint.setColor(Color.BLACK);
-      if (!winner) {
-        drawGameOverText(canvas, paint, "Game Over ¯\\_(ツ)_/¯");
-      } else {
-        drawGameOverText(canvas, paint, "Winner!");
-      }
-    }
+//    if (gameOver) {
+//      canvas.drawColor(Color.GREEN);
+//      Paint paint = new Paint();
+//      paint.setTextSize(30);
+//      paint.setColor(Color.BLACK);
+//      if (!winner) {
+//        drawGameOverText(canvas, paint, "Game Over ¯\\_(ツ)_/¯");
+//      } else {
+//        drawGameOverText(canvas, paint, "Winner!");
+//      }
+//    }
   }
 
 
@@ -100,22 +105,30 @@ public class MazeScene implements Scene {
 
   @Override
   public void terminate() {
-    SceneManager.ACTIVE_SCENE = 0;
+    SceneManager.ACTIVE_SCENE = 1;
   }
 
   @Override
   public void receiveTouch(MotionEvent event) {
     switch (event.getAction()) {
       case MotionEvent.ACTION_DOWN:
+        if (!gameOver && player.getRectangle().contains((int) event.getX(), (int) event.getY())) {
+          movingPlayer = true;
+          break;
+        }
       case MotionEvent.ACTION_MOVE:
-        if (!gameOver) {
+        if (!gameOver && movingPlayer) {
           playerPoint.set((int) event.getX(), (int) event.getY());
         }
+        break;
+      case MotionEvent.ACTION_UP:
+        movingPlayer = false;
         break;
 
     }
     if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-      reset();
+      terminate();
+      manager.resetScenes();
     }
   }
 }
