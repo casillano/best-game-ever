@@ -36,7 +36,7 @@ public class GameplayScene implements Scene {
         if (score > 200) {
             if(player.getHealth() > 5) xp = score + player.getHealth();
             else xp = 0;
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.ACTIVE_SCENE = 1;
             manager.resetScenes();
         }
         background.update();
@@ -63,7 +63,7 @@ public class GameplayScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 0;
+        SceneManager.ACTIVE_SCENE = 1;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class GameplayScene implements Scene {
                 playerPoint.set((int) event.getX(), (int) event.getY());
         }
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.ACTIVE_SCENE = 1;
             xp = 0;
             manager.resetScenes();
         }

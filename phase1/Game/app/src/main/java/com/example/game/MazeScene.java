@@ -43,7 +43,7 @@ public class MazeScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 0;
+        SceneManager.ACTIVE_SCENE = 1;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MazeScene implements Scene {
                 playerPoint.set((int) event.getX(), (int) event.getY());
         }
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.ACTIVE_SCENE = 1;
             xp = 0;
             manager.resetScenes();
         }
