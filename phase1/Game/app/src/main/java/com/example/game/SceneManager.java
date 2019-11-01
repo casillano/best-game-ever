@@ -29,8 +29,7 @@ class SceneManager {
         scenes = new ArrayList<>();
         addAllScenes();
         editor = pref.edit();
-        xp = pref.getInt("xp", -1);
-        System.out.println("XP:" + pref.getInt("xp", -1));
+        xp = pref.getInt("xp", 0);
     }
 
     void receiveTouch(MotionEvent event) {
@@ -54,6 +53,7 @@ class SceneManager {
 
     void resetScenes() {
         xp += game1.getXp();
+        xp += game3.getXp();
         editor.putInt("xp", xp);
         editor.apply();
         scenes.clear();
@@ -74,6 +74,6 @@ class SceneManager {
     }
 
     int getXp(){
-        return pref.getInt("xp", -1);
+        return pref.getInt("xp", 0);
     }
 }

@@ -22,7 +22,7 @@ public class MazeScene implements Scene {
 
     MazeScene(Context context, SceneManager manager) {
         this.manager = manager;
-        xp = manager.getXp();
+        xp = 0;
 
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);

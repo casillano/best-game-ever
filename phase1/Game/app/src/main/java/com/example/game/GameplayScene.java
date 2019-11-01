@@ -22,7 +22,7 @@ public class GameplayScene implements Scene {
     GameplayScene(Context context, SceneManager manager) {
         player = new Player(context, Constants.playerColor);
         this.manager = manager;
-        xp = manager.getXp();
+        xp = 0;
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
         monsters.add(new SlimeMeleeMonster(context, 1000, 1000));
         background = new Background(context);
