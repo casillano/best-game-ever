@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Handler;
 import android.view.MotionEvent;
 
 public class MenuScene implements Scene {
@@ -12,8 +11,6 @@ public class MenuScene implements Scene {
     private Button gameButton, game2Button, game3Button, storeButton, changeUser;
     private SceneManager manager;
     private int xp;
-    private boolean blocked = true;
-    private Handler handler = new Handler();
 
     MenuScene(Context context, SceneManager manager) {
         this.manager = manager;
@@ -58,37 +55,21 @@ public class MenuScene implements Scene {
 
     @Override
     public void receiveTouch(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN)
-        {
-            if (blocked)
-            {
-                handler.postDelayed(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        blocked = false;
-                    }
-                }, 1000);}
-            else {
-                if (gameButton.isClicked((int) event.getX(), (int) event.getY())) {
-                    SceneManager.ACTIVE_SCENE = 2;
-                }
-                else if (game2Button.isClicked((int) event.getX(), (int) event.getY())) {
-                    SceneManager.ACTIVE_SCENE = 3;
-                }
-                else if (game3Button.isClicked((int) event.getX(), (int) event.getY())) {
-                    SceneManager.ACTIVE_SCENE = 4;
-                }
-                else if (storeButton.isClicked((int) event.getX(), (int) event.getY())) {
-                    SceneManager.ACTIVE_SCENE = 5;
-                }
-                else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
-                    SceneManager.ACTIVE_SCENE = 0;
-                    manager.changeUser();
-                }
-            }
-
+        if (gameButton.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 2;
+        }
+        else if (game2Button.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 3;
+        }
+        else if (game3Button.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 4;
+        }
+        else if (storeButton.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 5;
+        }
+        else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 0;
+            manager.changeUser();
         }
     }
 
@@ -96,4 +77,3 @@ public class MenuScene implements Scene {
         xp = points;
     }
 }
-
