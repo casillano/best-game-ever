@@ -19,7 +19,7 @@ class MazeCreator {
 
 
   private Cell[][] cells;
-  private static final int COLS = 7, ROWS = 11;
+  private static final int COLS = 4, ROWS = 8;
   private Paint paint;
   private int cellSize;
   private Rect finishLine;
