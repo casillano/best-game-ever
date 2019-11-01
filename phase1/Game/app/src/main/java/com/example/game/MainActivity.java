@@ -3,6 +3,8 @@ package com.example.game;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 

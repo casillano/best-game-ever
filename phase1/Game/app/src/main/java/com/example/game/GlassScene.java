@@ -115,7 +115,7 @@ public class GlassScene implements Scene{
            else {
                xp = 0;
            }
-            System.out.println("guess" + guess + "num" + monsters.size());
+//            System.out.println("guess" + guess + "num" + monsters.size());
             SceneManager.ACTIVE_SCENE = 0;
             manager.resetScenes();
         }
