@@ -11,8 +11,12 @@ class MazeCollisions {
 
   static boolean checkCollisions(ArrayList<Rect> walls, Player player) {
 
+    Rect playerRect = player.getRectangle();
+    Rect collisionBox = new Rect(playerRect.left + 50, playerRect.top + 50, playerRect.right - 50,
+            playerRect.bottom - 50);
+
     for (int i = 0; i < walls.size(); i++) {
-      if (Rect.intersects(player.getRectangle(), walls.get(i))) {
+      if (Rect.intersects(collisionBox, walls.get(i))) {
         return true;
       }
     }
