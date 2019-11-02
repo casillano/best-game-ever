@@ -19,7 +19,7 @@ class MazeCreator {
 
 
   private Cell[][] cells;
-  private static final int COLS = 4, ROWS = 8;
+  private static final int COLS = 3, ROWS = 4;
   private Paint paint;
   private int cellSize;
   private Rect finishLine;
@@ -38,47 +38,39 @@ class MazeCreator {
   }
 
   void drawMaze(Canvas canvas) {
-    int width = canvas.getWidth();
-    int height = canvas.getHeight();
-    int hMargin, vMargin, cellSize;
-    cellSize = width / (COLS + 1);
 
-    hMargin = (width - COLS * cellSize) / 2;
-    vMargin = (height - ROWS * cellSize) / 2;
-
-
-    drawCells(canvas, vMargin, hMargin, cellSize);
+    drawCells(canvas, cellSize);
   }
 
-  private void drawCells(Canvas canvas, int vMargin, int hMargin, int cellSize) {
+  private void drawCells(Canvas canvas, int cellSize) {
 
-    canvas.translate(hMargin, vMargin);
+
     for (int x = 0; x < COLS; x++) {
       for (int y = 0; y < ROWS; y++) {
         if (x == COLS - 1 && y == ROWS - 1) {
           Paint paint2 = new Paint();
           paint2.setColor(Color.RED);
-          Rect finish = new Rect(x * cellSize, y * cellSize, (x + 1) * cellSize, (y + 1) * cellSize);
+          Rect finish = new Rect(x * cellSize + 220, y * cellSize + 520, (x + 1) * cellSize + 220, (y + 1) * cellSize + 520);
           canvas.drawRect(finish, paint2);
           finishLine = finish;
         }
         if (cells[x][y].topWall) {
-          Rect r = new Rect(x * cellSize, y * cellSize, (x + 1) * cellSize, y * cellSize + 9);
+          Rect r = new Rect(x * cellSize + 220, y * cellSize + 520, (x + 1) * cellSize + 220, y * cellSize + 520 + 9);
           canvas.drawRect(r, paint);
           walls.add(r);
         }
         if (cells[x][y].botWall) {
-          Rect r = new Rect(x * cellSize, (y + 1) * cellSize, (x + 1) * cellSize, (y + 1) * cellSize + 9);
+          Rect r = new Rect(x * cellSize + 220, (y + 1) * cellSize + 520, (x + 1) * cellSize + 220, (y + 1) * cellSize + 520 + 9);
           canvas.drawRect(r, paint);
           walls.add(r);
         }
         if (cells[x][y].rightWall) {
-          Rect r = new Rect((x + 1) * cellSize, y * cellSize, (x + 1) * cellSize + 9, (y + 1) * cellSize);
+          Rect r = new Rect((x + 1) * cellSize + 220, y * cellSize + 520, (x + 1) * cellSize + 220 + 9, (y + 1) * cellSize + 520);
           canvas.drawRect(r, paint);
           walls.add(r);
         }
         if (cells[x][y].leftWall) {
-          Rect r = new Rect(x * cellSize, y * cellSize, x * cellSize + 9, (y + 1) * cellSize);
+          Rect r = new Rect(x * cellSize + 220, y * cellSize + 520, x * cellSize + 220 + 9, (y + 1) * cellSize + 520);
           canvas.drawRect(r, paint);
           walls.add(r);
         }
