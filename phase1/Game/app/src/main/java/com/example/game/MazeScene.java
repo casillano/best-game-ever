@@ -31,7 +31,7 @@ public class MazeScene implements Scene {
     background = new Background(context);
     player.changeRectangle(300, 550, 400, 650);
     playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
-    quitButton = new Button(850, 50, 100, 100, "X");
+    quitButton = new Button(850, 300, 100, 100, "X");
     mazeCreator = new MazeCreator();
 
   }

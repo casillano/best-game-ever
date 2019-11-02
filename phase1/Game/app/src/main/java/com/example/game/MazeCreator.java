@@ -38,7 +38,8 @@ class MazeCreator {
   }
 
   void drawMaze(Canvas canvas) {
-
+    int width = canvas.getWidth();
+    cellSize = width / (COLS + 1);
     drawCells(canvas, cellSize);
   }
 
