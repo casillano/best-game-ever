@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 
 public class CustomizationScene implements Scene {
-    private Background background;
+    private StoreBackground background;
     private Player player;
     private Point playerPoint;
     private Button quitButton, custom1Btn, custom2Btn, custom3Btn;
@@ -22,7 +22,7 @@ public class CustomizationScene implements Scene {
     CustomizationScene(Context context, SceneManager manager) {
         this.manager = manager;
         xp = manager.getXp();
-        background = new Background(context);
+        background = new StoreBackground(context);
         quitButton = new Button(850, 50, 100, 100, "X");
         custom1Btn = new Button(150, 800, 300, 100, "green");
         custom2Btn = new Button(700, 800, 300, 100, "blue");
