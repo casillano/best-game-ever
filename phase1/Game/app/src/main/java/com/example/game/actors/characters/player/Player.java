@@ -22,6 +22,7 @@ public class Player extends Character {
     Bitmap idleImg, walk1,walk2;
     public Player(Context context, String col) {
         speed = 15;
+        max_health = 10000;
 
         setRectangle(new Rect(Constants.DISPLAY_SIZE.x / 2 - 50,
                 Constants.DISPLAY_SIZE.y - 50, Constants.DISPLAY_SIZE.x / 2 + 50,
@@ -66,9 +67,8 @@ public class Player extends Character {
         // All animations in Player
         setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkleft})));
         Point p = new Point();
-        p.x = getRectangle().centerX();
-        p.y = getRectangle().centerY() - (idleImg.getWidth() / 2);
-        setHealthBar(new HealthBar(max_health, p, Color.GREEN, 150));
+        int aboveDistance = idleImg.getWidth()/2;
+        setHealthBar(new HealthBar(max_health, this, aboveDistance, Color.GREEN, 150));
     }
 
     public void update(Point point) {
@@ -90,7 +90,7 @@ public class Player extends Character {
                 (getRectangle().centerY() + move_y) - getRectangle().height() / 2,
                 (getRectangle().centerX() + move_x) + getRectangle().width() / 2,
                 (getRectangle().centerY() + move_y) + getRectangle().height() / 2);
-        healthBar.move(move_x, move_y);
+        healthBar.move();
 
         int state = 0; // 0 blueidle, 1 walking , 2 walking left
         if (getRectangle().left - oldLeft > 0) {

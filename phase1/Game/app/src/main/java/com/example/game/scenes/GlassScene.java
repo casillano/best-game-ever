@@ -60,8 +60,9 @@ public class GlassScene implements Scene {
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
+        ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
         for (SlimeMeleeMonster m : monsters) {
-            m.update(player);
+            m.update(player, emptyList);
         }
     }
 

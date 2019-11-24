@@ -31,6 +31,11 @@ public class GameOneScene implements Scene {
         this.manager = manager;
         xp = 0;
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
+        monsters.add(new SlimeMeleeMonster(context, 400, 600));
+        monsters.add(new SlimeMeleeMonster(context, 100, 1000));
+        monsters.add(new SlimeMeleeMonster(context, 40, 600));
+        monsters.add(new SlimeMeleeMonster(context, 1030, 100));
+        monsters.add(new SlimeMeleeMonster(context, 420, 80));
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
@@ -44,15 +49,20 @@ public class GameOneScene implements Scene {
             SceneManager.ACTIVE_SCENE = 1;
             manager.resetScenes();
         }
-        else if (score > 500) {
-            xp = score + player.getHealth();
-            SceneManager.ACTIVE_SCENE = 1;
-            manager.resetScenes();
-        }
         background.update();
         player.update(playerPoint);
+        ArrayList<SlimeMeleeMonster> slimeMonsters = new ArrayList<>();
         for (SlimeMeleeMonster m : monsters) {
-            m.update(player);
+            slimeMonsters.add(m);
+
+        }
+        for (SlimeMeleeMonster m : monsters) {
+            if (m.healthBar.getCurrHealth() == 0) {
+                //monsters.remove(m);
+            }
+            ArrayList<SlimeMeleeMonster> collidableCharacter = new ArrayList<>(slimeMonsters);
+            collidableCharacter.remove(m);
+            m.update(player,collidableCharacter);
         }
     }
 

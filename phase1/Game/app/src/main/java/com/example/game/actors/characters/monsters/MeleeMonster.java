@@ -5,6 +5,8 @@ import com.example.game.algorithms.StrategyContext;
 import com.example.game.actors.characters.Character;
 import com.example.game.actors.characters.player.Player;
 
+import java.util.ArrayList;
+
 class MeleeMonster extends Character {
     private StrategyContext context;
 
@@ -12,8 +14,9 @@ class MeleeMonster extends Character {
         this.context = new StrategyContext(new ChaseStrategy());
     }
 
-    public void update(Player player) {
-        context.executeStrategy(player, this);
+    public void update(Player player, ArrayList<SlimeMeleeMonster> collidableCharacters) {
+            context.executeStrategy(player, this, collidableCharacters);
 
     }
+
 }

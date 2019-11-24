@@ -13,14 +13,23 @@ public class HealthBar implements GameObject {
     private Rect rectangle;
     private Paint paint;
     private int length;
+    private Character character;
+    private int oldCharacterX;
+    private int oldCharacterY;
 
-    public HealthBar(int maxHealth, Point point, int color, int length) {
-        this.rectangle = new Rect(point.x - length / 2, point.y, point.x + length / 2, point.y - 5);
+    public HealthBar(int maxHealth, Character character, int aboveDistance, int color, int length) {
+        this.rectangle = new Rect(character.getRectangle().centerX() - length / 2,
+                character.getRectangle().centerY() - aboveDistance,
+                character.getRectangle().centerX() + length / 2,
+                character.getRectangle().centerY() - aboveDistance - 5);
         paint = new Paint();
         paint.setColor(color);
         currHealth = maxHealth;
         this.maxHealth = maxHealth;
         this.length = length;
+        this.character = character;
+        oldCharacterX = character.getRectangle().centerX();
+        oldCharacterY = character.getRectangle().centerY();
 
     }
 
@@ -32,15 +41,18 @@ public class HealthBar implements GameObject {
 
     @Override
     public void update() {
-
     }
 
 
-    public void move(int move_x, int move_y) {
-        rectangle.set((rectangle.centerX() + move_x) - rectangle.width() / 2,
-                (rectangle.centerY() + move_y) - rectangle.height() / 2,
-                (rectangle.centerX() + move_x) + rectangle.width() / 2,
-                (rectangle.centerY() + move_y) + rectangle.height() / 2);
+    public void move() {
+        int moveX = character.getRectangle().centerX() - oldCharacterX;
+        int moveY = character.getRectangle().centerY() - oldCharacterY;
+        oldCharacterX = character.getRectangle().centerX();
+        oldCharacterY = character.getRectangle().centerY();
+        rectangle.set((rectangle.centerX() + moveX) - rectangle.width() / 2,
+                (rectangle.centerY() + moveY) - rectangle.height() / 2,
+                (rectangle.centerX() + moveX) + rectangle.width() / 2,
+                (rectangle.centerY() + moveY) + rectangle.height() / 2);
     }
 
     public void takeDamage(int dmg) {
@@ -50,6 +62,7 @@ public class HealthBar implements GameObject {
         int change = (rectangle.right - (rectangle.left + (int) (scale))) / 2;
         rectangle.right = rectangle.right - change;
         rectangle.left = rectangle.left + change;
+
 
     }
 

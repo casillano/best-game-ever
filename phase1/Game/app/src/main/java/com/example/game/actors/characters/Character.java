@@ -6,6 +6,8 @@ import android.graphics.Rect;
 import com.example.game.actors.GameObject;
 import com.example.game.design.AnimationManager;
 
+import java.util.ArrayList;
+
 
 public class Character implements GameObject {
     private Rect rectangle;
@@ -14,6 +16,8 @@ public class Character implements GameObject {
     public int max_health = 100;
     public HealthBar healthBar;
     public int damage;
+    public int force;
+    public int[] directionOfForce;
 
     @Override
     public void draw(Canvas canvas) {
@@ -50,5 +54,12 @@ public class Character implements GameObject {
     public void changeRectangle(int left, int top, int right, int bottom) {
         rectangle.set(left, top, right, bottom);
 
+    }
+
+    public void applyForce(int[] direction) {
+        this.directionOfForce = direction;
+    }
+
+    public void handleForce() {
     }
 }
