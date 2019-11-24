@@ -70,22 +70,19 @@ public class CustomizationScene implements Scene {
             xp = 0;
             manager.resetScenes();
 
-        }
-        else if (custom1Btn.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (custom1Btn.isClicked((int) event.getX(), (int) event.getY())) {
             Constants.playerColor = "green";
             SceneManager.ACTIVE_SCENE = 1;
             xp = 0;
             manager.resetScenes();
 
-        }
-        else if (custom2Btn.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (custom2Btn.isClicked((int) event.getX(), (int) event.getY())) {
             Constants.playerColor = "blue";
             SceneManager.ACTIVE_SCENE = 1;
             xp = 0;
             manager.resetScenes();
 
-        }
-        else if (custom3Btn.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (custom3Btn.isClicked((int) event.getX(), (int) event.getY())) {
             Constants.playerColor = "pink";
             SceneManager.ACTIVE_SCENE = 1;
             xp = 0;

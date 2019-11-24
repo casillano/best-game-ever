@@ -10,6 +10,7 @@ public class ChaseStrategy implements Strategy {
     private float[] normal = new float[2];
     private float magnitude;
     private int speed;
+
     @Override
     public void move(Player player, Character character,
                      ArrayList<SlimeMeleeMonster> collidableCharacters) {
@@ -35,9 +36,9 @@ public class ChaseStrategy implements Strategy {
         }
         //Moves the character towards the player
         chasePlayer(character);
-
         //Plays the appropriate animation
         playMovementAnimation(oldLeft, character);
+
     }
 
 
@@ -45,7 +46,6 @@ public class ChaseStrategy implements Strategy {
         int[] direction = findDirection();
         int move_x = direction[0];
         int move_y = direction[1];
-
         character.changeRectangle(character.getRectangle().centerX() +
                         move_x - character.getRectangle().width() / 2,
                 (character.getRectangle().centerY() + move_y)
@@ -57,16 +57,20 @@ public class ChaseStrategy implements Strategy {
         character.healthBar.move();
     }
 
-    private  void playMovementAnimation(double oldLeft,Character character) {
+    private void playMovementAnimation(double oldLeft, Character character) {
         int state = 0; // 0 blueidle, 1 walking , 2 walking left, 3 death right
         if (character.getRectangle().left - oldLeft > 0) {
-            if (character.healthBar.getCurrHealth() == 0){state = 3;}
-            else{
-            state = 1;}
+            if (character.healthBar.getCurrHealth() == 0) {
+                state = 3;
+            } else {
+                state = 1;
+            }
         } else if (character.getRectangle().left - oldLeft < 0) {
-            if (character.healthBar.getCurrHealth() == 0){state = 4;}
-            else{
-                state = 2;}
+            if (character.healthBar.getCurrHealth() == 0) {
+                state = 4;
+            } else {
+                state = 2;
+            }
         }
 
         character.getAnimationManager().playAnimation(state);
@@ -77,14 +81,14 @@ public class ChaseStrategy implements Strategy {
         float[] un = new float[2];
         un[0] = normal[0] / magnitude;
         un[1] = normal[1] / magnitude;
-        int move_x = (int) (un[0]*speed);
-        int move_y = (int) (un[1]*speed);
+        int move_x = (int) (un[0] * speed);
+        int move_y = (int) (un[1] * speed);
         int[] direction = new int[]{move_x, move_y};
         return direction;
     }
 
     private void collide(Character character, ArrayList<SlimeMeleeMonster> collidables) {
-        for(SlimeMeleeMonster m : collidables) {
+        for (SlimeMeleeMonster m : collidables) {
             float[] normal = new float[2];
             normal[0] = m.getRectangle().centerX() - character.getRectangle().centerX();
             normal[1] = m.getRectangle().centerY() - character.getRectangle().centerY();
@@ -95,12 +99,12 @@ public class ChaseStrategy implements Strategy {
                 float[] un = new float[2];
                 un[0] = normal[0] / magnitude;
                 un[1] = normal[1] / magnitude;
-                int move_x = (int) (un[0]*speed);
-                int move_y = (int) (un[1]*speed);
+                int move_x = (int) (un[0] * speed);
+                int move_y = (int) (un[1] * speed);
                 System.out.println(move_x);
-                int[] direction = new int[]{move_x*10, move_y*10};
+                int[] direction = new int[]{move_x * 10, move_y * 10};
                 m.applyForce(direction);
-                m.healthBar.takeDamage(character.damage*10);
+                m.healthBar.takeDamage(character.damage * 20);
             }
         }
     }

@@ -18,6 +18,8 @@ public class Character implements GameObject {
     public int damage;
     public int force;
     public int[] directionOfForce;
+    public int aliveCounter = 30;
+    public boolean alive = true;
 
     @Override
     public void draw(Canvas canvas) {

@@ -53,16 +53,17 @@ public class GameOneScene implements Scene {
         player.update(playerPoint);
         ArrayList<SlimeMeleeMonster> slimeMonsters = new ArrayList<>();
         for (SlimeMeleeMonster m : monsters) {
-            slimeMonsters.add(m);
+            if (m.healthBar.getCurrHealth() == 0) {
+                monsters.remove(m);
+            } else {
+                slimeMonsters.add(m);
+            }
 
         }
         for (SlimeMeleeMonster m : monsters) {
-            if (m.healthBar.getCurrHealth() == 0) {
-                //monsters.remove(m);
-            }
             ArrayList<SlimeMeleeMonster> collidableCharacter = new ArrayList<>(slimeMonsters);
             collidableCharacter.remove(m);
-            m.update(player,collidableCharacter);
+            m.update(player, collidableCharacter);
         }
     }
 
@@ -100,7 +101,7 @@ public class GameOneScene implements Scene {
         }
     }
 
-    int getXp(){
+    int getXp() {
         return xp;
     }
 }

@@ -66,7 +66,7 @@ public class HealthBar implements GameObject {
 
     }
 
-    public int getCurrHealth(){
+    public int getCurrHealth() {
         return currHealth;
     }
 }
