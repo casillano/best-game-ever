@@ -33,9 +33,7 @@ public class GameOneScene implements Scene {
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
         monsters.add(new SlimeMeleeMonster(context, 400, 600));
         monsters.add(new SlimeMeleeMonster(context, 100, 1000));
-        monsters.add(new SlimeMeleeMonster(context, 40, 600));
-        monsters.add(new SlimeMeleeMonster(context, 1030, 100));
-        monsters.add(new SlimeMeleeMonster(context, 420, 80));
+        monsters.add(new SlimeMeleeMonster(context, 400, 80));
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");

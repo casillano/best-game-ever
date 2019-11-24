@@ -18,12 +18,35 @@ import com.example.game.design.AnimationManager;
 
 public class SlimeMeleeMonster extends MeleeMonster {
     public SlimeMeleeMonster(Context context, int x, int y) {
-        speed = 8;
-        damage = 1;
-        Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.slime);
         setRectangle(new Rect(x - 50, y - 50,
                 x + 50, y + 50));
+        speed = 12;
+        damage = 1;
+        setAnimations(context);
+        int aboveDistance = (getRectangle().width() / 2);
+        healthBar = new HealthBar(max_health, this, aboveDistance, Color.RED, 100);
+    }
+
+    public void handleForce() {
+        if (directionOfForce == null) {
+            return;
+        }
+        changeRectangle(getRectangle().centerX() +
+                        directionOfForce[0] / 2 - getRectangle().width() / 2,
+                (getRectangle().centerY() + directionOfForce[1] / 2)
+                        - getRectangle().height() / 2,
+                (getRectangle().centerX() + directionOfForce[0] / 2) +
+                        getRectangle().width() / 2,
+                (getRectangle().centerY() + directionOfForce[1] / 2) +
+                        getRectangle().height() / 2);
+        directionOfForce[0] = Math.max(0, Math.abs(directionOfForce[0]) - speed / 4);
+        directionOfForce[1] = Math.max(0, Math.abs(directionOfForce[1]) - speed / 4);
+
+    }
+
+    public void setAnimations(Context context) {
+        Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.slime);
         Bitmap walk1 = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.slime_walk);
         Bitmap deathImg = BitmapFactory.decodeResource(context.getResources(),
@@ -45,31 +68,5 @@ public class SlimeMeleeMonster extends MeleeMonster {
 
         // All animations in SlimeMeleeMonster
         setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkLeft, deathRight, deathLeft})));
-
-        int aboveDistance = (idleImg.getWidth() / 2);
-        healthBar = new HealthBar(max_health, this, aboveDistance, Color.RED, 100);
-    }
-
-    public void handleForce() {
-        if (directionOfForce == null) {
-            System.out.println("NULL");
-            return;
-        }
-        if (directionOfForce[0] < 2 && directionOfForce[1] < 2) {
-            System.out.println("SMALL");
-            return;
-        }
-        System.out.println("FORCE");
-        changeRectangle(getRectangle().centerX() +
-                        directionOfForce[0] / 2 - getRectangle().width() / 2,
-                (getRectangle().centerY() + directionOfForce[1] / 2)
-                        - getRectangle().height() / 2,
-                (getRectangle().centerX() + directionOfForce[0] / 2) +
-                        getRectangle().width() / 2,
-                (getRectangle().centerY() + directionOfForce[1] / 2) +
-                        getRectangle().height() / 2);
-        directionOfForce[0] = Math.max(0, Math.abs(directionOfForce[0]) - speed / 4);
-        directionOfForce[1] = Math.max(0, Math.abs(directionOfForce[1]) - speed / 4);
-
     }
 }

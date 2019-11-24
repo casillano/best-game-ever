@@ -19,55 +19,18 @@ import com.example.game.design.AnimationManager;
 import java.lang.Math;
 
 public class Player extends Character {
-    Bitmap idleImg, walk1,walk2;
+    private Bitmap idleImg, walk1,walk2;
+    private String col;
     public Player(Context context, String col) {
         speed = 15;
         max_health = 10000;
+        this.col = col;
+        setAnimations(context);
 
         setRectangle(new Rect(Constants.DISPLAY_SIZE.x / 2 - 50,
                 Constants.DISPLAY_SIZE.y - 50, Constants.DISPLAY_SIZE.x / 2 + 50,
                 Constants.DISPLAY_SIZE.y + 50));
-        if (col.equals("blue")) {
-            idleImg = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.blueidle);
-        walk1 = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.bluewalk1);
-        walk2 = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.bluewalk2);
-        }
-
-        else if (col.equals("green")) {
-            idleImg = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.greenidle);
-            walk1 = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.greenwalk1);
-            walk2 = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.greenwalk2);
-        }
-
-        else if (col.equals("pink")) {
-            idleImg = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.pinkidle);
-            walk1 = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.pinkwalk1);
-            walk2 = BitmapFactory.decodeResource(context.getResources(),
-                    R.drawable.pinkwalk2);
-        }
-
-        Animation idle = new Animation(new Bitmap[]{idleImg}, 2);
-        Animation walkRight = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
-        Matrix m = new Matrix();
-        m.preScale(-1, 1);
-        walk1 = Bitmap.createBitmap(walk1, 0, 0, walk1.getWidth(), walk1.getHeight(), m,
-                false);
-        walk2 = Bitmap.createBitmap(walk2, 0, 0, walk2.getWidth(), walk2.getHeight(), m,
-                false);
-        Animation walkleft = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
-
-        // All animations in Player
-        setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkleft})));
-        Point p = new Point();
-        int aboveDistance = idleImg.getWidth()/2;
+        int aboveDistance = getRectangle().width()/2;
         setHealthBar(new HealthBar(max_health, this, aboveDistance, Color.GREEN, 150));
     }
 
@@ -106,5 +69,47 @@ public class Player extends Character {
 
     public int getHealth(){
         return healthBar.getCurrHealth();
+    }
+
+    public void setAnimations(Context context) {
+        if (col.equals("blue")) {
+            idleImg = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.blueidle);
+            walk1 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.bluewalk1);
+            walk2 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.bluewalk2);
+        }
+
+        else if (col.equals("green")) {
+            idleImg = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.greenidle);
+            walk1 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.greenwalk1);
+            walk2 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.greenwalk2);
+        }
+
+        else if (col.equals("pink")) {
+            idleImg = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.pinkidle);
+            walk1 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.pinkwalk1);
+            walk2 = BitmapFactory.decodeResource(context.getResources(),
+                    R.drawable.pinkwalk2);
+        }
+
+        Animation idle = new Animation(new Bitmap[]{idleImg}, 2);
+        Animation walkRight = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
+        Matrix m = new Matrix();
+        m.preScale(-1, 1);
+        walk1 = Bitmap.createBitmap(walk1, 0, 0, walk1.getWidth(), walk1.getHeight(), m,
+                false);
+        walk2 = Bitmap.createBitmap(walk2, 0, 0, walk2.getWidth(), walk2.getHeight(), m,
+                false);
+        Animation walkleft = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
+
+        // All animations in Player
+        setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkleft})));
     }
 }

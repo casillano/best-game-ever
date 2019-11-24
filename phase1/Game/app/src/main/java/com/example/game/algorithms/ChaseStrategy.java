@@ -83,8 +83,7 @@ public class ChaseStrategy implements Strategy {
         un[1] = normal[1] / magnitude;
         int move_x = (int) (un[0] * speed);
         int move_y = (int) (un[1] * speed);
-        int[] direction = new int[]{move_x, move_y};
-        return direction;
+        return new int[]{move_x, move_y};
     }
 
     private void collide(Character character, ArrayList<SlimeMeleeMonster> collidables) {
@@ -102,7 +101,7 @@ public class ChaseStrategy implements Strategy {
                 int move_x = (int) (un[0] * speed);
                 int move_y = (int) (un[1] * speed);
                 System.out.println(move_x);
-                int[] direction = new int[]{move_x * 10, move_y * 10};
+                int[] direction = new int[]{move_x * 9, move_y * 9};
                 m.applyForce(direction);
                 m.healthBar.takeDamage(character.damage * 20);
             }

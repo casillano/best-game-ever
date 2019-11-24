@@ -1,5 +1,6 @@
 package com.example.game.actors.characters;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
@@ -13,17 +14,13 @@ public class Character implements GameObject {
     private Rect rectangle;
     private AnimationManager animationManager;
     public int speed;
-    public int max_health = 100;
+    protected int max_health = 100;
     public HealthBar healthBar;
     public int damage;
-    public int force;
-    public int[] directionOfForce;
-    public int aliveCounter = 30;
-    public boolean alive = true;
+    protected int[] directionOfForce;
 
     @Override
     public void draw(Canvas canvas) {
-        // canvas.drawRect(rectangle, new Paint()); // SHOWS ALL CHARACTER RECTs
         animationManager.draw(canvas, rectangle);
         healthBar.draw(canvas);
     }
@@ -37,11 +34,11 @@ public class Character implements GameObject {
         return rectangle;
     }
 
-    public void setRectangle(Rect rect) {
+    protected void setRectangle(Rect rect) {
         this.rectangle = rect;
     }
 
-    public void setAnimationManager(AnimationManager manager) {
+    protected void setAnimationManager(AnimationManager manager) {
         this.animationManager = manager;
     }
 
@@ -49,7 +46,7 @@ public class Character implements GameObject {
         return animationManager;
     }
 
-    public void setHealthBar(HealthBar healthBar) {
+    protected void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
     }
 
@@ -63,5 +60,8 @@ public class Character implements GameObject {
     }
 
     public void handleForce() {
+    }
+
+    public void setAnimations(Context context) {
     }
 }
