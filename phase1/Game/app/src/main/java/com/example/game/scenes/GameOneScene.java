@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.view.Display;
 import android.view.MotionEvent;
 
 import com.example.game.design.Background;
@@ -26,12 +27,15 @@ public class GameOneScene implements Scene {
     private int score = 0;
     private SceneManager manager;
     private int xp;
+    private Context context;
+    private ArrayList<Character> vanishingCharacters = new ArrayList<>();
 
     GameOneScene(Context context, SceneManager manager) {
+        this.context = context;
         player = new Player(context, Constants.playerColor);
         this.manager = manager;
         xp = 0;
-        createMonsters(context);
+        createMonsters();
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
@@ -49,15 +53,12 @@ public class GameOneScene implements Scene {
         background.update();
         player.update(playerPoint);
         ArrayList<SlimeMeleeMonster> slimeMonsters = new ArrayList<>();
+        handleMonsterDeaths();
         for (Character m : monsters) {
-            if (m.healthBar.getCurrHealth() == 0) {
-                monsters.remove(m);
-            } else {
                 if (m instanceof SlimeMeleeMonster)
                     slimeMonsters.add((SlimeMeleeMonster) m);
             }
 
-        }
         for (SlimeMeleeMonster m : slimeMonsters) {
             ArrayList<SlimeMeleeMonster> collidableCharacter = new ArrayList<>(slimeMonsters);
             collidableCharacter.remove(m);
@@ -72,6 +73,13 @@ public class GameOneScene implements Scene {
         player.draw(canvas);
         for (Character m : monsters) {
             m.draw(canvas);
+        }
+        for (Character m : vanishingCharacters) {
+            if (m.counter > 0) {
+                m.draw(canvas);
+                m.counter -= 1;
+            }
+            else {vanishingCharacters.remove(m);}
         }
         quitButton.draw(canvas);
 
@@ -108,10 +116,29 @@ public class GameOneScene implements Scene {
     }
 
     //Creates the monsters in the scene.
-    private void createMonsters(Context context) {
+    private void createMonsters() {
         monsters.add(new SlimeMeleeMonster(context, 100, 100));
         monsters.add(new SlimeMeleeMonster(context, 400, 600));
         monsters.add(new SlimeMeleeMonster(context, 100, 1000));
         monsters.add(new SlimeMeleeMonster(context, 400, 80));
+    }
+
+    // Removes and creates new monsters upon death
+    private void handleMonsterDeaths() {
+        ArrayList<Character> toRemove = new ArrayList<>();
+        for (Character m : monsters) {
+            if (m.healthBar.getCurrHealth() == 0) {
+                toRemove.add(m);
+            }
+        }
+        for (Character m : toRemove) {
+            m.getAnimationManager().playAnimation(m.deathDirection);
+            vanishingCharacters.add(m);
+            monsters.remove(m);
+            monsters.add(new SlimeMeleeMonster(context,
+                    (int)(Math.random()*Constants.DISPLAY_SIZE.x),
+                    Constants.DISPLAY_SIZE.y - 100));
+        }
+        toRemove.clear();
     }
 }

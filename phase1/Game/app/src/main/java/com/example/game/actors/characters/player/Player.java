@@ -23,7 +23,7 @@ public class Player extends Character {
     private String col;
     public Player(Context context, String col) {
         speed = 15;
-        max_health = 10000;
+        max_health = 250;
         this.col = col;
         setAnimations(context);
 
@@ -107,9 +107,9 @@ public class Player extends Character {
                 false);
         walk2 = Bitmap.createBitmap(walk2, 0, 0, walk2.getWidth(), walk2.getHeight(), m,
                 false);
-        Animation walkleft = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
+        Animation walkLeft = new Animation(new Bitmap[]{walk1, walk2}, 0.5f);
 
         // All animations in Player
-        setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkleft})));
+        setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkLeft})));
     }
 }

@@ -18,6 +18,8 @@ public class Character implements GameObject {
     public HealthBar healthBar;
     public int damage;
     protected int[] directionOfForce;
+    public int counter;
+    public int deathDirection = 3; //3 right, 4 left
 
     @Override
     public void draw(Canvas canvas) {
@@ -64,4 +66,5 @@ public class Character implements GameObject {
 
     public void setAnimations(Context context) {
     }
+
 }

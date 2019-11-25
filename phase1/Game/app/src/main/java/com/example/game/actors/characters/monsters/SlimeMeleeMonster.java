@@ -5,13 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Point;
 import android.graphics.Rect;
 
 import java.lang.*;
 
 import com.example.game.actors.characters.HealthBar;
-import com.example.game.actors.characters.monsters.MeleeMonster;
 import com.example.game.R;
 import com.example.game.design.Animation;
 import com.example.game.design.AnimationManager;
@@ -25,6 +23,7 @@ public class SlimeMeleeMonster extends MeleeMonster {
         setAnimations(context);
         int aboveDistance = (getRectangle().width() / 2);
         healthBar = new HealthBar(max_health, this, aboveDistance, Color.RED, 100);
+        counter = 30;
     }
 
     public void handleForce() {
@@ -67,6 +66,7 @@ public class SlimeMeleeMonster extends MeleeMonster {
         Animation deathRight = new Animation(new Bitmap[]{deathImg}, 1);
 
         // All animations in SlimeMeleeMonster
-        setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkLeft, deathRight, deathLeft})));
+        setAnimationManager(new AnimationManager((new Animation[]{idle, walkRight, walkLeft,
+                deathRight, deathLeft})));
     }
 }

@@ -36,6 +36,7 @@ public class ChaseStrategy implements Strategy {
         }
         //Moves the character towards the player
         chasePlayer(character);
+
         //Plays the appropriate animation
         playMovementAnimation(oldLeft, character);
 
@@ -58,19 +59,15 @@ public class ChaseStrategy implements Strategy {
     }
 
     private void playMovementAnimation(double oldLeft, Character character) {
-        int state = 0; // 0 blueidle, 1 walking , 2 walking left, 3 death right
+        int state = 0; // 0 blueidle, 1 walking right , 2 walking left, 3 death right
         if (character.getRectangle().left - oldLeft > 0) {
-            if (character.healthBar.getCurrHealth() == 0) {
-                state = 3;
-            } else {
-                state = 1;
-            }
+            state = 1;
+            character.deathDirection = 3;
+
         } else if (character.getRectangle().left - oldLeft < 0) {
-            if (character.healthBar.getCurrHealth() == 0) {
-                state = 4;
-            } else {
-                state = 2;
-            }
+            character.deathDirection = 4;
+            state = 2;
+
         }
 
         character.getAnimationManager().playAnimation(state);
@@ -104,7 +101,6 @@ public class ChaseStrategy implements Strategy {
                 int[] direction = new int[]{move_x * 5, move_y * 5};
                 m.applyForce(direction);
                 m.healthBar.takeDamage(character.damage * 20);
-                character.applyForce(direction);
             }
         }
     }
