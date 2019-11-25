@@ -101,9 +101,10 @@ public class ChaseStrategy implements Strategy {
                 int move_x = (int) (un[0] * speed);
                 int move_y = (int) (un[1] * speed);
                 System.out.println(move_x);
-                int[] direction = new int[]{move_x * 9, move_y * 9};
+                int[] direction = new int[]{move_x * 5, move_y * 5};
                 m.applyForce(direction);
                 m.healthBar.takeDamage(character.damage * 20);
+                character.applyForce(direction);
             }
         }
     }

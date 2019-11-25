@@ -39,8 +39,8 @@ public class SlimeMeleeMonster extends MeleeMonster {
                         getRectangle().width() / 2,
                 (getRectangle().centerY() + directionOfForce[1] / 2) +
                         getRectangle().height() / 2);
-        directionOfForce[0] = Math.max(0, Math.abs(directionOfForce[0]) - speed / 4);
-        directionOfForce[1] = Math.max(0, Math.abs(directionOfForce[1]) - speed / 4);
+        directionOfForce[0] = Math.max(0, Math.abs(directionOfForce[0]) - speed /8);
+        directionOfForce[1] = Math.max(0, Math.abs(directionOfForce[1]) - speed /8);
 
     }
 

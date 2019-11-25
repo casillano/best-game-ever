@@ -12,6 +12,7 @@ import com.example.game.actors.Button;
 import com.example.game.backend.Constants;
 import com.example.game.actors.characters.player.Player;
 import com.example.game.actors.characters.monsters.SlimeMeleeMonster;
+import com.example.game.actors.characters.Character;
 
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class GameOneScene implements Scene {
     private Player player;
     private Point playerPoint;
     private Button quitButton;
-    private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
+    private ArrayList<Character> monsters = new ArrayList<>();
     private int score = 0;
     private SceneManager manager;
     private int xp;
@@ -30,15 +31,13 @@ public class GameOneScene implements Scene {
         player = new Player(context, Constants.playerColor);
         this.manager = manager;
         xp = 0;
-        monsters.add(new SlimeMeleeMonster(context, 100, 100));
-        monsters.add(new SlimeMeleeMonster(context, 400, 600));
-        monsters.add(new SlimeMeleeMonster(context, 100, 1000));
-        monsters.add(new SlimeMeleeMonster(context, 400, 80));
+        createMonsters(context);
         background = new Background(context);
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
     }
 
+    //Updates the scene.
     @Override
     public void update() {
         score++;
@@ -50,26 +49,28 @@ public class GameOneScene implements Scene {
         background.update();
         player.update(playerPoint);
         ArrayList<SlimeMeleeMonster> slimeMonsters = new ArrayList<>();
-        for (SlimeMeleeMonster m : monsters) {
+        for (Character m : monsters) {
             if (m.healthBar.getCurrHealth() == 0) {
                 monsters.remove(m);
             } else {
-                slimeMonsters.add(m);
+                if (m instanceof SlimeMeleeMonster)
+                    slimeMonsters.add((SlimeMeleeMonster) m);
             }
 
         }
-        for (SlimeMeleeMonster m : monsters) {
+        for (SlimeMeleeMonster m : slimeMonsters) {
             ArrayList<SlimeMeleeMonster> collidableCharacter = new ArrayList<>(slimeMonsters);
             collidableCharacter.remove(m);
             m.update(player, collidableCharacter);
         }
     }
 
+    //Draws the scene.
     @Override
     public void draw(Canvas canvas) {
         background.draw(canvas);
         player.draw(canvas);
-        for (SlimeMeleeMonster m : monsters) {
+        for (Character m : monsters) {
             m.draw(canvas);
         }
         quitButton.draw(canvas);
@@ -80,11 +81,13 @@ public class GameOneScene implements Scene {
         canvas.drawText("SCORE: " + score, 30, 100, paint);
     }
 
+    //Terminates a scene.
     @Override
     public void terminate() {
         SceneManager.ACTIVE_SCENE = 1;
     }
 
+    //Handles touch events.
     @Override
     public void receiveTouch(MotionEvent event) {
         switch (event.getAction()) {
@@ -99,7 +102,16 @@ public class GameOneScene implements Scene {
         }
     }
 
+    //Returns the XP collected.
     int getXp() {
         return xp;
+    }
+
+    //Creates the monsters in the scene.
+    private void createMonsters(Context context) {
+        monsters.add(new SlimeMeleeMonster(context, 100, 100));
+        monsters.add(new SlimeMeleeMonster(context, 400, 600));
+        monsters.add(new SlimeMeleeMonster(context, 100, 1000));
+        monsters.add(new SlimeMeleeMonster(context, 400, 80));
     }
 }
