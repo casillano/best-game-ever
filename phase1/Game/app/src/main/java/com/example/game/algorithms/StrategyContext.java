@@ -16,5 +16,6 @@ public class StrategyContext {
     public void executeStrategy(Player player, Character character,
                                 ArrayList<SlimeMeleeMonster> collidableCharacters) {
         strategy.move(player, character, collidableCharacters);
+
     }
 }
