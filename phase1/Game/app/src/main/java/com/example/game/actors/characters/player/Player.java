@@ -30,7 +30,7 @@ public class Player extends Character {
         setRectangle(new Rect(Constants.DISPLAY_SIZE.x / 2 - 50,
                 Constants.DISPLAY_SIZE.y - 50, Constants.DISPLAY_SIZE.x / 2 + 50,
                 Constants.DISPLAY_SIZE.y + 50));
-        int aboveDistance = getRectangle().width()/2;
+        int aboveDistance = getRectangle().width()/2 + 5;
         setHealthBar(new HealthBar(max_health, this, aboveDistance, Color.GREEN, 150));
     }
 
