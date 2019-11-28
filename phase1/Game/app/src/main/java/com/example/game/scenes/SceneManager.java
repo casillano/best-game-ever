@@ -14,12 +14,14 @@ public class SceneManager {
   static int ACTIVE_SCENE;
   private Context context;
   static private SharedPreferences pref;
-  private Editor editor;
+  static private Editor editor;
   private GameOneScene game1;
   static private MenuScene menu;
   private MazeScene maze;
   private GlassScene game3;
   private CustomizationScene store;
+  private WelcomeScene welcome;
+  static private SignIn signIn;
   static private Login login;
   static private int xp;
   static private String userInfo;
@@ -28,7 +30,7 @@ public class SceneManager {
   public SceneManager(Context context) {
     this.context = context;
     pref = PreferenceManager.getDefaultSharedPreferences(context);
-    ACTIVE_SCENE = 0;
+    ACTIVE_SCENE = 6;
     scenes = new ArrayList<>();
     addAllScenes();
     editor = pref.edit();
@@ -72,12 +74,16 @@ public class SceneManager {
     game3 = new GlassScene(context, this);
     store = new CustomizationScene(context, this);
     login = new Login(context, this);
+    signIn = new SignIn(context, this);
+    welcome = new WelcomeScene(context, this);
     scenes.add(login);
     scenes.add(menu);
     scenes.add(game1);
     scenes.add(maze);
     scenes.add(game3);
     scenes.add(store);
+    scenes.add(welcome);
+    scenes.add(signIn);
   }
 
   int getXp() {
@@ -89,6 +95,23 @@ public class SceneManager {
     userName = name;
     xp = pref.getInt(userInfo + "xp", 0);
     menu.setXp(xp);
+  }
+
+  static void registerUser(String user, String pass){
+    editor.putInt(userInfo + "xp", 0);
+    editor.apply();
+    editor.putString(user + "password", pass);
+    editor.apply();
+    editor.putBoolean(user, true);
+    editor.apply();
+  }
+
+  static boolean userExists(String user){
+    return pref.getBoolean(user, false);
+  }
+
+  static boolean validPassword(String user, String pass){
+    return pass.equals(pref.getString(user + "password", ""));
   }
 
   static String getUserName() {
