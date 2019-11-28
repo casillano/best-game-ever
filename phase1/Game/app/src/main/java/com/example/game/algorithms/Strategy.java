@@ -7,5 +7,5 @@ import com.example.game.actors.characters.player.Player;
 import java.util.ArrayList;
 
 public interface Strategy {
-    public void move(Player player, Character character, ArrayList<SlimeMeleeMonster> collidableCharacters);
+    void move(Player player, Character character, ArrayList<SlimeMeleeMonster> collidableCharacters);
 }

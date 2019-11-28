@@ -3,9 +3,8 @@ package com.example.game.actors;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 
-public class Button {
+public class Button implements GameObject {
 
     private int x;
     private int y;
@@ -33,7 +32,12 @@ public class Button {
         canvas.drawRect(x - 6, y - 6, x + width + 6, y + height + 6, backPaint);
         canvas.drawRect(x, y, x + width, y + height, paint);
         backPaint.setTextSize(100);
-        canvas.drawText(name, x + (width - 50 * name.length())/2, y + (int) ((height + 80) / 2), backPaint);
+        canvas.drawText(name, x + (width - 50 * name.length())/2, y +
+                ((height + 80) / 2), backPaint);
+    }
+
+    @Override
+    public void update() {
     }
 
     public boolean isClicked(int xCo, int yCo) {

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class StrafeStrategy implements Strategy {
     private float[] normal = new float[2];
-    private float magnitude;
     private int direction = 0; //0 left 1 right
     private int speed;
 
@@ -22,7 +21,7 @@ public class StrafeStrategy implements Strategy {
         collide(character, collidableCharacters);
         normal[0] = player.getRectangle().centerX() - character.getRectangle().centerX();
         normal[1] = player.getRectangle().centerY() - character.getRectangle().centerY();
-        magnitude = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
+        float magnitude = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
         //Checks if the monster is within attacking distance
         if (magnitude <= (float) (character.getRectangle().width() / 2
                 + player.getRectangle().width() / 2)) {
@@ -38,7 +37,7 @@ public class StrafeStrategy implements Strategy {
 
 
     private void strafe(Character character) {
-        int move_x = 0;
+        int move_x;
         if (direction == 0) {
             move_x = -speed;
         }
@@ -79,6 +78,7 @@ public class StrafeStrategy implements Strategy {
 
 
     private void collide(Character character, ArrayList<SlimeMeleeMonster> collidables) {
+        //Deals with all collisions
         for (SlimeMeleeMonster m : collidables) {
             float[] normal = new float[2];
             normal[0] = m.getRectangle().centerX() - character.getRectangle().centerX();
