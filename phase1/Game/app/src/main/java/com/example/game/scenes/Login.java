@@ -41,7 +41,7 @@ public class Login implements Scene {
         pass = false;
         buttonText = "Login";
         background = new Background(context);
-        quitButton = new Button(850, 50, 100, 100, "X");
+        quitButton = new Button(750, 50, 300, 100, "BACK");
         buttons = new ArrayList<>();
         String s = "1234567890qwertyuiopasdfghjklzxcvbnm.@,";
         message = "User doesn't exist";
