@@ -1,4 +1,4 @@
-package com.example.game.actors.characters.player;
+package com.example.game.backend.characters.player;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,8 +9,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 import com.example.game.R;
-import com.example.game.actors.characters.Character;
-import com.example.game.actors.characters.HealthBar;
+import com.example.game.backend.characters.Character;
+import com.example.game.backend.characters.HealthBar;
 import com.example.game.backend.Constants;
 import com.example.game.design.Animation;
 import com.example.game.design.AnimationManager;

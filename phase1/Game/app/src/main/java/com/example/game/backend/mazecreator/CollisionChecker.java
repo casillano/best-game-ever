@@ -1,12 +1,12 @@
-package com.example.game.algorithms;
+package com.example.game.backend.mazecreator;
 
 import android.graphics.Rect;
 
-import com.example.game.actors.characters.player.Player;
+import com.example.game.backend.characters.player.Player;
 
 import java.util.ArrayList;
 
-class MazeCollisions {
+class CollisionChecker {
 
   //Error. If the character collides with the wall, it becomes stuck.
   //Need to get mouse movement to check if the character moves away from the wall

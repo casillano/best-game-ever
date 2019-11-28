@@ -1,15 +1,14 @@
-package com.example.game.algorithms;
+package com.example.game.backend.strategies;
 
-import com.example.game.actors.characters.Character;
-import com.example.game.actors.characters.monsters.SlimeMeleeMonster;
-import com.example.game.actors.characters.player.Player;
-import com.example.game.backend.Constants;
+import com.example.game.backend.characters.Character;
+import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
+import com.example.game.backend.characters.player.Player;
 
 import java.util.ArrayList;
 
-public class StrafeStrategy implements Strategy {
+public class ChaseStrategy implements Strategy {
     private float[] normal = new float[2];
-    private int direction = 0; //0 left 1 right
+    private float magnitude;
     private int speed;
 
     @Override
@@ -17,18 +16,26 @@ public class StrafeStrategy implements Strategy {
                      ArrayList<SlimeMeleeMonster> collidableCharacters) {
         double oldLeft = character.getRectangle().left;
         speed = character.speed;
-        //Deals with monster collsions
-        collide(character, collidableCharacters);
+        //makes the character handle the current force on it
+        character.handleForce();
+        // Find the vector from the character to the player
         normal[0] = player.getRectangle().centerX() - character.getRectangle().centerX();
         normal[1] = player.getRectangle().centerY() - character.getRectangle().centerY();
-        float magnitude = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
+        magnitude = (float) Math.sqrt(normal[0] * normal[0] + normal[1] * normal[1]);
+        //Deals with monster collisions
+        collide(character, collidableCharacters);
+
         //Checks if the monster is within attacking distance
         if (magnitude <= (float) (character.getRectangle().width() / 2
                 + player.getRectangle().width() / 2)) {
             player.healthBar.takeDamage(character.damage);
         }
+        if (magnitude < character.speed) {
+            character.getAnimationManager().playAnimation(0);
+            return;
+        }
         //Moves the character towards the player
-        strafe(character);
+        chasePlayer(character);
 
         //Plays the appropriate animation
         playMovementAnimation(oldLeft, character);
@@ -36,28 +43,20 @@ public class StrafeStrategy implements Strategy {
     }
 
 
-    private void strafe(Character character) {
-        int move_x;
-        if (direction == 0) {
-            move_x = -speed;
-        }
-        else {move_x = speed;}
-        int move_y = 0;
+    private void chasePlayer(Character character) {
+        //moves the character towards the player
+        int[] direction = findDirection();
+        int moveX = direction[0];
+        int moveY = direction[1];
         character.changeRectangle(character.getRectangle().centerX() +
-                        move_x - character.getRectangle().width() / 2,
-                (character.getRectangle().centerY() + move_y)
+                        moveX - character.getRectangle().width() / 2,
+                (character.getRectangle().centerY() + moveY)
                         - character.getRectangle().height() / 2,
-                (character.getRectangle().centerX() + move_x) +
+                (character.getRectangle().centerX() + moveX) +
                         character.getRectangle().width() / 2,
-                (character.getRectangle().centerY() + move_y) +
+                (character.getRectangle().centerY() + moveY) +
                         character.getRectangle().height() / 2);
         character.healthBar.move();
-        if (character.getRectangle().centerX() > Constants.DISPLAY_SIZE.x) {
-            direction = 0;
-        }
-        else if (character.getRectangle().centerX() < 0) {
-            direction = 1;
-        }
     }
 
     private void playMovementAnimation(double oldLeft, Character character) {
@@ -76,9 +75,18 @@ public class StrafeStrategy implements Strategy {
         character.getAnimationManager().update();
     }
 
+    private int[] findDirection() {
+        //Scales the normal vector by the speed to find the direction vector of the right magnitude
+        float[] un = new float[2];
+        un[0] = normal[0] / magnitude;
+        un[1] = normal[1] / magnitude;
+        int moveX = (int) (un[0] * speed);
+        int moveY = (int) (un[1] * speed);
+        return new int[]{moveX, moveY};
+    }
 
     private void collide(Character character, ArrayList<SlimeMeleeMonster> collidables) {
-        //Deals with all collisions
+        //Deals with all the character collisions
         for (SlimeMeleeMonster m : collidables) {
             float[] normal = new float[2];
             normal[0] = m.getRectangle().centerX() - character.getRectangle().centerX();
@@ -90,15 +98,12 @@ public class StrafeStrategy implements Strategy {
                 float[] un = new float[2];
                 un[0] = normal[0] / magnitude;
                 un[1] = normal[1] / magnitude;
-                int move_x = (int) (un[0] * speed);
-                int move_y = (int) (un[1] * speed);
-                System.out.println(move_x);
-                int[] direction = new int[]{move_x * 4, move_y * 4};
+                int moveX = (int) (un[0] * speed);
+                int moveY = (int) (un[1] * speed);
+                int[] direction = new int[]{moveX * 5, moveY * 5};
                 m.applyForce(direction);
-                m.healthBar.takeDamage(character.damage * 2);
+                m.healthBar.takeDamage(character.damage * 20);
             }
         }
     }
 }
-
-

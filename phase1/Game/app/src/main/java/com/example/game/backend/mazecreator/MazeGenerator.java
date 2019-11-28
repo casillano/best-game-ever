@@ -1,11 +1,11 @@
-package com.example.game.algorithms;
+package com.example.game.backend.mazecreator;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import com.example.game.actors.characters.player.Player;
+import com.example.game.backend.characters.player.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +16,7 @@ import java.util.Stack;
  * Uses recursive backtracking method to generate random mazes.
  */
 
-public class MazeCreator {
+public class MazeGenerator {
 
 
   private Cell[][] cells;
@@ -28,7 +28,7 @@ public class MazeCreator {
   private ArrayList<Rect> walls;
   private Random random;
 
-  public MazeCreator() {
+  public MazeGenerator() {
     cells = new Cell[COLS][ROWS];
     paint = new Paint();
     paint.setColor(Color.BLACK);
@@ -168,14 +168,14 @@ public class MazeCreator {
 
   public boolean checkCollisions(Player player) {
     if (walls.size() > 0) {
-      return MazeCollisions.checkCollisions(walls, player);
+      return CollisionChecker.checkCollisions(walls, player);
     }
     return false;
   }
 
   public boolean checkFinished(Player player) {
     if (walls.size() > 0) {
-      return MazeCollisions.checkFinished(player, finishLine);
+      return CollisionChecker.checkFinished(player, finishLine);
     }
     return false;
   }

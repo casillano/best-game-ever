@@ -1,9 +1,9 @@
-package com.example.game.actors.characters.monsters;
+package com.example.game.backend.characters.monsters;
 
-import com.example.game.algorithms.ChaseStrategy;
-import com.example.game.algorithms.StrategyContext;
-import com.example.game.actors.characters.Character;
-import com.example.game.actors.characters.player.Player;
+import com.example.game.backend.strategies.ChaseStrategy;
+import com.example.game.backend.strategies.StrategyContext;
+import com.example.game.backend.characters.Character;
+import com.example.game.backend.characters.player.Player;
 
 import java.util.ArrayList;
 

@@ -7,10 +7,10 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 
 import com.example.game.design.Background;
-import com.example.game.actors.Button;
+import com.example.game.design.Button;
 import com.example.game.backend.Constants;
-import com.example.game.actors.characters.player.Player;
-import com.example.game.actors.characters.monsters.SlimeMeleeMonster;
+import com.example.game.backend.characters.player.Player;
+import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
 
 
 

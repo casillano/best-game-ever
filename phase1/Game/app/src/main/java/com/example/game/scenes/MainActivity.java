@@ -1,10 +1,12 @@
-package com.example.game.backend;
+package com.example.game.scenes;
 
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.game.backend.GamePanel;
 
 public class MainActivity extends AppCompatActivity {
 

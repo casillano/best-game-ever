@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.game.backend.Constants;
-import com.example.game.actors.GameObject;
+import com.example.game.backend.characters.GameObject;
 import com.example.game.R;
 
 

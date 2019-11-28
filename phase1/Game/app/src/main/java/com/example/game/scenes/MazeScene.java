@@ -9,10 +9,10 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import com.example.game.design.Background;
-import com.example.game.actors.Button;
+import com.example.game.design.Button;
 import com.example.game.backend.Constants;
-import com.example.game.actors.characters.player.Player;
-import com.example.game.algorithms.MazeCreator;
+import com.example.game.backend.characters.player.Player;
+import com.example.game.backend.mazecreator.MazeGenerator;
 
 
 /* Scene for a maze game
@@ -28,7 +28,7 @@ public class MazeScene implements Scene {
   private Button quitButton;
   private SceneManager manager;
   private boolean gameOver = false, movingPlayer = false;
-  private MazeCreator mazeCreator;
+  private MazeGenerator mazeGenerator;
   private Rect r;
   boolean firstDraw = true;
 
@@ -39,7 +39,7 @@ public class MazeScene implements Scene {
     player.changeRectangle(300, 550, 400, 650);
     playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
     quitButton = new Button(850, 300, 100, 100, "X");
-    mazeCreator = new MazeCreator();
+    mazeGenerator = new MazeGenerator();
 
   }
 
@@ -48,14 +48,14 @@ public class MazeScene implements Scene {
     background.update();
     player.update(playerPoint);
     //pop up showing loser, then return to main menu
-    if (mazeCreator.checkCollisions(player)) {
+    if (mazeGenerator.checkCollisions(player)) {
       gameOver = true;
       terminate();
       manager.resetScenes();
 
     }
     //pop up showing winner
-    if (mazeCreator.checkFinished(player)) {
+    if (mazeGenerator.checkFinished(player)) {
       gameOver = true;
       terminate();
       manager.resetScenes();
@@ -69,7 +69,7 @@ public class MazeScene implements Scene {
     paint.setColor(Color.BLACK);
     background.draw(canvas);
     quitButton.draw(canvas);
-    mazeCreator.drawMaze(canvas);
+    mazeGenerator.drawMaze(canvas);
     player.draw(canvas);
 
   }

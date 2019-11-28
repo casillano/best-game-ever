@@ -1,8 +1,8 @@
-package com.example.game.algorithms;
+package com.example.game.backend.strategies;
 
-import com.example.game.actors.characters.Character;
-import com.example.game.actors.characters.monsters.SlimeMeleeMonster;
-import com.example.game.actors.characters.player.Player;
+import com.example.game.backend.characters.Character;
+import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
+import com.example.game.backend.characters.player.Player;
 
 import java.util.ArrayList;
 

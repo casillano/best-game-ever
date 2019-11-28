@@ -1,4 +1,4 @@
-package com.example.game.actors;
+package com.example.game.backend.characters;
 
 import android.graphics.Canvas;
 

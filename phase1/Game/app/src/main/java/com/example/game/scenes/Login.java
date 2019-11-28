@@ -6,10 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
-import com.example.game.actors.Button;
+import com.example.game.design.Button;
 import com.example.game.design.Background;
-import com.example.game.scenes.Scene;
-import com.example.game.scenes.SceneManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

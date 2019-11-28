@@ -1,8 +1,10 @@
-package com.example.game.actors;
+package com.example.game.design;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import com.example.game.backend.characters.GameObject;
 
 public class Button implements GameObject {
 

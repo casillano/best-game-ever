@@ -1,11 +1,8 @@
-package com.example.game.actors.characters;
+package com.example.game.backend.characters;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.Point;
-
-import com.example.game.actors.GameObject;
 
 public class HealthBar implements GameObject {
     private int maxHealth;

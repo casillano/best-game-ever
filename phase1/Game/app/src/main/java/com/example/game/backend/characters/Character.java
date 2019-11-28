@@ -1,13 +1,10 @@
-package com.example.game.actors.characters;
+package com.example.game.backend.characters;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.game.actors.GameObject;
 import com.example.game.design.AnimationManager;
-
-import java.util.ArrayList;
 
 
 public class Character implements GameObject {

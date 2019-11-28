@@ -8,11 +8,9 @@ import android.view.SurfaceHolder;
 import android.content.Context;
 import android.view.SurfaceView;
 
-import com.example.game.actors.Button;
-import com.example.game.backend.Constants;
-import com.example.game.backend.MainActivity;
-import com.example.game.backend.MainThread;
+import com.example.game.design.Button;
 import com.example.game.design.Background;
+import com.example.game.scenes.MainActivity;
 import com.example.game.scenes.SceneManager;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {

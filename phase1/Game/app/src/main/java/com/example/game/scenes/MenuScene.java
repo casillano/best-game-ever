@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 
 import com.example.game.design.Background;
-import com.example.game.actors.Button;
+import com.example.game.design.Button;
 
 
 
