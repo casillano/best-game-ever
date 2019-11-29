@@ -64,6 +64,7 @@ public class SceneManager {
     xp += game1.getXp();
     xp += game3.getXp();
     color = store.getCostume();
+    menu.setXp(xp);
     editor.putInt(userInfo + "xp", xp);
     editor.apply();
     scenes.clear();
@@ -99,15 +100,13 @@ public class SceneManager {
     color = pref.getString(userInfo + "color", "blue");
     xp = pref.getInt(userInfo + "xp", 0);
     menu.setXp(xp);
-    System.out.println("Color: " + color);
+    System.out.println("xp: " + xp);
     game1.setCostume(color);
     maze.setCostume(color);
     game3.setCostume(color);
   }
 
   static void registerUser(String user, String pass){
-    editor.putInt(userInfo + "xp", 0);
-    editor.apply();
     editor.putString(user + "password", pass);
     editor.apply();
     editor.putBoolean(user, true);

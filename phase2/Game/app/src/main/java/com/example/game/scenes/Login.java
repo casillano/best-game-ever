@@ -161,13 +161,13 @@ public class Login implements Scene {
                         if(newUser) {
                             SceneManager.registerUser(email, password);
                             SceneManager.setUserInfo(email, password);
-                            sManager.addAllScenes();
+                            sManager.resetScenes();
                             SceneManager.ACTIVE_SCENE = 1;
                         }
                         else {
                             if(SceneManager.validPassword(email, password)) {
                                 SceneManager.setUserInfo(email, password);
-                                sManager.addAllScenes();
+                                sManager.resetScenes();
                                 SceneManager.ACTIVE_SCENE = 1;
                             }
                             else{
