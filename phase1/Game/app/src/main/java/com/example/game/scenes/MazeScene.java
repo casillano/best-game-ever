@@ -34,7 +34,7 @@ public class MazeScene implements Scene {
 
   MazeScene(Context context, SceneManager manager) {
     this.manager = manager;
-    player = new Player(context, Constants.playerColor);
+    player = new Player(context, SceneManager.getCostume());
     background = new Background(context);
     player.changeRectangle(300, 550, 400, 650);
     playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
@@ -74,6 +74,9 @@ public class MazeScene implements Scene {
 
   }
 
+  void setCostume(String color){
+    player.setCostume(color);
+  }
 
   @Override
   public void terminate() {
