@@ -26,6 +26,7 @@ public class Login implements Scene {
     private Button emailButton;
     private String cursorEmail = "|";
     private String cursorPassword = "";
+    private SceneManager sManager;
     String message;
     private boolean noUserName = false;
     private int count = 0;
@@ -35,6 +36,7 @@ public class Login implements Scene {
     private Button quitButton;
 
     Login(Context context, SceneManager manager) {
+        sManager = manager;
         email = "";
         password = "";
         passwordDisplay = "";
@@ -159,11 +161,13 @@ public class Login implements Scene {
                         if(newUser) {
                             SceneManager.registerUser(email, password);
                             SceneManager.setUserInfo(email, password);
+                            sManager.addAllScenes();
                             SceneManager.ACTIVE_SCENE = 1;
                         }
                         else {
                             if(SceneManager.validPassword(email, password)) {
                                 SceneManager.setUserInfo(email, password);
+                                sManager.addAllScenes();
                                 SceneManager.ACTIVE_SCENE = 1;
                             }
                             else{

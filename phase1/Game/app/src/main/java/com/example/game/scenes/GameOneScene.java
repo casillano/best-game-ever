@@ -32,7 +32,8 @@ public class GameOneScene implements Scene {
 
     GameOneScene(Context context, SceneManager manager) {
         this.context = context;
-        player = new Player(context, Constants.playerColor);
+        player = new Player(context, SceneManager.getCostume());
+        player.setCostume(SceneManager.getCostume());
         this.manager = manager;
         xp = 0;
         createMonsters();
@@ -134,6 +135,10 @@ public class GameOneScene implements Scene {
         characters.add(new SlimeMeleeMonster(context, 400, 80));
         characters.add(new BeeStrafingMonster(context, -100, 500));
         characters.add(new BeeStrafingMonster(context, Constants.DISPLAY_SIZE.x+100, 1000));
+    }
+
+    void setCostume(String color){
+        player.setCostume(color);
     }
 
     // Removes and creates new monsters upon death
