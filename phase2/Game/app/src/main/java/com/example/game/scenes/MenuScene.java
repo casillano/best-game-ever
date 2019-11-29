@@ -17,6 +17,9 @@ public class MenuScene implements Scene {
     private Button gameButton, game2Button, game3Button, storeButton, changeUser;
     private SceneManager manager;
     private int xp;
+    private int xp1;
+    private int xp2;
+    private int xp3;
 
     MenuScene(Context context, SceneManager manager) {
         this.manager = manager;
@@ -27,6 +30,9 @@ public class MenuScene implements Scene {
         storeButton = new Button(100, 1600, 880, 150, "Customization");
         changeUser = new Button(500, 1800, 480, 150, "CHANGE USER");
         xp = manager.getXp();
+        xp1 = manager.getXp1();
+        xp2 = manager.getXp2();
+        xp3 = manager.getXp3();
     }
 
     @Override
@@ -52,6 +58,10 @@ public class MenuScene implements Scene {
         canvas.drawText("BEST", 300, 400, paint);
         canvas.drawText("GAME", 250, 550, paint);
         canvas.drawText("EVER!", 280, 700, paint);
+        paint.setTextSize(50);
+        canvas.drawText("Game1 XP: " + xp1, 500, 80, paint);
+        canvas.drawText("Game2 XP: " + xp2, 500, 120, paint);
+        canvas.drawText("Game3 XP: " + xp3, 500, 160, paint);
     }
 
     @Override

@@ -24,6 +24,9 @@ public class SceneManager {
   static private SignIn signIn;
   static private Login login;
   static private int xp;
+  static private int xp1;
+  static private int xp2;
+  static private int xp3;
   static private String userInfo;
   static private String userName;
   static private String color;
@@ -31,12 +34,16 @@ public class SceneManager {
   public SceneManager(Context context) {
     this.context = context;
     pref = PreferenceManager.getDefaultSharedPreferences(context);
+    pref.edit().clear().commit();
     ACTIVE_SCENE = 6;
     scenes = new ArrayList<>();
     addAllScenes();
     editor = pref.edit();
     userInfo = "";
     xp = 0;
+    xp1 = 0;
+    xp2 = 0;
+    xp3 = 0;
     color = "blue";
     userName = "";
   }
@@ -63,9 +70,13 @@ public class SceneManager {
   public void resetScenes() {
     xp += game1.getXp();
     xp += game3.getXp();
+    xp1 += game1.getXp();
+    xp3 += game3.getXp();
     color = store.getCostume();
     menu.setXp(xp);
     editor.putInt(userInfo + "xp", xp);
+    editor.putInt(userInfo + "xp1", xp1);
+    editor.putInt(userInfo + "xp3", xp3);
     editor.apply();
     scenes.clear();
     addAllScenes();
@@ -93,12 +104,23 @@ public class SceneManager {
   int getXp() {
     return pref.getInt(userInfo + "xp", 0);
   }
+  int getXp1() {
+    return pref.getInt(userInfo + "xp1", 0);
+  }
+  int getXp2() {
+    return pref.getInt(userInfo + "xp2", 0);
+  }
+  int getXp3() {
+    return pref.getInt(userInfo + "xp3", 0);
+  }
 
   static void setUserInfo(String name, String password) {
     userInfo = name + password;
     userName = name;
     color = pref.getString(userInfo + "color", "blue");
     xp = pref.getInt(userInfo + "xp", 0);
+    xp1 = pref.getInt(userInfo + "xp1", 0);
+    xp3 = pref.getInt(userInfo + "xp3", 0);
     menu.setXp(xp);
     System.out.println("xp: " + xp);
     game1.setCostume(color);
