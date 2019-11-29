@@ -34,6 +34,7 @@ public class SceneManager {
   public SceneManager(Context context) {
     this.context = context;
     pref = PreferenceManager.getDefaultSharedPreferences(context);
+    pref.edit().clear().commit();
     ACTIVE_SCENE = 6;
     scenes = new ArrayList<>();
     addAllScenes();
@@ -68,13 +69,16 @@ public class SceneManager {
 
   public void resetScenes() {
     xp += game1.getXp();
+    xp += maze.getXp();
     xp += game3.getXp();
+    xp2 += maze.getXp();
     xp1 += game1.getXp();
     xp3 += game3.getXp();
     color = store.getCostume();
     menu.setXp(xp);
     editor.putInt(userInfo + "xp", xp);
     editor.putInt(userInfo + "xp1", xp1);
+    editor.putInt(userInfo + "xp2", xp2);
     editor.putInt(userInfo + "xp3", xp3);
     editor.apply();
     scenes.clear();
@@ -119,6 +123,7 @@ public class SceneManager {
     color = pref.getString(userInfo + "color", "blue");
     xp = pref.getInt(userInfo + "xp", 0);
     xp1 = pref.getInt(userInfo + "xp1", 0);
+    xp2 = pref.getInt(userInfo + "xp2", 0);
     xp3 = pref.getInt(userInfo + "xp3", 0);
     menu.setXp(xp);
     System.out.println("xp: " + xp);

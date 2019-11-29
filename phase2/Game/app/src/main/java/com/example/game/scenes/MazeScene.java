@@ -31,6 +31,7 @@ public class MazeScene implements Scene {
   private MazeGenerator mazeGenerator;
   private Rect r;
   boolean firstDraw = true;
+  private int xp;
 
   MazeScene(Context context, SceneManager manager) {
     this.manager = manager;
@@ -40,7 +41,7 @@ public class MazeScene implements Scene {
     playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
     quitButton = new Button(850, 300, 100, 100, "X");
     mazeGenerator = new MazeGenerator();
-
+    xp = 0;
   }
 
   @Override
@@ -56,6 +57,7 @@ public class MazeScene implements Scene {
     }
     //pop up showing winner
     if (mazeGenerator.checkFinished(player)) {
+      xp = 150;
       gameOver = true;
       terminate();
       manager.resetScenes();
@@ -72,6 +74,10 @@ public class MazeScene implements Scene {
     mazeGenerator.drawMaze(canvas);
     player.draw(canvas);
 
+  }
+
+  int getXp() {
+    return xp;
   }
 
   void setCostume(String color){
