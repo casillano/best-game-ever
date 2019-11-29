@@ -1,8 +1,6 @@
 package com.example.game.backend.mazecreator;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 
 import com.example.game.backend.characters.player.Player;

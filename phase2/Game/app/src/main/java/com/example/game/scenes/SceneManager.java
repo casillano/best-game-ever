@@ -7,6 +7,11 @@ import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.content.SharedPreferences;
 
+import com.example.game.backend.mazecreator.CollisionChecker;
+import com.example.game.backend.mazecreator.MazeGenerator;
+import com.example.game.design.Background;
+import com.example.game.design.Button;
+
 import java.util.ArrayList;
 
 public class SceneManager {
@@ -34,6 +39,11 @@ public class SceneManager {
   static String[][] highscore;
   static int[][] highscoreScores;
 
+  private MazeGenerator mazeGenerator;
+  private CollisionChecker collisionChecker;
+  private Background background;
+  private Button quitButton;
+
   public SceneManager(Context context) {
     this.context = context;
     highscoreScores = new int[3][3];
@@ -50,6 +60,11 @@ public class SceneManager {
     xp3 = 0;
     color = "blue";
     userName = "";
+
+    mazeGenerator = new MazeGenerator();
+    collisionChecker = new CollisionChecker();
+    background = new Background(context);
+    quitButton = new Button(850, 300, 100, 100, "X");
   }
 
   public void receiveTouch(MotionEvent event) {
@@ -71,7 +86,7 @@ public class SceneManager {
 
   }
 
-  public void resetScenes() {
+  void resetScenes() {
     xp += game1.getXp();
     xp += maze.getXp();
     xp += game3.getXp();
@@ -154,7 +169,8 @@ public class SceneManager {
     signIn = new SignIn(context, this);
     game1 = new GameOneScene(context, this);
     menu = new MenuScene(context, this);
-    maze = new MazeScene(context, this);
+    maze = new MazeScene(context, this, mazeGenerator, collisionChecker, background,
+            quitButton);
     game3 = new GlassScene(context, this);
     store = new CustomizationScene(context, this);
     welcome = new WelcomeScene(context, this);

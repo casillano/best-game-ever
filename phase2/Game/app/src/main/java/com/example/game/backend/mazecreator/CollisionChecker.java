@@ -6,7 +6,7 @@ import com.example.game.backend.characters.player.Player;
 
 import java.util.ArrayList;
 
-class CollisionChecker {
+public class CollisionChecker {
 
   //Error. If the character collides with the wall, it becomes stuck.
   //Need to get mouse movement to check if the character moves away from the wall

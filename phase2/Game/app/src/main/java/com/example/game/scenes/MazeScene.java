@@ -8,6 +8,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import com.example.game.backend.mazecreator.CollisionChecker;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
 import com.example.game.backend.characters.player.Player;
@@ -30,11 +31,13 @@ public class MazeScene implements Scene {
     private SceneManager manager;
     private boolean gameOver = false, movingPlayer = false;
     private MazeGenerator mazeGenerator;
+    private CollisionChecker collisionChecker;
     private int xp;
     private Paint wallPaint;
     private Paint finishLinePaint;
 
-    MazeScene(Context context, SceneManager manager) {
+    MazeScene(Context context, SceneManager manager, MazeGenerator mazeGenerator,
+              CollisionChecker collisionChecker, Background background, Button quitButton) {
         this.manager = manager;
         wallPaint = new Paint();
         finishLinePaint = new Paint();
@@ -42,11 +45,12 @@ public class MazeScene implements Scene {
         wallPaint.setStrokeWidth(3);
         finishLinePaint.setColor(Color.RED);
         player = new Player(context, SceneManager.getCostume());
-        background = new Background(context);
+        this.background = background;
         player.changeRectangle(300, 550, 400, 650);
         playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
-        quitButton = new Button(850, 300, 100, 100, "X");
-        mazeGenerator = new MazeGenerator();
+        this.quitButton = quitButton;
+        this.mazeGenerator = mazeGenerator;
+        this.collisionChecker = collisionChecker;
         xp = 0;
     }
 

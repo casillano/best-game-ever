@@ -74,7 +74,7 @@ public class Player extends Character {
 
     }
 
-    public void setCostume(String color){
+    public void setCostume(String color) {
         this.col = color;
         getAnimationManager().update();
         setAnimations(context);
@@ -83,6 +83,7 @@ public class Player extends Character {
     public int getHealth() {
         return healthBar.getCurrHealth();
     }
+
 
     public void setAnimations(Context context) {
         System.out.println("renk: " + col);
