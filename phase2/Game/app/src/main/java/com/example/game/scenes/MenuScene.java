@@ -14,7 +14,7 @@ import com.example.game.design.Button;
 
 public class MenuScene implements Scene {
     private Background background;
-    private Button gameButton, game2Button, game3Button, storeButton, changeUser;
+    private Button gameButton, game2Button, game3Button, storeButton, changeUser, scoreButton;
     private SceneManager manager;
     private int xp;
     private int xp1;
@@ -24,10 +24,11 @@ public class MenuScene implements Scene {
     MenuScene(Context context, SceneManager manager) {
         this.manager = manager;
         background = new Background(context);
-        gameButton = new Button(100, 1000, 880, 150, "GAME 1");
-        game2Button = new Button(100, 1200, 880, 150, "GAME 2");
-        game3Button = new Button(100, 1400, 880, 150, "GAME 3");
-        storeButton = new Button(100, 1600, 880, 150, "Customization");
+        gameButton = new Button(100, 800, 880, 150, "GAME 1");
+        game2Button = new Button(100, 1000, 880, 150, "GAME 2");
+        game3Button = new Button(100, 1200, 880, 150, "GAME 3");
+        storeButton = new Button(100, 1400, 880, 150, "Customization");
+        scoreButton = new Button(100, 1600, 880, 150, "Scoreboard");
         changeUser = new Button(500, 1800, 480, 150, "CHANGE USER");
         xp = manager.getXp();
         xp1 = manager.getXp1();
@@ -47,6 +48,7 @@ public class MenuScene implements Scene {
         game2Button.draw(canvas);
         game3Button.draw(canvas);
         storeButton.draw(canvas);
+        scoreButton.draw(canvas);
         changeUser.draw(canvas);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
@@ -86,6 +88,9 @@ public class MenuScene implements Scene {
         else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 0;
             manager.changeUser();
+        }
+        else if (scoreButton.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = 8;
         }
     }
 

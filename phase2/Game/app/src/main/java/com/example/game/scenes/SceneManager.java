@@ -19,6 +19,7 @@ public class SceneManager {
   static private MenuScene menu;
   static private MazeScene maze;
   static private GlassScene game3;
+  private ScoreBoardScene scoreScene;
   private CustomizationScene store;
   private WelcomeScene welcome;
   static private SignIn signIn;
@@ -93,6 +94,7 @@ public class SceneManager {
     game3 = new GlassScene(context, this);
     store = new CustomizationScene(context, this);
     welcome = new WelcomeScene(context, this);
+    scoreScene = new ScoreBoardScene(context, this);
     scenes.add(login);
     scenes.add(menu);
     scenes.add(game1);
@@ -101,6 +103,7 @@ public class SceneManager {
     scenes.add(store);
     scenes.add(welcome);
     scenes.add(signIn);
+    scenes.add(scoreScene);
   }
 
   int getXp() {
