@@ -17,15 +17,13 @@ import java.util.ArrayList;
 
 public class CustomizationScene implements Scene {
     private StoreBackground background;
-    private Player player;
-    private Point playerPoint;
     private Button quitButton, custom1Btn, custom2Btn, custom3Btn;
-    private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
-    private int score = 0;
     private SceneManager manager;
     private int xp;
+    private String color;
 
     CustomizationScene(Context context, SceneManager manager) {
+        color = "blue";
         this.manager = manager;
         xp = manager.getXp();
         background = new StoreBackground(context);
@@ -71,23 +69,27 @@ public class CustomizationScene implements Scene {
             manager.resetScenes();
 
         } else if (custom1Btn.isClicked((int) event.getX(), (int) event.getY())) {
-            Constants.playerColor = "green";
+            SceneManager.setCostume("green");
             SceneManager.ACTIVE_SCENE = 1;
-            xp = 0;
+            color = "green";
             manager.resetScenes();
 
         } else if (custom2Btn.isClicked((int) event.getX(), (int) event.getY())) {
-            Constants.playerColor = "blue";
+            SceneManager.setCostume("blue");
             SceneManager.ACTIVE_SCENE = 1;
-            xp = 0;
+            color = "blue";
             manager.resetScenes();
 
         } else if (custom3Btn.isClicked((int) event.getX(), (int) event.getY())) {
-            Constants.playerColor = "pink";
+            SceneManager.setCostume("pink");
+            color = "pink";
             SceneManager.ACTIVE_SCENE = 1;
-            xp = 0;
             manager.resetScenes();
 
         }
+    }
+
+    String getCostume(){
+        return color;
     }
 }

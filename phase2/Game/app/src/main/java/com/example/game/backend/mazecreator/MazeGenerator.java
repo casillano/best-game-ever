@@ -35,7 +35,6 @@ public class MazeGenerator {
     paint.setStrokeWidth(3);
     walls = new ArrayList<>();
     random = new Random();
-    //should not be called here
     mazeGenerator();
   }
 

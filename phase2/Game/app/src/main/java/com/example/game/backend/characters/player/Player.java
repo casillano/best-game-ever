@@ -18,8 +18,10 @@ import com.example.game.design.AnimationManager;
 public class Player extends Character {
     private Bitmap idleImg, walk1, walk2;
     private String col;
+    private Context context;
 
     public Player(Context context, String col) {
+        this.context = context;
         //Set all attributes
         speed = 15;
         max_health = 100;
@@ -72,12 +74,19 @@ public class Player extends Character {
 
     }
 
+    public void setCostume(String color){
+        this.col = color;
+        getAnimationManager().update();
+        setAnimations(context);
+    }
+
     public int getHealth() {
         return healthBar.getCurrHealth();
     }
 
     public void setAnimations(Context context) {
-        switch (col) {
+        System.out.println("renk: " + col);
+        switch (this.col) {
             case "blue":
                 idleImg = BitmapFactory.decodeResource(context.getResources(),
                         R.drawable.blueidle);

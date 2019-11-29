@@ -40,7 +40,7 @@ public class GlassScene implements Scene {
     GlassScene(Context context, SceneManager manager) {
         guess = 0;
         counter = 0;
-        player = new Player(context, Constants.playerColor);
+        player = new Player(context, SceneManager.getCostume());
         this.manager = manager;
         xp = 0;
         Random rand = new Random();
@@ -130,6 +130,10 @@ public class GlassScene implements Scene {
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
             userInput = "";
         }
+    }
+
+    void setCostume(String color){
+        player.setCostume(color);
     }
 
     int getXp(){
