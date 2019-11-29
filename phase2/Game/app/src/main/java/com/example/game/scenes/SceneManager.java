@@ -31,9 +31,13 @@ public class SceneManager {
   static private String userInfo;
   static private String userName;
   static private String color;
+  static String[][] highscore;
+  static int[][] highscoreScores;
 
   public SceneManager(Context context) {
     this.context = context;
+    highscoreScores = new int[3][3];
+    highscore = new String[3][3];
     pref = PreferenceManager.getDefaultSharedPreferences(context);
     ACTIVE_SCENE = 6;
     scenes = new ArrayList<>();
@@ -75,6 +79,8 @@ public class SceneManager {
     xp1 += game1.getXp();
     xp3 += game3.getXp();
     color = store.getCostume();
+    getHighscores();
+    checkHighScore();
     menu.setXp(xp);
     editor.putInt(userInfo + "xp", xp);
     editor.putInt(userInfo + "xp1", xp1);
@@ -83,6 +89,64 @@ public class SceneManager {
     editor.apply();
     scenes.clear();
     addAllScenes();
+  }
+
+  private void getHighscores(){
+    for(int i = 0; i<2; i++){
+      for(int j = 0; j<2; j++){
+        highscore[i][j] = pref.getString("highname" + i + "" + j, "");
+        highscoreScores[i][j] = pref.getInt("highscore" + i + "" + j, 0);
+      }
+    }
+  }
+
+  private void checkHighScore(){
+      if(game1.getXp() > 0){
+        swapScores(game1.getXp(), 0);
+        setHighscores();
+      }
+      else if(maze.getXp() > 0){
+        swapScores(maze.getXp(), 1);
+        setHighscores();
+      }
+      else if(game3.getXp() > 0) {
+        swapScores(game3.getXp(), 2);
+        setHighscores();
+      }
+  }
+
+  private void setHighscores(){
+    for(int i = 0; i<2; i++){
+      for(int j = 0; j<2; j++){
+        System.out.println("Scores: " + highscore[i][j] + highscoreScores[i][j]);
+        editor.putString("highname" + i + "" + j, highscore[i][j]);
+        editor.apply();
+        editor.putInt("highscore" + i + "" + j, highscoreScores[i][j]);
+        editor.apply();
+      }
+    }
+  }
+
+  private void swapScores(int score, int i){
+    System.out.println("kaaaaaaaaaaaaaaan" + score);
+    if(score >= highscoreScores[i][0]){
+      highscoreScores[i][2] = highscoreScores[i][1];
+      highscore[i][2] = highscore[i][1];
+      highscoreScores[i][1] = highscoreScores[i][0];
+      highscore[i][1] = highscore[i][0];
+      highscoreScores[i][0] = score;
+      highscore[i][0] = userName;
+    }
+    else if(score >= highscoreScores[i][1]){
+      highscoreScores[i][2] = highscoreScores[i][1];
+      highscore[i][2] = highscore[i][1];
+      highscoreScores[i][1] = score;
+      highscore[i][1] = userName;
+    }
+    else if(score >= highscoreScores[i][2]){
+      highscoreScores[i][2] = score;
+      highscore[i][2] = userName;
+    }
   }
 
   void addAllScenes() {

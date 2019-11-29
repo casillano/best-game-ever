@@ -12,13 +12,17 @@ public class ScoreBoardScene implements Scene {
     private Background background;
     private Button quitButton, game1, game2, game3;
     private SceneManager manager;
-    private String gameName;
+    private int gameName;
+    private String[][] highscore;
+    private int[][] highscoreScores;
 
     ScoreBoardScene(Context context, SceneManager manager) {
         this.manager = manager;
+        highscoreScores = new int[3][3];
+        highscore = new String[3][3];
         background = new Background(context);
         quitButton = new Button(850, 50, 100, 100, "X");
-        gameName = "GAME 1";
+        gameName = 0;
         game1 = new Button(100, 500, 293, 150, "G 1");
         game2 = new Button(393, 500, 293, 150, "G 2");
         game3 = new Button(686, 500, 293, 150, "G 3");
@@ -39,7 +43,10 @@ public class ScoreBoardScene implements Scene {
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
-        canvas.drawText(gameName + " High Scores:", 70, 800, paint);
+        canvas.drawText("GAME " + (1 + gameName) + " High Scores:", 70, 800, paint);
+        if(SceneManager.highscoreScores[gameName][0] != 0) canvas.drawText("#1  " + SceneManager.highscore[gameName][0] + "   " + SceneManager.highscoreScores[gameName][0], 70, 1000, paint);
+        if(SceneManager.highscoreScores[gameName][1] != 0) canvas.drawText("#2  " + SceneManager.highscore[gameName][1] + "   " + SceneManager.highscoreScores[gameName][1], 70, 1200, paint);
+        if(SceneManager.highscoreScores[gameName][2] != 0) canvas.drawText("#3  " + SceneManager.highscore[gameName][2] + "   " + SceneManager.highscoreScores[gameName][2], 70, 1400, paint);
     }
 
     @Override
@@ -54,13 +61,13 @@ public class ScoreBoardScene implements Scene {
             manager.resetScenes();
         }
         if (game1.isClicked((int) event.getX(), (int) event.getY())) {
-            gameName = "GAME 1";
+            gameName = 0;
         }
         if (game2.isClicked((int) event.getX(), (int) event.getY())) {
-            gameName = "GAME 2";
+            gameName = 1;
         }
         if (game3.isClicked((int) event.getX(), (int) event.getY())) {
-            gameName = "GAME 3";
+            gameName = 2;
         }
     }
 }
