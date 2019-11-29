@@ -34,7 +34,6 @@ public class SceneManager {
   public SceneManager(Context context) {
     this.context = context;
     pref = PreferenceManager.getDefaultSharedPreferences(context);
-    pref.edit().clear().commit();
     ACTIVE_SCENE = 6;
     scenes = new ArrayList<>();
     addAllScenes();
