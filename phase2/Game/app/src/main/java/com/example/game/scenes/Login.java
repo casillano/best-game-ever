@@ -35,14 +35,14 @@ public class Login implements Scene {
     boolean newUser = false;
     private Button quitButton;
 
-    Login(Context context, SceneManager manager) {
+    Login(Context context, SceneManager manager, Background background) {
         sManager = manager;
         email = "";
         password = "";
         passwordDisplay = "";
         pass = false;
         buttonText = "Login";
-        background = new Background(context);
+        this.background = background;
         quitButton = new Button(750, 50, 300, 100, "BACK");
         buttons = new ArrayList<>();
         String s = "1234567890qwertyuiopasdfghjklzxcvbnm.@,";

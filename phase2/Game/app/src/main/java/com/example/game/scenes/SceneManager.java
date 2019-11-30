@@ -20,7 +20,7 @@ public class SceneManager {
     private Context context;
     static private SharedPreferences pref;
     static private Editor editor;
-    static private GameOneScene game1;
+    static private SurvivalScene game1;
     static private MenuScene menu;
     static private MazeScene maze;
     static private GlassScene game3;
@@ -63,7 +63,7 @@ public class SceneManager {
 
         mazeGenerator = new MazeGenerator();
         collisionChecker = new CollisionChecker();
-        background = new Background(context);
+        background = new Background(context, "grass");
         quitButton = new Button(850, 300, 100, 100, "X");
     }
 
@@ -160,17 +160,17 @@ public class SceneManager {
         }
     }
 
-    void addAllScenes() {
-        login = new Login(context, this);
+    private void addAllScenes() {
+        login = new Login(context, this, new Background(context, "grass"));
         signIn = new SignIn(context, this);
-        game1 = new GameOneScene(context, this);
-        menu = new MenuScene(context, this);
+        game1 = new SurvivalScene(context, this, background);
+        menu = new MenuScene(this, new Background(context, "grass"));
         maze = new MazeScene(context, this, mazeGenerator, collisionChecker, background,
                 quitButton);
-        game3 = new GlassScene(context, this);
-        store = new CustomizationScene(context, this);
-        welcome = new WelcomeScene(context, this);
-        scoreScene = new ScoreBoardScene(context, this);
+        game3 = new GlassScene(context, this, background);
+        store = new CustomizationScene(this, new Background(context, "grass"));
+        welcome = new WelcomeScene(context, this, new Background(context, "store"));
+        scoreScene = new ScoreBoardScene(context, this, new Background(context, "grass"));
         scenes.add(login);
         scenes.add(menu);
         scenes.add(game1);
@@ -247,5 +247,9 @@ public class SceneManager {
 
     static void changeUser() {
         login.resetUser();
+    }
+
+    public void setBackground(String type) {
+
     }
 }

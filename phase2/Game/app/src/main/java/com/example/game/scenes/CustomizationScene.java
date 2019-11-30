@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 
+import com.example.game.design.Background;
 import com.example.game.design.Button;
 import com.example.game.backend.Constants;
 import com.example.game.backend.characters.player.Player;
@@ -16,17 +17,17 @@ import com.example.game.design.StoreBackground;
 import java.util.ArrayList;
 
 public class CustomizationScene implements Scene {
-    private StoreBackground background;
+    private Background background;
     private Button quitButton, custom1Btn, custom2Btn, custom3Btn;
     private SceneManager manager;
     private int xp;
     private String color;
 
-    CustomizationScene(Context context, SceneManager manager) {
+    CustomizationScene(SceneManager manager, Background background) {
         color = "blue";
         this.manager = manager;
         xp = manager.getXp();
-        background = new StoreBackground(context);
+        this.background = background;
         quitButton = new Button(850, 50, 100, 100, "X");
         custom1Btn = new Button(150, 800, 300, 100, "green");
         custom2Btn = new Button(700, 800, 300, 100, "blue");

@@ -37,7 +37,7 @@ public class GlassScene implements Scene {
     private int counter;
     private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
 
-    GlassScene(Context context, SceneManager manager) {
+    GlassScene(Context context, SceneManager manager, Background background) {
         guess = 0;
         counter = 0;
         player = new Player(context, SceneManager.getCostume());
@@ -57,7 +57,7 @@ public class GlassScene implements Scene {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = new Button(100*i + 37, 1500, 100, 100, i+"");
         }
-        background = new Background(context);
+        this.background = background;
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
         ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();

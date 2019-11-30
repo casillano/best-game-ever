@@ -3,18 +3,20 @@ package com.example.game.scenes;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+
+import com.example.game.design.Background;
 import com.example.game.design.Button;
 import com.example.game.design.StoreBackground;
 
 public class WelcomeScene implements Scene {
-    private StoreBackground background;
+    private Background background;
     private Button loginButton, signButton;
     private SceneManager manager;
     private int xp;
 
-    WelcomeScene(Context context, SceneManager manager) {
+    WelcomeScene(Context context, SceneManager manager, Background background) {
         this.manager = manager;
-        background = new StoreBackground(context);
+        this.background = background;
         signButton = new Button(100, 1200, 880, 150, "New User");
         loginButton = new Button(100, 1400, 880, 150, "Login");
 

@@ -16,11 +16,11 @@ public class ScoreBoardScene implements Scene {
     private String[][] highscore;
     private int[][] highscoreScores;
 
-    ScoreBoardScene(Context context, SceneManager manager) {
+    ScoreBoardScene(Context context, SceneManager manager, Background background) {
         this.manager = manager;
         highscoreScores = new int[3][3];
         highscore = new String[3][3];
-        background = new Background(context);
+        this.background = background;
         quitButton = new Button(850, 50, 100, 100, "X");
         gameName = 0;
         game1 = new Button(100, 500, 293, 150, "G 1");

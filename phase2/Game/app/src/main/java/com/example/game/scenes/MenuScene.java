@@ -20,9 +20,9 @@ public class MenuScene implements Scene {
     private int xp2;
     private int xp3;
 
-    MenuScene(Context context, SceneManager manager) {
+    MenuScene(SceneManager manager, Background background) {
         this.manager = manager;
-        background = new Background(context);
+        this.background = background;
         gameButton = new Button(100, 800, 880, 150, "Survival");
         game2Button = new Button(100, 1000, 880, 150, "Endless Maze");
         game3Button = new Button(100, 1200, 880, 150, "Guessing Game");
