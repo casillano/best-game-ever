@@ -42,13 +42,14 @@ public class Player extends Character {
      */
     public Rect getMotionEventRect() {
         Rect playerRect = getRectangle();
-        return  new Rect(playerRect.left - 250, playerRect.top - 250,
+        return new Rect(playerRect.left - 250, playerRect.top - 250,
                 playerRect.right + 250, playerRect.bottom + 250);
     }
 
     public void moveHealthBar() {
         healthBar.move();
     }
+
     public void update(Point point) {
         //This is how a player moves
         double oldLeft = getRectangle().left;

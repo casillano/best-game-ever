@@ -35,7 +35,7 @@ public class Button implements GameObject {
         canvas.drawRect(x - 6, y - 6, x + width + 6, y + height + 6, backPaint);
         canvas.drawRect(x, y, x + width, y + height, paint);
         backPaint.setTextSize(100);
-        canvas.drawText(name, x + (width - 50 * name.length())/2, y +
+        canvas.drawText(name, x + (width - 50 * name.length()) / 2, y +
                 ((height + 80) / 2), backPaint);
     }
 

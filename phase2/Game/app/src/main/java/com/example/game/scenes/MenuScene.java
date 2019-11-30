@@ -11,7 +11,6 @@ import com.example.game.design.Background;
 import com.example.game.design.Button;
 
 
-
 public class MenuScene implements Scene {
     private Background background;
     private Button gameButton, game2Button, game3Button, storeButton, changeUser, scoreButton;
@@ -75,26 +74,21 @@ public class MenuScene implements Scene {
     public void receiveTouch(MotionEvent event) {
         if (gameButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 2;
-        }
-        else if (game2Button.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (game2Button.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 3;
-        }
-        else if (game3Button.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (game3Button.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 4;
-        }
-        else if (storeButton.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (storeButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 5;
-        }
-        else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 0;
             manager.changeUser();
-        }
-        else if (scoreButton.isClicked((int) event.getX(), (int) event.getY())) {
+        } else if (scoreButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.ACTIVE_SCENE = 8;
         }
     }
 
-    void setXp(int points){
+    void setXp(int points) {
         xp = points;
     }
 }

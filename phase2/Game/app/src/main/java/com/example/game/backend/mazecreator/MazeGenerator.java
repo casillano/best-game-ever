@@ -34,6 +34,7 @@ public class MazeGenerator {
     public void resetGenerator() {
         this.walls.clear();
     }
+
     public ArrayList<Rect> getWalls() {
         return this.walls;
     }
@@ -82,6 +83,7 @@ public class MazeGenerator {
             }
         }
     }
+
     private void mazeGenerator() {
         Stack<Cell> stack = new Stack<>();
         Cell current, next;
