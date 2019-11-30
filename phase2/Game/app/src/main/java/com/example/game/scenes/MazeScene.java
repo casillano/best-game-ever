@@ -37,7 +37,8 @@ public class MazeScene implements Scene {
     private boolean firstDraw = true;
     private Paint wallPaint;
     private Paint finishLinePaint;
-    private Paint textPaint;
+    private Paint instructionTextPaint;
+    private Paint scorePaint;
 
     MazeScene(Context context, SceneManager manager, MazeGenerator mazeGenerator,
               CollisionChecker collisionChecker, Background background, Button quitButton) {
@@ -46,10 +47,14 @@ public class MazeScene implements Scene {
         finishLinePaint = new Paint();
         wallPaint.setColor(Color.BLACK);
         wallPaint.setStrokeWidth(3);
-        textPaint = new Paint();
-        textPaint.setColor(Color.BLACK);
-        textPaint.setTextSize(90);
-        textPaint.setTypeface(Typeface.SANS_SERIF);
+        instructionTextPaint = new Paint();
+        instructionTextPaint.setColor(Color.BLACK);
+        instructionTextPaint.setTextSize(90);
+        instructionTextPaint.setTypeface(Typeface.SANS_SERIF);
+        scorePaint = new Paint();
+        scorePaint.setColor(Color.BLACK);
+        scorePaint.setTypeface(Typeface.SANS_SERIF);
+        scorePaint.setTextSize(50);
         finishLinePaint.setColor(Color.RED);
         player = new Player(context, SceneManager.getCostume());
         this.background = background;
@@ -107,11 +112,15 @@ public class MazeScene implements Scene {
         background.update();
         player.update(playerPoint);
         if (collisionChecker.checkFinished(player)) {
-            xp = 150;
+            xp += 150;
             gameOver = true;
-            terminate();
             resetMazeComponents();
-            manager.resetScenes();
+            firstDraw = true;
+            player.changeRectangle(220, 570, 320, 670);
+            playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
+            gameOver = false;
+            player.moveHealthBar();
+
         } else if (collisionChecker.checkCollisions(player)) {
             gameOver = true;
             terminate();
@@ -128,7 +137,8 @@ public class MazeScene implements Scene {
         background.draw(canvas);
         quitButton.draw(canvas);
         player.draw(canvas);
-        canvas.drawText("If you hit a wall, you die :(", 30, 150, textPaint);
+        canvas.drawText("If you hit a wall, you die :(", 30, 150, instructionTextPaint);
+        canvas.drawText(String.format("Score: %s", xp), 130, 450, scorePaint);
         drawMaze(canvas);
     }
 
@@ -149,13 +159,17 @@ public class MazeScene implements Scene {
     public void receiveTouch(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (!gameOver && player.getRectangle().contains((int) event.getX(), (int) event.getY())) {
+                if (!gameOver && player.getMotionEventRect().contains((int) event.getX(), (int) event.getY())) {
                     movingPlayer = true;
                     break;
+                } else {
+                    movingPlayer = false;
                 }
             case MotionEvent.ACTION_MOVE:
                 if (!gameOver && movingPlayer) {
-                    playerPoint.set((int) event.getX(), (int) event.getY());
+                    if (player.getMotionEventRect().contains((int) event.getX(), (int) event.getY())) {
+                        playerPoint.set((int) event.getX(), (int) event.getY());
+                    }
                 }
                 break;
             case MotionEvent.ACTION_UP:

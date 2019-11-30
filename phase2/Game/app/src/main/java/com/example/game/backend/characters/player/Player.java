@@ -35,6 +35,20 @@ public class Player extends Character {
         setHealthBar(new HealthBar(max_health, this, aboveDistance, Color.GREEN, 150));
     }
 
+    /* used for mouse motion in the maze game. Using this Rect means that the player will only
+        move if the mouse is withing 250 pixels of the player. This fixes a bug where the
+        player starts moving immediately after the next maze level, which is due to the
+        MOUSE_DOWN event triggering at the finish line.
+     */
+    public Rect getMotionEventRect() {
+        Rect playerRect = getRectangle();
+        return  new Rect(playerRect.left - 250, playerRect.top - 250,
+                playerRect.right + 250, playerRect.bottom + 250);
+    }
+
+    public void moveHealthBar() {
+        healthBar.move();
+    }
     public void update(Point point) {
         //This is how a player moves
         double oldLeft = getRectangle().left;
