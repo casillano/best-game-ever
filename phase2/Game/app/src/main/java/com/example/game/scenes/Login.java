@@ -115,7 +115,7 @@ public class Login implements Scene {
         if(noUser) canvas.drawText(message, 30, 240, paint);
         if(noUserName) {
             canvas.drawText("You need to enter a valid", 30, 300, paint);
-            canvas.drawText("username and password", 30, 360, paint);
+            canvas.drawText("e-mail and password", 30, 360, paint);
         }
     }
 

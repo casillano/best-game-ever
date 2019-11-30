@@ -28,6 +28,7 @@ public class Button implements GameObject {
         paint.setColor(Color.rgb(0, 100, 0));
     }
 
+
     public void draw(Canvas canvas) {
         paint.setStrokeWidth(3);
         backPaint.setColor(Color.rgb(0, 0, 0));
