@@ -24,6 +24,10 @@ public class Character implements GameObject {
         healthBar.draw(canvas);
     }
 
+    public void resetHealth() {
+        healthBar.resetHealth();
+    }
+
     @Override
     public void update() {
         animationManager.update();

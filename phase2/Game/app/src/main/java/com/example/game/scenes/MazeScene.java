@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 import com.example.game.backend.mazecreator.CollisionChecker;
@@ -36,6 +37,7 @@ public class MazeScene implements Scene {
     private boolean firstDraw = true;
     private Paint wallPaint;
     private Paint finishLinePaint;
+    private Paint textPaint;
 
     MazeScene(Context context, SceneManager manager, MazeGenerator mazeGenerator,
               CollisionChecker collisionChecker, Background background, Button quitButton) {
@@ -44,6 +46,10 @@ public class MazeScene implements Scene {
         finishLinePaint = new Paint();
         wallPaint.setColor(Color.BLACK);
         wallPaint.setStrokeWidth(3);
+        textPaint = new Paint();
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTextSize(90);
+        textPaint.setTypeface(Typeface.SANS_SERIF);
         finishLinePaint.setColor(Color.RED);
         player = new Player(context, SceneManager.getCostume());
         this.background = background;
@@ -118,12 +124,11 @@ public class MazeScene implements Scene {
 
     @Override
     public void draw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.BLACK);
+
         background.draw(canvas);
         quitButton.draw(canvas);
-        mazeGenerator.setupMaze(canvas);
         player.draw(canvas);
+        canvas.drawText("If you hit a wall, you die :(", 30, 150, textPaint);
         drawMaze(canvas);
     }
 

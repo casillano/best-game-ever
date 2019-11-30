@@ -49,6 +49,7 @@ public class GameOneScene implements Scene {
         if (player.getHealth() < 1) {
             xp = score;
             SceneManager.ACTIVE_SCENE = 1;
+            player.resetHealth();
             manager.resetScenes();
         }
         background.update();

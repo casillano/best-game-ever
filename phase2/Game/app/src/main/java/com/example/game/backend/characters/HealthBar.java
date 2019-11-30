@@ -30,6 +30,10 @@ public class HealthBar implements GameObject {
 
     }
 
+    void resetHealth() {
+        this.currHealth = maxHealth;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         canvas.drawRect(rectangle, paint);
