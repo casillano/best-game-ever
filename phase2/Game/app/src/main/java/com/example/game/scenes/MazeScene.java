@@ -61,6 +61,18 @@ public class MazeScene implements Scene {
 
 
     private void drawMaze(Canvas canvas) {
+
+        /*These two if statements cannot be combined because the walls and finishLine variables
+        are needed by the canvas.drawRect method as well as the collision checker setup.
+        If the statements were placed in the loop, setCollisionWalls would not know if the
+        variables had been instantiated or not.
+         */
+
+        /*this if statement is used to check if the current drawMaze call is the first or not.
+        If it isn't the first call, then the maze has already been generated and collision detection
+        has been set up, so there is no need to call them again.
+         */
+
         if (firstDraw) {
             mazeGenerator.setupMaze(canvas);
         }
@@ -82,7 +94,6 @@ public class MazeScene implements Scene {
     public void update() {
         background.update();
         player.update(playerPoint);
-        //pop up showing loser, then return to main menu
         if (collisionChecker.checkFinished(player)) {
             xp = 150;
             gameOver = true;
