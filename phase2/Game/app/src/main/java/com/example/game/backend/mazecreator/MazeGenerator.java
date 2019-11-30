@@ -156,19 +156,19 @@ public class MazeGenerator {
     }
 
     //TODO: move collision checking out of this class and into mazeScene
-    public boolean checkCollisions(Player player) {
-        if (walls.size() > 0) {
-            return CollisionChecker.checkCollisions(walls, player);
-        }
-        return false;
-    }
-
-    public boolean checkFinished(Player player) {
-        if (walls.size() > 0) {
-            return CollisionChecker.checkFinished(player, finishLine);
-        }
-        return false;
-    }
+//    public boolean checkCollisions(Player player) {
+//        if (walls.size() > 0) {
+//            return CollisionChecker.checkCollisions(walls, player);
+//        }
+//        return false;
+//    }
+//
+//    public boolean checkFinished(Player player) {
+//        if (walls.size() > 0) {
+//            return CollisionChecker.checkFinished(player, finishLine);
+//        }
+//        return false;
+//    }
 
 
     private class Cell {

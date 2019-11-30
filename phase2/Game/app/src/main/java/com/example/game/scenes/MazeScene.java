@@ -33,6 +33,7 @@ public class MazeScene implements Scene {
     private MazeGenerator mazeGenerator;
     private CollisionChecker collisionChecker;
     private int xp;
+    private boolean firstDraw = true;
     private Paint wallPaint;
     private Paint finishLinePaint;
 
@@ -54,10 +55,23 @@ public class MazeScene implements Scene {
         xp = 0;
     }
 
+    private void setCollisionWalls(ArrayList<Rect> walls, Rect finishLine) {
+        collisionChecker.setCollisionChecker(walls, finishLine);
+    }
+
+
     private void drawMaze(Canvas canvas) {
-        mazeGenerator.setupMaze(canvas);
+        if (firstDraw) {
+            mazeGenerator.setupMaze(canvas);
+        }
         ArrayList<Rect> walls = mazeGenerator.getWalls();
         Rect finishLine = mazeGenerator.getFinishLine();
+
+        if (firstDraw) {
+            setCollisionWalls(walls, finishLine);
+            firstDraw = false;
+        }
+
         for (int i = 0; i < walls.size(); i++) {
             canvas.drawRect(walls.get(i), wallPaint);
         }
@@ -69,18 +83,16 @@ public class MazeScene implements Scene {
         background.update();
         player.update(playerPoint);
         //pop up showing loser, then return to main menu
-        if (mazeGenerator.checkCollisions(player)) {
-            gameOver = true;
-            terminate();
-            manager.resetScenes();
-
-        }
-        //pop up showing winner
-        if (mazeGenerator.checkFinished(player)) {
+        if (collisionChecker.checkFinished(player)) {
             xp = 150;
             gameOver = true;
             terminate();
             manager.resetScenes();
+        } else if (collisionChecker.checkCollisions(player)) {
+            gameOver = true;
+            terminate();
+            manager.resetScenes();
+
         }
     }
 
