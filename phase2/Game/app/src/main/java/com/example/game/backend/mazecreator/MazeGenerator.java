@@ -18,8 +18,9 @@ public class MazeGenerator {
 
 
     private Cell[][] cells;
-    private static final int COLS = 3, ROWS = 4;
+    private static final int COLS = 4, ROWS = 5;
     private Rect finishLine;
+    private boolean firstDraw = true;
     //keep track of all walls for collision detection
     private ArrayList<Rect> walls;
     private Random random;
@@ -28,9 +29,11 @@ public class MazeGenerator {
         cells = new Cell[COLS][ROWS];
         walls = new ArrayList<>();
         random = new Random();
-        mazeGenerator();
     }
 
+    public void resetGenerator() {
+        this.walls.clear();
+    }
     public ArrayList<Rect> getWalls() {
         return this.walls;
     }
@@ -42,29 +45,37 @@ public class MazeGenerator {
     public void setupMaze(Canvas canvas) {
         int width = canvas.getWidth();
         int cellSize = width / (COLS + 1);
+        if (firstDraw) {
+            mazeGenerator();
+            firstDraw = false;
+        }
         createMazeCells(cellSize);
+    }
+
+    public void resetGeneratorFirstDraw() {
+        this.firstDraw = true;
     }
 
     private void createMazeCells(int cellSize) {
         for (int x = 0; x < COLS; x++) {
             for (int y = 0; y < ROWS; y++) {
                 if (x == COLS - 1 && y == ROWS - 1) {
-                    finishLine = new Rect(x * cellSize + 220, y * cellSize + 520, (x + 1) * cellSize + 220, (y + 1) * cellSize + 520);
+                    finishLine = new Rect(x * cellSize + 140, y * cellSize + 520, (x + 1) * cellSize + 140, (y + 1) * cellSize + 520);
                 }
                 if (cells[x][y].topWall) {
-                    Rect r = new Rect(x * cellSize + 220, y * cellSize + 520, (x + 1) * cellSize + 220, y * cellSize + 520 + 9);
+                    Rect r = new Rect(x * cellSize + 140, y * cellSize + 520, (x + 1) * cellSize + 140, y * cellSize + 520 + 9);
                     walls.add(r);
                 }
                 if (cells[x][y].botWall) {
-                    Rect r = new Rect(x * cellSize + 220, (y + 1) * cellSize + 520, (x + 1) * cellSize + 220, (y + 1) * cellSize + 520 + 9);
+                    Rect r = new Rect(x * cellSize + 140, (y + 1) * cellSize + 520, (x + 1) * cellSize + 140, (y + 1) * cellSize + 520 + 9);
                     walls.add(r);
                 }
                 if (cells[x][y].rightWall) {
-                    Rect r = new Rect((x + 1) * cellSize + 220, y * cellSize + 520, (x + 1) * cellSize + 220 + 9, (y + 1) * cellSize + 520);
+                    Rect r = new Rect((x + 1) * cellSize + 140, y * cellSize + 520, (x + 1) * cellSize + 140 + 9, (y + 1) * cellSize + 520);
                     walls.add(r);
                 }
                 if (cells[x][y].leftWall) {
-                    Rect r = new Rect(x * cellSize + 220, y * cellSize + 520, x * cellSize + 220 + 9, (y + 1) * cellSize + 520);
+                    Rect r = new Rect(x * cellSize + 140, y * cellSize + 520, x * cellSize + 140 + 9, (y + 1) * cellSize + 520);
                     walls.add(r);
                 }
 
@@ -154,21 +165,6 @@ public class MazeGenerator {
             next.leftWall = false;
         }
     }
-
-    //TODO: move collision checking out of this class and into mazeScene
-//    public boolean checkCollisions(Player player) {
-//        if (walls.size() > 0) {
-//            return CollisionChecker.checkCollisions(walls, player);
-//        }
-//        return false;
-//    }
-//
-//    public boolean checkFinished(Player player) {
-//        if (walls.size() > 0) {
-//            return CollisionChecker.checkFinished(player, finishLine);
-//        }
-//        return false;
-//    }
 
 
     private class Cell {

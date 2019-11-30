@@ -47,7 +47,7 @@ public class MazeScene implements Scene {
         finishLinePaint.setColor(Color.RED);
         player = new Player(context, SceneManager.getCostume());
         this.background = background;
-        player.changeRectangle(300, 550, 400, 650);
+        player.changeRectangle(220, 570, 320, 670);
         playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
         this.quitButton = quitButton;
         this.mazeGenerator = mazeGenerator;
@@ -90,6 +90,12 @@ public class MazeScene implements Scene {
         canvas.drawRect(finishLine, finishLinePaint);
     }
 
+    private void resetMazeComponents() {
+        mazeGenerator.resetGenerator();
+        mazeGenerator.resetGeneratorFirstDraw();
+        collisionChecker.resetCollisionChecker();
+    }
+
     @Override
     public void update() {
         background.update();
@@ -98,10 +104,12 @@ public class MazeScene implements Scene {
             xp = 150;
             gameOver = true;
             terminate();
+            resetMazeComponents();
             manager.resetScenes();
         } else if (collisionChecker.checkCollisions(player)) {
             gameOver = true;
             terminate();
+            resetMazeComponents();
             manager.resetScenes();
 
         }

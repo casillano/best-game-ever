@@ -18,8 +18,11 @@ public class CollisionChecker {
 
     }
 
-    public void setCollisionChecker(ArrayList<Rect> walls, Rect finishLine) {
+    public void resetCollisionChecker() {
         this.walls.clear();
+    }
+
+    public void setCollisionChecker(ArrayList<Rect> walls, Rect finishLine) {
         this.walls.addAll(walls);
         this.finishLine = finishLine;
 
