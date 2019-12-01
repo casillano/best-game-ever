@@ -94,7 +94,8 @@ public class GlassScene implements Scene {
     @Override
     public void receiveTouch(MotionEvent event) {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 1;
+            SceneManager.nextScene = 1;
+            SceneManager.ACTIVE_SCENE = 9;
             xp = 0;
             manager.resetScenes();
         }
@@ -118,7 +119,8 @@ public class GlassScene implements Scene {
                xp = 0;
            }
 
-            SceneManager.ACTIVE_SCENE = 1;
+            SceneManager.nextScene = 1;
+            SceneManager.ACTIVE_SCENE = 9;
 //            this.terminate();
             manager.resetScenes();
         }

@@ -56,15 +56,15 @@ public class MenuScene implements Scene {
         paint.setTextSize(100);
         canvas.drawText("Total XP: " + xp, 30, 100, paint);
         paint.setTextSize(70);
-        canvas.drawText("USER: " + manager.getUserName(), 30, 170, paint);
+        canvas.drawText("USER: " + manager.getUserName(), 30, 200, paint);
         paint.setTextSize(200);
         canvas.drawText("BEST", 300, 400, paint);
         canvas.drawText("GAME", 250, 550, paint);
         canvas.drawText("EVER!", 280, 700, paint);
         paint.setTextSize(50);
-        canvas.drawText("Game1 XP: " + xp1, 700, 80, paint);
-        canvas.drawText("Game2 XP: " + xp2, 700, 120, paint);
-        canvas.drawText("Game3 XP: " + xp3, 700, 160, paint);
+        canvas.drawText("Game1 XP: " + xp1, 700, 60, paint);
+        canvas.drawText("Game2 XP: " + xp2, 700, 100, paint);
+        canvas.drawText("Game3 XP: " + xp3, 700, 140, paint);
     }
 
     @Override

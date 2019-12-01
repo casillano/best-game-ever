@@ -58,33 +58,34 @@ public class CustomizationScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.nextScene = 1;
+        SceneManager.ACTIVE_SCENE = 9;
     }
 
     @Override
     public void receiveTouch(MotionEvent event) {
 
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 1;
+            terminate();
             xp = 0;
             manager.resetScenes();
 
         } else if (custom1Btn.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.setCostume("green");
-            SceneManager.ACTIVE_SCENE = 1;
             color = "green";
+            terminate();
             manager.resetScenes();
 
         } else if (custom2Btn.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.setCostume("blue");
-            SceneManager.ACTIVE_SCENE = 1;
             color = "blue";
+            terminate();
             manager.resetScenes();
 
         } else if (custom3Btn.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.setCostume("pink");
             color = "pink";
-            SceneManager.ACTIVE_SCENE = 1;
+            terminate();
             manager.resetScenes();
 
         }

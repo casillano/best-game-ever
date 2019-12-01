@@ -17,18 +17,21 @@ public class Loading implements Scene{
     private Background background;
     private SceneManager manager;
     private int counter;
-//    int nextScene;
-    private Button play;
 
     public Loading(SceneManager manager, Background background){
         this.manager = manager;
         this.background = background;
-//        this.nextScene = nextScene;
-        this.play = new Button(100, 1200, 580, 100, "Play");
+        this.counter = 0;
     }
 
     public void update() {
         background.update();
+        counter++;
+        System.out.println(counter);
+        if(counter > 30) {
+            counter = 0;
+            SceneManager.ACTIVE_SCENE = SceneManager.nextScene;
+        }
     }
 
     public void draw(Canvas canvas) {
@@ -36,13 +39,6 @@ public class Loading implements Scene{
         Paint paint = new Paint();
         paint.setTextSize(150);
         canvas.drawText("LOADING...", 100, 1000, paint);
-//        try
-//        {
-//            TimeUnit.SECONDS.sleep(10);
-//        }
-//        catch(InterruptedException e){}
-
-        play.draw(canvas);
     }
 
     public void terminate() {
@@ -50,11 +46,6 @@ public class Loading implements Scene{
     }
 
     public void receiveTouch(MotionEvent event) {
-        if (play.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = SceneManager.nextScene;
-//            manager.resetScenes();
-        }
-
     }
 
 

@@ -147,13 +147,15 @@ public class Login implements Scene {
                             SceneManager.registerUser(email, password);
                             SceneManager.setUserInfo(email, password);
                             sManager.resetScenes();
-                            SceneManager.ACTIVE_SCENE = 1;
+                            SceneManager.nextScene = 1;
+                            SceneManager.ACTIVE_SCENE = 9;
                         }
                         else {
                             if(SceneManager.validPassword(email, password)) {
                                 SceneManager.setUserInfo(email, password);
                                 sManager.resetScenes();
-                                SceneManager.ACTIVE_SCENE = 1;
+                                SceneManager.nextScene = 1;
+                                SceneManager.ACTIVE_SCENE = 9;
                             }
                             else{
                                 noUserName = true;

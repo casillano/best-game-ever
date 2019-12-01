@@ -48,7 +48,8 @@ public class SurvivalScene implements Scene {
         score++;
         if (player.getHealth() < 1) {
             xp = score;
-            SceneManager.ACTIVE_SCENE = 1;
+            SceneManager.nextScene = 1;
+            SceneManager.ACTIVE_SCENE = 9;
             player.resetHealth();
             manager.resetScenes();
         }
@@ -105,7 +106,8 @@ public class SurvivalScene implements Scene {
     //Terminates a scene.
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.nextScene = 1;
+        SceneManager.ACTIVE_SCENE = 9;
     }
 
     //Handles touch events.
@@ -117,7 +119,8 @@ public class SurvivalScene implements Scene {
                 playerPoint.set((int) event.getX(), (int) event.getY());
         }
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 1;
+            SceneManager.nextScene = 1;
+            SceneManager.ACTIVE_SCENE = 9;
             xp = 0;
             manager.resetScenes();
         }

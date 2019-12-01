@@ -43,13 +43,15 @@ public class WelcomeScene implements Scene {
     public void receiveTouch(MotionEvent event) {
 
         if (loginButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.nextScene = 0;
+            SceneManager.ACTIVE_SCENE = 9;
             xp = 0;
             manager.resetScenes();
 
         }
         if (signButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 7;
+            SceneManager.nextScene = 7;
+            SceneManager.ACTIVE_SCENE = 9;
             xp = 0;
             manager.resetScenes();
         }

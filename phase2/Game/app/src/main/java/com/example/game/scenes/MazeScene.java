@@ -152,7 +152,8 @@ public class MazeScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.nextScene = 1;
+        SceneManager.ACTIVE_SCENE = 9;
     }
 
     @Override
