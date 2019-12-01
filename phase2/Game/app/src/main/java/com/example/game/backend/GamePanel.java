@@ -25,7 +25,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         Display display = ((MainActivity) context).getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        Constants.DISPLAY_SIZE = size;
+        Constants.displaySize = size;
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         manager = new SceneManager(context);

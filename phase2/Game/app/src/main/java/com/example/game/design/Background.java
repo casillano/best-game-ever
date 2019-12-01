@@ -18,7 +18,7 @@ public class Background implements GameObject {
 
     public Background(Context context, String type) {
         loadImg(context, type);
-        this.rectangle = new Rect(0, 0, Constants.DISPLAY_SIZE.x, Constants.DISPLAY_SIZE.y);
+        this.rectangle = new Rect(0, 0, Constants.displaySize.x, Constants.displaySize.y);
 
     }
 

@@ -56,7 +56,7 @@ public class GlassScene implements Scene {
         this.buttons = Builder.buildNumericKB();
 
         // maybe not needed ?
-        playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
+        playerPoint = new Point(Constants.displaySize.x / 2, Constants.displaySize.y);
 
         //      Generating a random number of monsters using Builder
         monsters = Builder.buildBee(context);
@@ -100,14 +100,14 @@ public class GlassScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.activeScene = 1;
     }
 
     @Override
     public void receiveTouch(MotionEvent event) {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 1;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             xp = 0;
             manager.resetScenes();
         }
@@ -132,7 +132,7 @@ public class GlassScene implements Scene {
             }
 
             SceneManager.nextScene = 4;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             //            this.terminate();
             manager.resetScenes();
         }

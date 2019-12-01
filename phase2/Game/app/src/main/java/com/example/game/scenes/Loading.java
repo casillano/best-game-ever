@@ -2,17 +2,9 @@ package com.example.game.scenes;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.view.MotionEvent;
 
-import com.example.game.R;
-import com.example.game.design.Animation;
-import com.example.game.design.AnimationManager;
-
 import com.example.game.design.Background;
-import com.example.game.design.Button;
-
-import java.util.concurrent.TimeUnit;
 
 public class Loading implements Scene {
     private Background background;
@@ -35,7 +27,7 @@ public class Loading implements Scene {
         if (counter > 30) {
             counter = 0;
             dots = "";
-            SceneManager.ACTIVE_SCENE = SceneManager.nextScene;
+            SceneManager.activeScene = SceneManager.nextScene;
         }
     }
 
@@ -47,7 +39,7 @@ public class Loading implements Scene {
     }
 
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = SceneManager.nextScene;
+        SceneManager.activeScene = SceneManager.nextScene;
     }
 
     public void receiveTouch(MotionEvent event) {
