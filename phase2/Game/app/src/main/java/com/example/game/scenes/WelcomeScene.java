@@ -6,7 +6,6 @@ import android.view.MotionEvent;
 
 import com.example.game.design.Background;
 import com.example.game.design.Button;
-import com.example.game.design.StoreBackground;
 
 public class WelcomeScene implements Scene {
     private Background background;

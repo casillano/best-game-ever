@@ -48,9 +48,9 @@ public class Background implements GameObject {
                         R.drawable.stone);
 
                 break;
-            case "store":
+            case "login":
                 idleImg = BitmapFactory.decodeResource(context.getResources(),
-                        R.drawable.storebackground);
+                        R.drawable.loginbackground);
 
                 break;
             case "wood":
