@@ -174,7 +174,7 @@ public class SceneManager {
         game3 = new GlassScene(context, this, background);
         loading = new Loading(this, background);
 
-        store = new CustomizationScene(this, new Background(context, "grass"));
+        store = new CustomizationScene(this, new Background(context, "store"));
         welcome = new WelcomeScene(context, this, new Background(context, "login"));
         scoreScene = new ScoreBoardScene(context, this, new Background(context, "grass"));
         scenes.add(login);
@@ -257,6 +257,6 @@ public class SceneManager {
     }
 
     public void setBackground(String type) {
-
+        this.background = new Background(context, type);
     }
 }

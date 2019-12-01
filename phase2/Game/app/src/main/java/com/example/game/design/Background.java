@@ -57,6 +57,10 @@ public class Background implements GameObject {
                 idleImg = BitmapFactory.decodeResource(context.getResources(),
                         R.drawable.wood);
                 break;
+            case "store":
+                idleImg = BitmapFactory.decodeResource(context.getResources(),
+                        R.drawable.storebackground);
+                break;
         }
         idle = new Animation(new Bitmap[]{idleImg}, 2);
         animationManager = new AnimationManager((new Animation[]{idle}));
