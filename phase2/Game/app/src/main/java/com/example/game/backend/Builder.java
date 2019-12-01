@@ -1,7 +1,10 @@
 package com.example.game.backend;
 
 import android.content.Context;
+
+import com.example.game.backend.characters.monsters.BeeStrafingMonster;
 import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
+import com.example.game.backend.Constants;
 import java.util.ArrayList;
 import java.util.Random;
 import com.example.game.design.Button;
@@ -16,6 +19,19 @@ public class Builder {
 
         for (int i = 0; i <= numMonsters; i++) {
             SlimeMeleeMonster m = new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000));
+            monsters.add(m);
+        }
+        return monsters;
+    }
+
+//    Builds and returns an array of BeeStrafingMonsters
+    public static ArrayList<BeeStrafingMonster> buildBee(Context context) {
+        ArrayList<BeeStrafingMonster> monsters = new ArrayList<>();
+        Random rand = new Random();
+        int numMonsters = rand.nextInt(20);
+
+        for (int i = 0; i <= numMonsters; i++) {
+            BeeStrafingMonster m = new BeeStrafingMonster(context, rand.nextInt(Constants.DISPLAY_SIZE.x), rand.nextInt(1000));
             monsters.add(m);
         }
         return monsters;

@@ -1,5 +1,6 @@
-// importing the required packages
 package com.example.game.scenes;
+
+// importing the required packages
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,6 +10,7 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 
 import com.example.game.backend.Builder;
+import com.example.game.backend.characters.monsters.BeeStrafingMonster;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
 import com.example.game.backend.Constants;
@@ -25,7 +27,7 @@ public class GlassScene implements Scene {
     private Player player;
     private Point playerPoint;
     private Button quitButton;
-    private int score = 0;
+    static private int score;
     private Button[] buttons;
     private Button enter;
     private Button erase;
@@ -34,7 +36,7 @@ public class GlassScene implements Scene {
     private int guess;
     private int xp;
     private int counter;
-    private ArrayList<SlimeMeleeMonster> monsters;
+    private ArrayList<BeeStrafingMonster> monsters;
 
     GlassScene(Context context, SceneManager manager, Background background) {
         guess = 0;
@@ -44,19 +46,27 @@ public class GlassScene implements Scene {
         this.background = background;
         xp = 0;
         userInput = "";
-//      Generating a random number of monsters using Builder
-        monsters = Builder.buildSlime(context);
-//      Creating the required but
+
+        //      Creating the required buttons
         enter = new Button(400, 1700, 300, 100, "Enter");
         erase = new Button(400, 1900, 300, 100, "Erase");
+        quitButton = new Button(850, 50, 100, 100, "X");
+
+        //      creating the input keyboard using a Builder method
         this.buttons = Builder.buildNumericKB();
 
         // maybe not needed ?
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
-        quitButton = new Button(850, 50, 100, 100, "X");
 
+        //      Generating a random number of monsters using Builder
+        monsters = Builder.buildBee(context);
+        //      Creating an empty list of slime monsters because it is required to update the Bee
+        // monsters'
+        //      movement.
         ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
-        for (SlimeMeleeMonster m : monsters) {
+
+        //      Update each bee's movement
+        for (BeeStrafingMonster m : monsters) {
             m.update(player, emptyList);
         }
     }
@@ -76,7 +86,7 @@ public class GlassScene implements Scene {
             buttons[i].draw(canvas);
         }
         enter.draw(canvas);
-        for (SlimeMeleeMonster m : monsters) {
+        for (BeeStrafingMonster m : monsters) {
             m.draw(canvas);
         }
         quitButton.draw(canvas);
@@ -116,13 +126,14 @@ public class GlassScene implements Scene {
             }
             if (guess == monsters.size()) {
                 xp = 200;
+                score += guess;
             } else {
                 xp = 0;
             }
 
-            SceneManager.nextScene = 1;
+            SceneManager.nextScene = 4;
             SceneManager.ACTIVE_SCENE = 9;
-//            this.terminate();
+            //            this.terminate();
             manager.resetScenes();
         }
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
@@ -137,6 +148,4 @@ public class GlassScene implements Scene {
     int getXp() {
         return xp;
     }
-
-
 }
