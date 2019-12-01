@@ -21,6 +21,7 @@ public class Login implements Scene {
     private ArrayList<Button> buttons;
     private Background background;
     private int counter;
+    private int counter2;
     private Button erase;
     private boolean pass;
     private Button passwordButton;
@@ -131,13 +132,16 @@ public class Login implements Scene {
             pass = true;
         }
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
-            if(pass){
-                password = "";
-                passwordDisplay = "";
+            if (counter2 % 2 == 0) {
+                if(pass){
+                    password = password.substring(0, password.length() - 1);
+                    passwordDisplay = passwordDisplay.substring(0, passwordDisplay.length() - 1);
+                }
+                else{
+                    email = email.substring(0, email.length() - 1);
+                }
             }
-            else{
-                email = "";
-            }
+            counter2 += 1;
         }
         if (signIn.isClicked((int) event.getX(), (int) event.getY())) {
             if(!email.equals("") && !password.equals("")) {

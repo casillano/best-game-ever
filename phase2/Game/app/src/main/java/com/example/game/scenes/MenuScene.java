@@ -53,8 +53,8 @@ public class MenuScene implements Scene {
         changeUser.draw(canvas);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
-        paint.setTextSize(100);
-        canvas.drawText("Total XP: " + xp, 30, 100, paint);
+        paint.setTextSize(70);
+        canvas.drawText("Total XP: " + xp, 30, 80, paint);
         paint.setTextSize(70);
         canvas.drawText("USER: " + manager.getUserName(), 30, 200, paint);
         paint.setTextSize(200);
@@ -62,9 +62,9 @@ public class MenuScene implements Scene {
         canvas.drawText("GAME", 250, 550, paint);
         canvas.drawText("EVER!", 280, 700, paint);
         paint.setTextSize(50);
-        canvas.drawText("Game1 XP: " + xp1, 700, 60, paint);
-        canvas.drawText("Game2 XP: " + xp2, 700, 100, paint);
-        canvas.drawText("Game3 XP: " + xp3, 700, 140, paint);
+        canvas.drawText("Game1 XP: " + xp1, 600, 60, paint);
+        canvas.drawText("Game2 XP: " + xp2, 600, 100, paint);
+        canvas.drawText("Game3 XP: " + xp3, 600, 140, paint);
     }
 
     @Override
