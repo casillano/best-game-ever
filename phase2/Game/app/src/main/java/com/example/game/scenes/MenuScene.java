@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class MenuScene implements Scene {
     private Background background;
@@ -73,18 +75,24 @@ public class MenuScene implements Scene {
     @Override
     public void receiveTouch(MotionEvent event) {
         if (gameButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 2;
+            SceneManager.nextScene = 2;
+            SceneManager.ACTIVE_SCENE = 9;
         } else if (game2Button.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 3;
+            SceneManager.nextScene = 3;
+            SceneManager.ACTIVE_SCENE = 9;
         } else if (game3Button.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 4;
+            SceneManager.nextScene = 4;
+            SceneManager.ACTIVE_SCENE = 9;
         } else if (storeButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 5;
+            SceneManager.nextScene = 5;
+            SceneManager.ACTIVE_SCENE = 9;
         } else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 0;
+            SceneManager.nextScene = 0;
+            SceneManager.ACTIVE_SCENE = 9;
             manager.changeUser();
         } else if (scoreButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 8;
+            SceneManager.nextScene = 8;
+            SceneManager.ACTIVE_SCENE = 9;
         }
     }
 

@@ -9,19 +9,22 @@ import com.example.game.design.Animation;
 import com.example.game.design.AnimationManager;
 
 import com.example.game.design.Background;
+import com.example.game.design.Button;
 
 import java.util.concurrent.TimeUnit;
 
 public class Loading implements Scene{
     private Background background;
     private SceneManager manager;
-    private int nextScene;
     private int counter;
+//    int nextScene;
+    private Button play;
 
-    public Loading(SceneManager manager, Background background, int nextScene){
+    public Loading(SceneManager manager, Background background){
         this.manager = manager;
         this.background = background;
-        this.nextScene = nextScene;
+//        this.nextScene = nextScene;
+        this.play = new Button(100, 1200, 580, 100, "Play");
     }
 
     public void update() {
@@ -31,21 +34,28 @@ public class Loading implements Scene{
     public void draw(Canvas canvas) {
         background.draw(canvas);
         Paint paint = new Paint();
-        paint.setTextSize(200);
-        canvas.drawText("LOADING...", 10000, 10000, paint);
-        try
-        {
-            TimeUnit.SECONDS.sleep(2);
-        }
-        catch(InterruptedException e){}
+        paint.setTextSize(150);
+        canvas.drawText("LOADING...", 100, 1000, paint);
+//        try
+//        {
+//            TimeUnit.SECONDS.sleep(10);
+//        }
+//        catch(InterruptedException e){}
 
+        play.draw(canvas);
     }
 
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 0;
+        SceneManager.ACTIVE_SCENE = SceneManager.nextScene;
     }
 
-    public void receiveTouch(MotionEvent event) {}
+    public void receiveTouch(MotionEvent event) {
+        if (play.isClicked((int) event.getX(), (int) event.getY())) {
+            SceneManager.ACTIVE_SCENE = SceneManager.nextScene;
+//            manager.resetScenes();
+        }
+
+    }
 
 
 
