@@ -111,8 +111,8 @@ public class SceneManager {
     }
 
     private void getHighscores() {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 highscore[i][j] = pref.getString("highname" + i + "" + j, "");
                 highscoreScores[i][j] = pref.getInt("highscore" + i + "" + j, 0);
             }
@@ -133,8 +133,8 @@ public class SceneManager {
     }
 
     private void setHighscores() {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
                 System.out.println("Scores: " + highscore[i][j] + highscoreScores[i][j]);
                 editor.putString("highname" + i + "" + j, highscore[i][j]);
                 editor.apply();
