@@ -63,24 +63,25 @@ public class GlassScene implements Scene {
         //      Creating an empty list of slime monsters because it is required to update the Bee
         // monsters'
         //      movement.
-        ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
+    }
 
-        //      Update each bee's movement
+    @Override
+    // update the background the player input
+    public void update() {
+        ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
+        background.update();
+        player.update(playerPoint);
         for (BeeStrafingMonster m : monsters) {
             m.update(player, emptyList);
         }
     }
 
     @Override
-    // update the background the player input
-    public void update() {
-        background.update();
-        player.update(playerPoint);
-    }
-
-    @Override
     // draw the various entities on the 'Canvas'
     public void draw(Canvas canvas) {
+        for (BeeStrafingMonster m : monsters) {
+            m.draw(canvas);
+        }
         background.draw(canvas);
         for (int i = 0; i < 10; i++) {
             buttons[i].draw(canvas);
