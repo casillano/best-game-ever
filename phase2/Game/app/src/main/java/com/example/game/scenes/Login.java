@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
+import com.example.game.backend.Builder;
 import com.example.game.design.Button;
 import com.example.game.design.Background;
 
@@ -44,25 +45,9 @@ public class Login implements Scene {
         buttonText = "Login";
         this.background = background;
         quitButton = new Button(750, 50, 300, 100, "BACK");
-        buttons = new ArrayList<>();
-        String s = "1234567890qwertyuiopasdfghjklzxcvbnm.@,";
+        buttons = Builder.buildEmailKB();
         message = "User doesn't exist";
-//        Making buttons for numbers
-        for (int i = 0; i < 10; i++) {
-            buttons.add(new Button(105 * i +18, 1180, 100, 100, String.valueOf(s.charAt(i))));
-        }
-//        Making buttons for first 10 qwerty characters
-        for (int i = 0; i < 10; i++) {
-            buttons.add(new Button(105 * i + 18, 1300, 100, 100, String.valueOf(s.charAt(10 + i))));
-        }
-//        Making buttons for next 9 qwerty values
-        for (int i = 0; i < 9; i++) {
-            buttons.add(new Button(105 * i +70, 1420, 100, 100, String.valueOf(s.charAt(20 + i))));
-        }
-//        Making buttons for last 9 qwerty values
-        for (int i = 0; i < 9; i++) {
-            buttons.add(new Button(105 * i +70, 1540, 100, 100, String.valueOf(s.charAt(29 + i))));
-        }
+
 //        Making the SignIn button
         signIn = new Button(30, 1900, 600, 100, buttonText);
         erase = new Button(800, 1700, 200, 100, "<--");

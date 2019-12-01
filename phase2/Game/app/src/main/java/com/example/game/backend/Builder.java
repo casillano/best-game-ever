@@ -21,7 +21,7 @@ public class Builder {
         return monsters;
     }
 
-//  Builds and returns an array of SlimeMeleeMonsters
+//  Builds and returns an array of buttons needed for guessing game keyboard
     public static Button[] buildNumericKB() {
         Button[] buttons = new Button[10];
         for (int i = 0; i < buttons.length; i++) {
@@ -29,4 +29,27 @@ public class Builder {
         }
         return buttons;
     }
+
+//  Builds and returns an array of buttons needed for login screen keyboard
+    public static ArrayList<Button> buildEmailKB() {
+        ArrayList<Button> buttons = new ArrayList<>();
+        String s = "1234567890qwertyuiopasdfghjklzxcvbnm.@,";
+        for (int i = 0; i < 10; i++) {
+            buttons.add(new Button(105 * i +18, 1180, 100, 100, String.valueOf(s.charAt(i))));
+        }
+//        Making buttons for first 10 qwerty characters
+        for (int i = 0; i < 10; i++) {
+            buttons.add(new Button(105 * i + 18, 1300, 100, 100, String.valueOf(s.charAt(10 + i))));
+        }
+//        Making buttons for next 9 qwerty values
+        for (int i = 0; i < 9; i++) {
+            buttons.add(new Button(105 * i +70, 1420, 100, 100, String.valueOf(s.charAt(20 + i))));
+        }
+//        Making buttons for last 9 qwerty values
+        for (int i = 0; i < 9; i++) {
+            buttons.add(new Button(105 * i +70, 1540, 100, 100, String.valueOf(s.charAt(29 + i))));
+        }
+        return buttons;
+    }
+
 }
