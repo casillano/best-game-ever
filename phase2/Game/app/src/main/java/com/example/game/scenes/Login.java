@@ -58,17 +58,15 @@ public class Login implements Scene {
 
     public void update() {
         background.update();
-        if(count % 20 < 10){
+        if (count % 20 < 10) {
             cursorEmail = "";
+        } else {
+            if (!pass) cursorEmail = "|";
         }
-        else{
-            if(!pass) cursorEmail = "|";
-        }
-        if(count % 20 < 10){
+        if (count % 20 < 10) {
             cursorPassword = "";
-        }
-        else{
-            if(pass) cursorPassword = "|";
+        } else {
+            if (pass) cursorPassword = "|";
         }
         count++;
     }
@@ -98,8 +96,8 @@ public class Login implements Scene {
         canvas.drawRect(30, 1055, 1030, 1155, p2);
         canvas.drawText("" + email + cursorEmail, 30, 890, paint);
         canvas.drawText("" + passwordDisplay + cursorPassword, 30, 1120, paint);
-        if(noUser) canvas.drawText(message, 30, 240, paint);
-        if(noUserName) {
+        if (noUser) canvas.drawText(message, 30, 240, paint);
+        if (noUserName) {
             canvas.drawText("You need to enter a valid", 30, 300, paint);
             canvas.drawText("e-mail and password", 30, 360, paint);
         }
@@ -109,11 +107,10 @@ public class Login implements Scene {
         for (Button b : buttons) {
             if (b.isClicked((int) event.getX(), (int) event.getY())) {
                 if (counter % 2 == 0) {
-                    if(pass){
+                    if (pass) {
                         password += b.getName();
                         passwordDisplay += "*";
-                    }
-                    else{
+                    } else {
                         email += b.getName();
                     }
                 }
@@ -125,71 +122,68 @@ public class Login implements Scene {
             SceneManager.ACTIVE_SCENE = 6;
         }
 
-        if (emailButton.isClicked((int) event.getX(), (int) event.getY()-100)) {
+        if (emailButton.isClicked((int) event.getX(), (int) event.getY() - 100)) {
             pass = false;
         }
-        if (passwordButton.isClicked((int) event.getX(), (int) event.getY()-100)) {
+        if (passwordButton.isClicked((int) event.getX(), (int) event.getY() - 100)) {
             pass = true;
         }
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
             if (counter2 % 2 == 0) {
-                if(pass){
-                    password = password.substring(0, password.length() - 1);
-                    passwordDisplay = passwordDisplay.substring(0, passwordDisplay.length() - 1);
-                }
-                else{
-                    email = email.substring(0, email.length() - 1);
+                if (pass) {
+                    if (password.length() != 0) {
+                        password = password.substring(0, password.length() - 1);
+                        passwordDisplay = passwordDisplay.substring(0, passwordDisplay.length() - 1);
+                    }
+                } else {
+                    if (email.length() != 0) email = email.substring(0, email.length() - 1);
                 }
             }
             counter2 += 1;
         }
         if (signIn.isClicked((int) event.getX(), (int) event.getY())) {
-            if(!email.equals("") && !password.equals("")) {
-                if(email.contains("@")){
-                    if(!newUser == checkValidUserName(email)) {
-                        if(newUser) {
+            if (!email.equals("") && !password.equals("")) {
+                if (email.contains("@")) {
+                    if (!newUser == checkValidUserName(email)) {
+                        if (newUser) {
                             SceneManager.registerUser(email, password);
                             SceneManager.setUserInfo(email, password);
                             sManager.resetScenes();
                             SceneManager.nextScene = 1;
                             SceneManager.ACTIVE_SCENE = 9;
-                        }
-                        else {
-                            if(SceneManager.validPassword(email, password)) {
+                        } else {
+                            if (SceneManager.validPassword(email, password)) {
                                 SceneManager.setUserInfo(email, password);
                                 sManager.resetScenes();
                                 SceneManager.nextScene = 1;
                                 SceneManager.ACTIVE_SCENE = 9;
-                            }
-                            else{
+                            } else {
                                 noUserName = true;
                             }
                         }
-                    }
-                    else{
+                    } else {
                         noUser = true;
                     }
-                }
-                else{
+                } else {
                     noUserName = true;
                 }
-            }
-            else{
+            } else {
                 noUserName = true;
             }
         }
     }
 
-    private boolean checkValidUserName(String name){
+    private boolean checkValidUserName(String name) {
         return SceneManager.userExists(name);
     }
 
-    void resetUser(){
+    void resetUser() {
         password = "";
         email = "";
         passwordDisplay = "";
         noUserName = false;
     }
+
     @Override
     public void terminate() {
         SceneManager.ACTIVE_SCENE = 0;

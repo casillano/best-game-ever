@@ -91,7 +91,7 @@ public class CustomizationScene implements Scene {
         }
     }
 
-    String getCostume(){
+    String getCostume() {
         return color;
     }
 }

@@ -58,9 +58,9 @@ public class SurvivalScene implements Scene {
         ArrayList<SlimeMeleeMonster> slimeMonsters = new ArrayList<>();
         handleMonsterDeaths();
         for (Character m : characters) {
-                if (m instanceof SlimeMeleeMonster)
-                    slimeMonsters.add((SlimeMeleeMonster) m);
-            }
+            if (m instanceof SlimeMeleeMonster)
+                slimeMonsters.add((SlimeMeleeMonster) m);
+        }
 
         for (SlimeMeleeMonster m : slimeMonsters) {
             ArrayList<SlimeMeleeMonster> collidableCharacter = new ArrayList<>(slimeMonsters);
@@ -69,7 +69,7 @@ public class SurvivalScene implements Scene {
         }
         for (Character m : characters) {
             if (m instanceof BeeStrafingMonster) {
-                ((BeeStrafingMonster)m).update(player, slimeMonsters);
+                ((BeeStrafingMonster) m).update(player, slimeMonsters);
             }
         }
 
@@ -88,8 +88,9 @@ public class SurvivalScene implements Scene {
             if (m.counter > 0) {
                 m.draw(canvas);
                 m.counter -= 1;
+            } else {
+                toRemove.add(m);
             }
-            else {toRemove.add(m);}
         }
         for (Character m : toRemove) {
             vanishingCharacters.remove(m);
@@ -138,10 +139,10 @@ public class SurvivalScene implements Scene {
         characters.add(new SlimeMeleeMonster(context, 100, 1000));
         characters.add(new SlimeMeleeMonster(context, 400, 80));
         characters.add(new BeeStrafingMonster(context, -100, 500));
-        characters.add(new BeeStrafingMonster(context, Constants.DISPLAY_SIZE.x+100, 1000));
+        characters.add(new BeeStrafingMonster(context, Constants.DISPLAY_SIZE.x + 100, 1000));
     }
 
-    void setCostume(String color){
+    void setCostume(String color) {
         player.setCostume(color);
     }
 
@@ -158,7 +159,7 @@ public class SurvivalScene implements Scene {
             vanishingCharacters.add(m);
             characters.remove(m);
             characters.add(new SlimeMeleeMonster(context,
-                    (int)(Math.random()*Constants.DISPLAY_SIZE.x),
+                    (int) (Math.random() * Constants.DISPLAY_SIZE.x),
                     Constants.DISPLAY_SIZE.y - 100));
         }
         toRemove.clear();

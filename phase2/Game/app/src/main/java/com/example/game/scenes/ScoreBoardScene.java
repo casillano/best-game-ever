@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
+
 import com.example.game.design.Button;
 import com.example.game.design.Background;
 
@@ -42,17 +43,17 @@ public class ScoreBoardScene implements Scene {
         canvas.drawText("High Scores", 130, 400, paint);
         paint.setTextSize(80);
         canvas.drawText("GAME " + (1 + gameName) + " High Scores:", 70, 800, paint);
-        if(SceneManager.highscoreScores[gameName][0] != 0) {
+        if (SceneManager.highscoreScores[gameName][0] != 0) {
             canvas.drawText("#1  " + SceneManager.highscore[gameName][0], 70, 1000, paint);
-            canvas.drawText(""+SceneManager.highscoreScores[gameName][0], 70, 1100, paint);
+            canvas.drawText("" + SceneManager.highscoreScores[gameName][0], 70, 1100, paint);
         }
-        if(SceneManager.highscoreScores[gameName][1] != 0) {
+        if (SceneManager.highscoreScores[gameName][1] != 0) {
             canvas.drawText("#2  " + SceneManager.highscore[gameName][1], 70, 1300, paint);
-            canvas.drawText(""+SceneManager.highscoreScores[gameName][1], 70, 1400, paint);
+            canvas.drawText("" + SceneManager.highscoreScores[gameName][1], 70, 1400, paint);
         }
-        if(SceneManager.highscoreScores[gameName][2] != 0) {
+        if (SceneManager.highscoreScores[gameName][2] != 0) {
             canvas.drawText("#3  " + SceneManager.highscore[gameName][2], 70, 1600, paint);
-            canvas.drawText(""+SceneManager.highscoreScores[gameName][2], 70, 1700, paint);
+            canvas.drawText("" + SceneManager.highscoreScores[gameName][2], 70, 1700, paint);
         }
     }
 

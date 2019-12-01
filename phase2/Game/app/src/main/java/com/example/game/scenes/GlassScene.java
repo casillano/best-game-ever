@@ -1,5 +1,6 @@
 // importing the required packages
 package com.example.game.scenes;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import com.example.game.design.Button;
 import com.example.game.backend.Constants;
 import com.example.game.backend.characters.player.Player;
 import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
+
 import java.util.ArrayList;
 
 // implementing the game3 class: a random number of monsters move-about/show-up on the screen and
@@ -24,7 +26,7 @@ public class GlassScene implements Scene {
     private Point playerPoint;
     private Button quitButton;
     private int score = 0;
-    private Button[] buttons ;
+    private Button[] buttons;
     private Button enter;
     private Button erase;
     private SceneManager manager;
@@ -99,10 +101,10 @@ public class GlassScene implements Scene {
             xp = 0;
             manager.resetScenes();
         }
-        for (int i = 0; i < buttons.length; i++) {
-            if (buttons[i].isClicked((int) event.getX(), (int) event.getY())) {
-                if(counter % 2 == 0) {
-                    userInput += buttons[i].getName();
+        for (Button button : buttons) {
+            if (button.isClicked((int) event.getX(), (int) event.getY())) {
+                if (counter % 2 == 0) {
+                    userInput += button.getName();
                 }
                 counter += 1;
             }
@@ -110,14 +112,13 @@ public class GlassScene implements Scene {
         if (enter.isClicked((int) event.getX(), (int) event.getY())) {
             try {
                 guess = Integer.parseInt(userInput);
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
             }
             if (guess == monsters.size()) {
-               xp = 200;
-           }
-           else {
-               xp = 0;
-           }
+                xp = 200;
+            } else {
+                xp = 0;
+            }
 
             SceneManager.nextScene = 1;
             SceneManager.ACTIVE_SCENE = 9;
@@ -129,17 +130,13 @@ public class GlassScene implements Scene {
         }
     }
 
-    void setCostume(String color){
+    void setCostume(String color) {
         player.setCostume(color);
     }
 
-    int getXp(){
+    int getXp() {
         return xp;
     }
-
-
-
-
 
 
 }
