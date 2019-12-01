@@ -145,7 +145,7 @@ public class SceneManager {
     }
 
     private void swapScores(int score, int i) {
-        System.out.println("kaaaaaaaaaaaaaaan" + score);
+//        System.out.println("kaaaaaaaaaaaaaaan" + score);
         if (score >= highscoreScores[i][0]) {
             highscoreScores[i][2] = highscoreScores[i][1];
             highscore[i][2] = highscore[i][1];

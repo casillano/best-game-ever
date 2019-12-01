@@ -1,3 +1,4 @@
+// importing the required packages
 package com.example.game.scenes;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,7 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 
-import com.example.game.backend.SlimeBuilder;
+import com.example.game.backend.Builder;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
 import com.example.game.backend.Constants;
@@ -14,14 +15,14 @@ import com.example.game.backend.characters.player.Player;
 import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
 import java.util.ArrayList;
 
-
+// implementing the game3 class: a random number of monsters move-about/show-up on the screen and
+// the player has to guess the number of monsters.
 public class GlassScene implements Scene {
 
     private Background background;
     private Player player;
     private Point playerPoint;
     private Button quitButton;
-    private int numMonsters;
     private int score = 0;
     private Button[] buttons ;
     private Button enter;
@@ -38,19 +39,20 @@ public class GlassScene implements Scene {
         counter = 0;
         player = new Player(context, SceneManager.getCostume());
         this.manager = manager;
+        this.background = background;
         xp = 0;
         userInput = "";
-//      Generating a random number of monsters
-        monsters = SlimeBuilder.buildSlime(context);
+//      Generating a random number of monsters using Builder
+        monsters = Builder.buildSlime(context);
+//      Creating the required but
         enter = new Button(400, 1700, 300, 100, "Enter");
         erase = new Button(400, 1900, 300, 100, "Erase");
-        buttons = new Button[10];
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = new Button(100*i + 37, 1500, 100, 100, i+"");
-        }
-        this.background = background;
+        this.buttons = Builder.buildNumericKB();
+
+        // maybe not needed ?
         playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
         quitButton = new Button(850, 50, 100, 100, "X");
+
         ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
         for (SlimeMeleeMonster m : monsters) {
             m.update(player, emptyList);
@@ -58,13 +60,14 @@ public class GlassScene implements Scene {
     }
 
     @Override
+    // update the background the player input
     public void update() {
-
         background.update();
         player.update(playerPoint);
     }
 
     @Override
+    // draw the various entities on the 'Canvas'
     public void draw(Canvas canvas) {
         background.draw(canvas);
         for (int i = 0; i < 10; i++) {
@@ -116,6 +119,7 @@ public class GlassScene implements Scene {
            }
 
             SceneManager.ACTIVE_SCENE = 1;
+//            this.terminate();
             manager.resetScenes();
         }
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
