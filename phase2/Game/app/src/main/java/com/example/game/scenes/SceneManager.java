@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class SceneManager {
     private ArrayList<Scene> scenes;
     static int ACTIVE_SCENE;
+    static int nextScene;
+
     private Context context;
     static private SharedPreferences pref;
     static private Editor editor;
@@ -24,6 +26,8 @@ public class SceneManager {
     static private MenuScene menu;
     static private MazeScene maze;
     static private GlassScene game3;
+    static private Loading loading;
+
     private ScoreBoardScene scoreScene;
     private CustomizationScene store;
     private WelcomeScene welcome;
@@ -168,6 +172,8 @@ public class SceneManager {
         maze = new MazeScene(context, this, mazeGenerator, collisionChecker, background,
                 quitButton);
         game3 = new GlassScene(context, this, background);
+        loading = new Loading(this, background, nextScene);
+
         store = new CustomizationScene(this, new Background(context, "grass"));
         welcome = new WelcomeScene(context, this, new Background(context, "store"));
         scoreScene = new ScoreBoardScene(context, this, new Background(context, "grass"));
@@ -180,6 +186,7 @@ public class SceneManager {
         scenes.add(welcome);
         scenes.add(signIn);
         scenes.add(scoreScene);
+        scenes.add(loading);
     }
 
     int getXp() {

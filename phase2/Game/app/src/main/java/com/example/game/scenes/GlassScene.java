@@ -6,18 +6,14 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 
+import com.example.game.backend.SlimeBuilder;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
 import com.example.game.backend.Constants;
 import com.example.game.backend.characters.player.Player;
 import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
-
-
-
 import java.util.ArrayList;
-import java.util.Random;
 
-import static java.lang.Thread.sleep;
 
 public class GlassScene implements Scene {
 
@@ -35,7 +31,7 @@ public class GlassScene implements Scene {
     private int guess;
     private int xp;
     private int counter;
-    private ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
+    private ArrayList<SlimeMeleeMonster> monsters;
 
     GlassScene(Context context, SceneManager manager, Background background) {
         guess = 0;
@@ -43,14 +39,9 @@ public class GlassScene implements Scene {
         player = new Player(context, SceneManager.getCostume());
         this.manager = manager;
         xp = 0;
-        Random rand = new Random();
-        numMonsters = rand.nextInt(20);
         userInput = "";
 //      Generating a random number of monsters
-        for (int i = 0; i <= numMonsters; i++) {
-            monsters.add(new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000)));
-            monsters.add(new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000)));
-        }
+        monsters = SlimeBuilder.buildSlime(context);
         enter = new Button(400, 1700, 300, 100, "Enter");
         erase = new Button(400, 1900, 300, 100, "Erase");
         buttons = new Button[10];
@@ -123,7 +114,7 @@ public class GlassScene implements Scene {
            else {
                xp = 0;
            }
-//            System.out.println("guess" + guess + "num" + monsters.size());
+
             SceneManager.ACTIVE_SCENE = 1;
             manager.resetScenes();
         }
