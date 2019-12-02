@@ -8,9 +8,9 @@ import com.example.game.design.Background;
 import com.example.game.design.Button;
 
 public class WelcomeScene implements Scene {
-    private Background background;
-    private Button loginButton, signButton;
-    private SceneManager manager;
+    private final Background background;
+    private final Button loginButton, signButton;
+    private final SceneManager manager;
 
     WelcomeScene(SceneManager manager, Background background) {
         this.manager = manager;

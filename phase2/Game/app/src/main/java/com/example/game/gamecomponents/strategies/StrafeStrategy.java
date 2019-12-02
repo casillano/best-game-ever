@@ -8,7 +8,7 @@ import com.example.game.gamecomponents.Constants;
 import java.util.ArrayList;
 
 public class StrafeStrategy implements Strategy {
-    private float[] normal = new float[2];
+    private final float[] normal = new float[2];
     private int direction = 0; //0 left 1 right
     private int speed;
 

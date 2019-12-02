@@ -7,7 +7,7 @@ import com.example.game.gamecomponents.characters.player.Player;
 import java.util.ArrayList;
 
 public class StrategyContext {
-    private Strategy strategy;
+    private final Strategy strategy;
 
     public StrategyContext(Strategy strategy) {
         this.strategy = strategy;

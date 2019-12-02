@@ -13,7 +13,7 @@ import com.example.game.design.Button;
 public class MenuScene implements Scene {
     private final Background background;
     private final Button gameButton, game2Button, game3Button, storeButton, changeUser, scoreButton;
-    private SceneManager manager;
+    private final SceneManager manager;
     private int xp;
     private final int xp1;
     private final int xp2;

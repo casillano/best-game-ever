@@ -19,16 +19,16 @@ import com.example.game.gamecomponents.characters.Character;
 import java.util.ArrayList;
 
 public class SurvivalScene implements Scene {
-    private Background background;
-    private Player player;
-    private Point playerPoint;
-    private Button quitButton;
-    private ArrayList<Character> characters = new ArrayList<>();
+    private final Background background;
+    private final Player player;
+    private final Point playerPoint;
+    private final Button quitButton;
+    private final ArrayList<Character> characters = new ArrayList<>();
     private int score = 0;
-    private SceneManager manager;
+    private final SceneManager manager;
     private int xp;
-    private Context context;
-    private ArrayList<Character> vanishingCharacters = new ArrayList<>();
+    private final Context context;
+    private final ArrayList<Character> vanishingCharacters = new ArrayList<>();
 
     SurvivalScene(Context context, SceneManager manager, Background background) {
         this.context = context;
