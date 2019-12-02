@@ -23,7 +23,7 @@ public class BeeStrafingMonster extends StrafingMonster {
         setAnimations(context);
     }
 
-    public void setAnimations(Context context) {
+    private void setAnimations(Context context) {
         Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.bee);
         Bitmap walk1 = BitmapFactory.decodeResource(context.getResources(),

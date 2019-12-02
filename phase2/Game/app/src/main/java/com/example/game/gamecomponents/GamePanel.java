@@ -15,9 +15,6 @@ import com.example.game.scenes.SceneManager;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
-    private Background background;
-    private Button gameButton;
-    private MainActivity myContext;
     private final SceneManager manager;
 
     public GamePanel(Context context) {

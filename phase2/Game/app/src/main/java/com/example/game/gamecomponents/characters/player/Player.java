@@ -100,7 +100,7 @@ public class Player extends Character {
     }
 
 
-    public void setAnimations(Context context) {
+    private void setAnimations(Context context) {
         System.out.println("renk: " + col);
         switch (this.col) {
             case "blue":

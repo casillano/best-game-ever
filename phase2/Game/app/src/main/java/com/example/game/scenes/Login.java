@@ -37,7 +37,7 @@ public class Login implements Scene {
     boolean newUser = false;
     private final Button quitButton;
 
-    Login(Context context, SceneManager manager, Background background) {
+    Login(SceneManager manager, Background background) {
         sManager = manager;
         email = "";
         password = "";

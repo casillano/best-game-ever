@@ -65,7 +65,4 @@ public class Character implements GameObject {
     public void handleForce() {
     }
 
-    public void setAnimations(Context context) {
-    }
-
 }

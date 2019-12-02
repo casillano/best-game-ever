@@ -164,7 +164,7 @@ public class SceneManager {
     }
 
     private void addAllScenes() {
-        login = new Login(context, this, new Background(context, "grass"));
+        login = new Login(this, new Background(context, "grass"));
         signIn = new SignIn(context, this);
         game1 = new SurvivalScene(context, this, background);
         menu = new MenuScene(this, new Background(context, "grass"));

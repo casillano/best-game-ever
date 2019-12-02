@@ -8,7 +8,7 @@ import com.example.game.design.Button;
 class SignIn extends Login{
 
     SignIn(Context context, SceneManager manager) {
-        super(context, manager, new Background(context, "grass"));
+        super(manager, new Background(context, "grass"));
         super.buttonText = "Sign Up";
         super.message = "User already exists.";
         super.newUser = true;

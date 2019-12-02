@@ -43,7 +43,7 @@ public class SlimeMeleeMonster extends MeleeMonster {
 
     }
 
-    public void setAnimations(Context context) {
+    private void setAnimations(Context context) {
         Bitmap idleImg = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.slime);
         Bitmap walk1 = BitmapFactory.decodeResource(context.getResources(),

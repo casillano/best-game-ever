@@ -53,7 +53,7 @@ public class MenuScene implements Scene {
         paint.setTextSize(70);
         canvas.drawText("Total XP: " + xp, 30, 80, paint);
         paint.setTextSize(70);
-        canvas.drawText("USER: " + manager.getUserName(), 30, 200, paint);
+        canvas.drawText("USER: " + SceneManager.getUserName(), 30, 200, paint);
         paint.setTextSize(200);
         canvas.drawText("BEST", 300, 400, paint);
         canvas.drawText("GAME", 250, 550, paint);
@@ -86,7 +86,7 @@ public class MenuScene implements Scene {
         } else if (changeUser.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 0;
             SceneManager.activeScene = 9;
-            manager.changeUser();
+            SceneManager.changeUser();
         } else if (scoreButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 8;
             SceneManager.activeScene = 9;
