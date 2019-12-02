@@ -25,20 +25,20 @@ import java.util.ArrayList;
 
 public class MazeScene implements Scene {
 
-    private Background background;
-    private Player player;
+    private final Background background;
+    private final Player player;
     private Point playerPoint;
-    private Button quitButton;
-    private SceneManager manager;
+    private final Button quitButton;
+    private final SceneManager manager;
     private boolean gameOver = false, movingPlayer = false;
-    private MazeGenerator mazeGenerator;
-    private CollisionChecker collisionChecker;
+    private final MazeGenerator mazeGenerator;
+    private final CollisionChecker collisionChecker;
     private int xp;
     private boolean firstDraw = true;
-    private Paint wallPaint;
-    private Paint finishLinePaint;
-    private Paint instructionTextPaint;
-    private Paint scorePaint;
+    private final Paint wallPaint;
+    private final Paint finishLinePaint;
+    private final Paint instructionTextPaint;
+    private final Paint scorePaint;
 
     MazeScene(Context context, SceneManager manager, MazeGenerator mazeGenerator,
               CollisionChecker collisionChecker, Background background, Button quitButton) {

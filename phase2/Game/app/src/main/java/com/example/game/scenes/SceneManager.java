@@ -15,11 +15,11 @@ import com.example.game.design.Button;
 import java.util.ArrayList;
 
 public class SceneManager {
-    private ArrayList<Scene> scenes;
+    private final ArrayList<Scene> scenes;
     static int activeScene;
     static int nextScene;
 
-    private Context context;
+    private final Context context;
     static private SharedPreferences pref;
     static private Editor editor;
     static private SurvivalScene game1;
@@ -43,10 +43,10 @@ public class SceneManager {
     static String[][] highscore;
     static int[][] highscoreScores;
 
-    private MazeGenerator mazeGenerator;
-    private CollisionChecker collisionChecker;
+    private final MazeGenerator mazeGenerator;
+    private final CollisionChecker collisionChecker;
     private Background background;
-    private Button quitButton;
+    private final Button quitButton;
 
     public SceneManager(Context context) {
         this.context = context;
@@ -175,7 +175,7 @@ public class SceneManager {
 
         store = new CustomizationScene(this, new Background(context, "store"));
         welcome = new WelcomeScene(this, new Background(context, "login"));
-        scoreScene = new ScoreBoardScene(context, this, new Background(context, "grass"));
+        scoreScene = new ScoreBoardScene(this, new Background(context, "grass"));
         scenes.add(login);
         scenes.add(menu);
         scenes.add(game1);

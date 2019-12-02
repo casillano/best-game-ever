@@ -6,8 +6,8 @@ import android.view.SurfaceHolder;
 class MainThread extends Thread {
     private final int maxFps = 31;
     private double averageFPS;
-    private SurfaceHolder surfaceHolder;
-    private GamePanel gamePanel;
+    private final SurfaceHolder surfaceHolder;
+    private final GamePanel gamePanel;
     private boolean running = true;
     private Canvas canvas;
 

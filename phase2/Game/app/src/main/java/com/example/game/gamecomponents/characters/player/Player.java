@@ -18,7 +18,7 @@ import com.example.game.design.AnimationManager;
 public class Player extends Character {
     private Bitmap idleImg, walk1, walk2;
     private String col;
-    private Context context;
+    private final Context context;
 
     public Player(Context context, String col) {
         this.context = context;

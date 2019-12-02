@@ -18,24 +18,24 @@ public class Login implements Scene {
     private String password;
     private String passwordDisplay;
     Button signIn;
-    private ArrayList<Button> buttons;
-    private Background background;
+    private final ArrayList<Button> buttons;
+    private final Background background;
     private int counter;
     private int counter2;
-    private Button erase;
+    private final Button erase;
     private boolean pass;
-    private Button passwordButton;
-    private Button emailButton;
+    private final Button passwordButton;
+    private final Button emailButton;
     private String cursorEmail = "|";
     private String cursorPassword = "";
-    private SceneManager sManager;
+    private final SceneManager sManager;
     String message;
     private boolean noUserName = false;
     private int count = 0;
     String buttonText;
     private boolean noUser = false;
     boolean newUser = false;
-    private Button quitButton;
+    private final Button quitButton;
 
     Login(Context context, SceneManager manager, Background background) {
         sManager = manager;

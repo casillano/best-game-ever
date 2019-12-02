@@ -19,8 +19,8 @@ public class MazeGenerator {
     private static final int COLS = 5, ROWS = 6;
     private Rect finishLine;
     private boolean firstDraw = true;
-    private ArrayList<Rect> walls;
-    private Random random;
+    private final ArrayList<Rect> walls;
+    private final Random random;
 
     public MazeGenerator() {
         cells = new Cell[COLS][ROWS];
@@ -212,7 +212,7 @@ public class MazeGenerator {
      */
     private class Cell {
         boolean topWall = true, leftWall = true, botWall = true, rightWall = true, visited = false;
-        int col, row;
+        final int col, row;
 
 
         Cell(int col, int row) {

@@ -8,7 +8,7 @@ import com.example.game.gamecomponents.characters.player.Player;
 import java.util.ArrayList;
 
 class MeleeMonster extends Character {
-    private StrategyContext context;
+    private final StrategyContext context;
 
     MeleeMonster() {
         this.context = new StrategyContext(new ChaseStrategy());

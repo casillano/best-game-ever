@@ -10,12 +10,12 @@ import com.example.game.design.Button;
 import com.example.game.design.Background;
 
 public class ScoreBoardScene implements Scene {
-    private Background background;
-    private Button quitButton, game1, game2, game3;
-    private SceneManager manager;
+    private final Background background;
+    private final Button quitButton, game1, game2, game3;
+    private final SceneManager manager;
     private int gameName;
 
-    ScoreBoardScene(Context context, SceneManager manager, Background background) {
+    ScoreBoardScene(SceneManager manager, Background background) {
         this.manager = manager;
         this.background = background;
         quitButton = new Button(850, 50, 100, 100, "X");
