@@ -12,7 +12,7 @@ import com.example.game.R;
 
 
 public class Background implements GameObject {
-    private Rect rectangle;
+    private final Rect rectangle;
     private Animation idle;
     private AnimationManager animationManager;
 

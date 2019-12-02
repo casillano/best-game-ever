@@ -8,13 +8,13 @@ import com.example.game.gamecomponents.characters.GameObject;
 
 public class Button implements GameObject {
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    private Paint paint;
-    private Paint backPaint;
-    private String name;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
+    private final Paint paint;
+    private final Paint backPaint;
+    private final String name;
 
     public Button(int xCo, int yCo, int w, int h, String n) {
         x = xCo;

@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class AnimationManager {
-    private Animation[] animations;
+    private final Animation[] animations;
     private int animationIndex = 0;
 
     public AnimationManager(Animation[] animations) {

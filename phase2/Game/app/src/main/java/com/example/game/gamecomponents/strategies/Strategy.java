@@ -6,6 +6,6 @@ import com.example.game.gamecomponents.characters.player.Player;
 
 import java.util.ArrayList;
 
-public interface Strategy {
+interface Strategy {
     void move(Player player, Character character, ArrayList<SlimeMeleeMonster> collidableCharacters);
 }

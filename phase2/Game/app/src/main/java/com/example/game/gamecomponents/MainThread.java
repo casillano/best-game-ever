@@ -3,7 +3,7 @@ package com.example.game.gamecomponents;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-public class MainThread extends Thread {
+class MainThread extends Thread {
     private final int MAX_FPS = 31;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
