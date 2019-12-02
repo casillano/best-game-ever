@@ -67,7 +67,7 @@ class MainThread extends Thread {
                 frameCount = 0;
                 totalTime = 0;
                 System.out.println("Current FPS: " + averageFPS);
-                System.out.println(Constants.playerColor);
+                System.out.println(Constants.PLAYER_COLOR);
             }
         }
 

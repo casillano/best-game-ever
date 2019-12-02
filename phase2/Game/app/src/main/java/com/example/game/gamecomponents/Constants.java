@@ -4,5 +4,5 @@ import android.graphics.Point;
 
 public class Constants {
     public static Point displaySize;
-    final static String playerColor = "blue";
+    final static String PLAYER_COLOR = "blue";
 }
