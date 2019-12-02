@@ -1,6 +1,6 @@
 package com.example.game.gamecomponents.characters;
 
-import android.content.Context;
+
 import android.graphics.Canvas;
 import android.graphics.Rect;
 

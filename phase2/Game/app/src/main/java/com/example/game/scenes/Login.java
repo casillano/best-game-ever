@@ -1,6 +1,5 @@
 package com.example.game.scenes;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
