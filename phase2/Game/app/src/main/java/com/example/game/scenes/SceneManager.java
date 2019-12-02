@@ -15,34 +15,31 @@ import com.example.game.design.Button;
 import java.util.ArrayList;
 
 public class SceneManager {
-    private final ArrayList<Scene> scenes;
-    static int activeScene;
-    static int nextScene;
-
+    private final ArrayList<Scene> scenes; //list of scenes in the game
+    static int activeScene; //this is set to change the scene on the display
+    static int nextScene; //this is used to indicate next scene to display after loading scene
     private final Context context;
-    static private SharedPreferences pref;
-    static private Editor editor;
+    static private SharedPreferences pref; //this is a built in class that saves information
+    static private Editor editor; //is used to edit the info in SharedPreferences
     static private SurvivalScene game1;
     static private MenuScene menu;
     static private MazeScene maze;
     static private GlassScene game3;
     static private Loading loading;
-
     private ScoreBoardScene scoreScene;
     private CustomizationScene store;
     private WelcomeScene welcome;
     static private SignIn signIn;
     static private Login login;
-    static private int xp;
-    static private int xp1;
-    static private int xp2;
-    static private int xp3;
-    static private String userInfo;
-    static private String userName;
-    static private String color;
-    static String[][] highscore;
-    static int[][] highscoreScores;
-
+    static private int xp; //total xp of all games
+    static private int xp1; //xp for first game
+    static private int xp2; //xp for second game
+    static private int xp3; //xp for third game
+    static private String userInfo; //this string codes the user info as username+password
+    static private String userName; //username of the user
+    static private String color; //color of the character that the user uses
+    static String[][] highscore; //this array has the names of the users that achieved an highscore
+    static int[][] highscoreScores; //this is the highscores
     private final MazeGenerator mazeGenerator;
     private final CollisionChecker collisionChecker;
     private Background background;
@@ -64,7 +61,6 @@ public class SceneManager {
         xp3 = 0;
         color = "blue";
         userName = "";
-
         mazeGenerator = new MazeGenerator();
         collisionChecker = new CollisionChecker();
         background = new Background(context, pref.getString(userInfo + "background", "grass"));
@@ -91,17 +87,22 @@ public class SceneManager {
     }
 
     void resetScenes() {
-        xp += game1.getXp();
-        xp += maze.getXp();
-        xp += game3.getXp();
+        // collects the xp gained in the games and adds them up to the total xp
+        xp += (game1.getXp() + maze.getXp() + game3.getXp());
         xp2 += maze.getXp();
         xp1 += game1.getXp();
         xp3 += game3.getXp();
+        //sets the color of the character
         color = store.getCostume();
+        //sets background
         this.background = new Background(context, pref.getString(userInfo + "background", "grass"));
+        //gets the highscores from SharedPreferences
         getHighScores();
+        //checks if the user scored an highscore
         checkHighScore();
+        //sets the xp to display in the menu
         menu.setXp(xp);
+        //saves the highscores
         editor.putInt(userInfo + "xp", xp);
         editor.putInt(userInfo + "xp1", xp1);
         editor.putInt(userInfo + "xp2", xp2);
@@ -111,6 +112,7 @@ public class SceneManager {
         addAllScenes();
     }
 
+    //this method gets the highscores from the SharedPreferences
     private void getHighScores() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -120,6 +122,7 @@ public class SceneManager {
         }
     }
 
+    //checks if the user scored an highscore
     private void checkHighScore() {
         if (game1.getXp() > 0) {
             swapScores(game1.getXp(), 0);
@@ -133,6 +136,7 @@ public class SceneManager {
         }
     }
 
+    //enters back the highscores to the SharedPreferences
     private void setHighScores() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -145,6 +149,7 @@ public class SceneManager {
         }
     }
 
+    //swaps the placement of the scores
     private void swapScores(int score, int i) {
         if (score >= highscoreScores[i][0]) {
             highscoreScores[i][2] = highscoreScores[i][1];
@@ -173,7 +178,6 @@ public class SceneManager {
                 quitButton);
         game3 = new GlassScene(context, this, background);
         loading = new Loading(background);
-
         store = new CustomizationScene(this, new Background(context, "store"));
         welcome = new WelcomeScene(this, new Background(context, "login"));
         scoreScene = new ScoreBoardScene(this, new Background(context, "grass"));
@@ -189,22 +193,13 @@ public class SceneManager {
         scenes.add(loading);
     }
 
-    int getXp() {
-        return pref.getInt(userInfo + "xp", 0);
+    //gets the xp depending on the type of xp required
+    int getXp(String xpType) {
+        return pref.getInt(userInfo + "xp" + xpType, 0);
     }
 
-    int getXp1() {
-        return pref.getInt(userInfo + "xp1", 0);
-    }
-
-    int getXp2() {
-        return pref.getInt(userInfo + "xp2", 0);
-    }
-
-    int getXp3() {
-        return pref.getInt(userInfo + "xp3", 0);
-    }
-
+    //gets username and password from login and sets the informations of the user for the game
+    //by taking the corresponding userinfo from SharedPreferences
     static void setUserInfo(String name, String password) {
         userInfo = name + password;
         userName = name;
@@ -219,6 +214,7 @@ public class SceneManager {
         game3.setCostume(color);
     }
 
+    //is used to register a new user into the game
     static void registerUser(String user, String pass) {
         editor.putString(user + "password", pass);
         editor.apply();
@@ -226,14 +222,17 @@ public class SceneManager {
         editor.apply();
     }
 
+    //checks if user exist
     static boolean userExists(String user) {
         return pref.getBoolean(user, false);
     }
 
+    //checks if the password is valid for the user
     static boolean validPassword(String user, String pass) {
         return pass.equals(pref.getString(user + "password", ""));
     }
 
+    //sets tyhe costume of the user
     static void setCostume(String col) {
         editor.putString(userInfo + "color", col);
         color = col;
@@ -243,6 +242,7 @@ public class SceneManager {
         editor.apply();
     }
 
+    //returns the color of the costume of the user
     static String getCostume() {
         return pref.getString(userInfo + "color", "blue");
     }

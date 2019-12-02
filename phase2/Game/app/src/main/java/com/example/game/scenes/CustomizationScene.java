@@ -19,7 +19,7 @@ public class CustomizationScene implements Scene {
     CustomizationScene(SceneManager manager, Background background) {
         color = "blue";
         this.manager = manager;
-        xp = manager.getXp();
+        xp = manager.getXp("");
         this.background = background;
         quitButton = new Button(850, 50, 100, 100, "X");
         custom1Btn = new Button(150, 800, 300, 100, "green");

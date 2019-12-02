@@ -11,8 +11,10 @@ import com.example.game.design.Background;
 
 public class ScoreBoardScene implements Scene {
     private final Background background;
+    //to switch the display of scores for each game
     private final Button quitButton, game1, game2, game3;
     private final SceneManager manager;
+    //stores the game number
     private int gameName;
 
     ScoreBoardScene(SceneManager manager, Background background) {
@@ -32,6 +34,7 @@ public class ScoreBoardScene implements Scene {
 
     @Override
     public void draw(Canvas canvas) {
+        //draws the components of the scoreboard
         background.draw(canvas);
         quitButton.draw(canvas);
         game1.draw(canvas);

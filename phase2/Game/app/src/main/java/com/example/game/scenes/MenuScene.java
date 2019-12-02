@@ -26,10 +26,10 @@ public class MenuScene implements Scene {
         storeButton = new Button(100, 1400, 880, 150, "Customization");
         scoreButton = new Button(100, 1600, 880, 150, "Scoreboard");
         changeUser = new Button(100, 1800, 880, 150, "Change User");
-        xp = manager.getXp();
-        xp1 = manager.getXp1();
-        xp2 = manager.getXp2();
-        xp3 = manager.getXp3();
+        xp = manager.getXp("");
+        xp1 = manager.getXp("1");
+        xp2 = manager.getXp("2");
+        xp3 = manager.getXp("3");
     }
 
     @Override
