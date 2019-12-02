@@ -67,7 +67,7 @@ public class SceneManager {
 
         mazeGenerator = new MazeGenerator();
         collisionChecker = new CollisionChecker();
-        background = new Background(context, "grass");
+        background = new Background(context, pref.getString(userInfo + "background", "grass"));
         quitButton = new Button(850, 300, 100, 100, "X");
     }
 
@@ -98,6 +98,7 @@ public class SceneManager {
         xp1 += game1.getXp();
         xp3 += game3.getXp();
         color = store.getCostume();
+        this.background = new Background(context, pref.getString(userInfo + "background", "grass"));
         getHighScores();
         checkHighScore();
         menu.setXp(xp);
@@ -213,7 +214,6 @@ public class SceneManager {
         xp2 = pref.getInt(userInfo + "xp2", 0);
         xp3 = pref.getInt(userInfo + "xp3", 0);
         menu.setXp(xp);
-        System.out.println("xp: " + xp);
         game1.setCostume(color);
         maze.setCostume(color);
         game3.setCostume(color);
@@ -257,5 +257,6 @@ public class SceneManager {
 
     public void setBackground(String type) {
         this.background = new Background(context, type);
+        editor.putString(userInfo + "background", type);
     }
 }
