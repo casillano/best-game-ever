@@ -32,7 +32,7 @@ public class Builder {
 
         for (int i = 0; i <= numMonsters; i++) {
             int x = rand.nextInt(Constants.displaySize.x);
-            int y = rand.nextInt(1100);
+            int y = rand.nextInt(1300);
             if (y < 200){
                 y += 200;
             }
