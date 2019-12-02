@@ -119,7 +119,7 @@ public class Login implements Scene {
         }
 
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 6;
+            SceneManager.activeScene = 6;
         }
 
         if (emailButton.isClicked((int) event.getX(), (int) event.getY() - 100)) {
@@ -150,13 +150,13 @@ public class Login implements Scene {
                             SceneManager.setUserInfo(email, password);
                             sManager.resetScenes();
                             SceneManager.nextScene = 1;
-                            SceneManager.ACTIVE_SCENE = 9;
+                            SceneManager.activeScene = 9;
                         } else {
                             if (SceneManager.validPassword(email, password)) {
                                 SceneManager.setUserInfo(email, password);
                                 sManager.resetScenes();
                                 SceneManager.nextScene = 1;
-                                SceneManager.ACTIVE_SCENE = 9;
+                                SceneManager.activeScene = 9;
                             } else {
                                 noUserName = true;
                             }
@@ -186,6 +186,6 @@ public class Login implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 0;
+        SceneManager.activeScene = 0;
     }
 }

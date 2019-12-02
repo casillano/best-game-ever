@@ -35,7 +35,7 @@ public class WelcomeScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.activeScene = 1;
     }
 
     @Override
@@ -43,14 +43,14 @@ public class WelcomeScene implements Scene {
 
         if (loginButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 0;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             xp = 0;
             manager.resetScenes();
 
         }
         if (signButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 7;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             xp = 0;
             manager.resetScenes();
         }

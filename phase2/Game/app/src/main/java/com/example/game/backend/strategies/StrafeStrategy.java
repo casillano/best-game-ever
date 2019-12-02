@@ -52,7 +52,7 @@ public class StrafeStrategy implements Strategy {
                 (character.getRectangle().centerY() + move_y) +
                         character.getRectangle().height() / 2);
         character.healthBar.move();
-        if (character.getRectangle().centerX() > Constants.DISPLAY_SIZE.x) {
+        if (character.getRectangle().centerX() > Constants.displaySize.x) {
             direction = 0;
         }
         else if (character.getRectangle().centerX() < 0) {

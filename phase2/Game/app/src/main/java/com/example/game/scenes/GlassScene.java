@@ -56,31 +56,32 @@ public class GlassScene implements Scene {
         this.buttons = Builder.buildNumericKB();
 
         // maybe not needed ?
-        playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
+        playerPoint = new Point(Constants.displaySize.x / 2, Constants.displaySize.y);
 
         //      Generating a random number of monsters using Builder
         monsters = Builder.buildBee(context);
         //      Creating an empty list of slime monsters because it is required to update the Bee
         // monsters'
         //      movement.
-        ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
+    }
 
-        //      Update each bee's movement
+    @Override
+    // update the background the player input
+    public void update() {
+        ArrayList<SlimeMeleeMonster> emptyList = new ArrayList<>();
+        background.update();
+        player.update(playerPoint);
         for (BeeStrafingMonster m : monsters) {
             m.update(player, emptyList);
         }
     }
 
     @Override
-    // update the background the player input
-    public void update() {
-        background.update();
-        player.update(playerPoint);
-    }
-
-    @Override
     // draw the various entities on the 'Canvas'
     public void draw(Canvas canvas) {
+        for (BeeStrafingMonster m : monsters) {
+            m.draw(canvas);
+        }
         background.draw(canvas);
         for (int i = 0; i < 10; i++) {
             buttons[i].draw(canvas);
@@ -100,14 +101,14 @@ public class GlassScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.activeScene = 1;
     }
 
     @Override
     public void receiveTouch(MotionEvent event) {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 1;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             xp = 0;
             manager.resetScenes();
         }
@@ -132,7 +133,7 @@ public class GlassScene implements Scene {
             }
 
             SceneManager.nextScene = 4;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             //            this.terminate();
             manager.resetScenes();
         }

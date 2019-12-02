@@ -59,13 +59,13 @@ public class ScoreBoardScene implements Scene {
 
     @Override
     public void terminate() {
-        SceneManager.ACTIVE_SCENE = 1;
+        SceneManager.activeScene = 1;
     }
 
     @Override
     public void receiveTouch(MotionEvent event) {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.ACTIVE_SCENE = 1;
+            SceneManager.activeScene = 1;
             manager.resetScenes();
         }
         if (game1.isClicked((int) event.getX(), (int) event.getY())) {

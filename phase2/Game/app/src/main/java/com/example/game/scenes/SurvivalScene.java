@@ -38,7 +38,7 @@ public class SurvivalScene implements Scene {
         xp = 0;
         createMonsters();
         this.background = background;
-        playerPoint = new Point(Constants.DISPLAY_SIZE.x / 2, Constants.DISPLAY_SIZE.y);
+        playerPoint = new Point(Constants.displaySize.x / 2, Constants.displaySize.y);
         quitButton = new Button(850, 50, 100, 100, "X");
     }
 
@@ -49,7 +49,7 @@ public class SurvivalScene implements Scene {
         if (player.getHealth() < 1) {
             xp = score;
             SceneManager.nextScene = 1;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             player.resetHealth();
             manager.resetScenes();
         }
@@ -108,7 +108,7 @@ public class SurvivalScene implements Scene {
     @Override
     public void terminate() {
         SceneManager.nextScene = 1;
-        SceneManager.ACTIVE_SCENE = 9;
+        SceneManager.activeScene = 9;
     }
 
     //Handles touch events.
@@ -121,7 +121,7 @@ public class SurvivalScene implements Scene {
         }
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 1;
-            SceneManager.ACTIVE_SCENE = 9;
+            SceneManager.activeScene = 9;
             xp = 0;
             manager.resetScenes();
         }
@@ -139,7 +139,7 @@ public class SurvivalScene implements Scene {
         characters.add(new SlimeMeleeMonster(context, 100, 1000));
         characters.add(new SlimeMeleeMonster(context, 400, 80));
         characters.add(new BeeStrafingMonster(context, -100, 500));
-        characters.add(new BeeStrafingMonster(context, Constants.DISPLAY_SIZE.x + 100, 1000));
+        characters.add(new BeeStrafingMonster(context, Constants.displaySize.x + 100, 1000));
     }
 
     void setCostume(String color) {
@@ -159,8 +159,8 @@ public class SurvivalScene implements Scene {
             vanishingCharacters.add(m);
             characters.remove(m);
             characters.add(new SlimeMeleeMonster(context,
-                    (int) (Math.random() * Constants.DISPLAY_SIZE.x),
-                    Constants.DISPLAY_SIZE.y - 100));
+                    (int) (Math.random() * Constants.displaySize.x),
+                    Constants.displaySize.y - 100));
         }
         toRemove.clear();
     }

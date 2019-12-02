@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class SceneManager {
     private ArrayList<Scene> scenes;
-    static int ACTIVE_SCENE;
+    static int activeScene;
     static int nextScene;
 
     private Context context;
@@ -53,7 +53,7 @@ public class SceneManager {
         highscoreScores = new int[3][3];
         highscore = new String[3][3];
         pref = PreferenceManager.getDefaultSharedPreferences(context);
-        ACTIVE_SCENE = 6;
+        activeScene = 6;
         scenes = new ArrayList<>();
         addAllScenes();
         editor = pref.edit();
@@ -73,19 +73,19 @@ public class SceneManager {
 
     public void receiveTouch(MotionEvent event) {
         if (scenes.size() > 0) {
-            scenes.get(ACTIVE_SCENE).receiveTouch(event);
+            scenes.get(activeScene).receiveTouch(event);
         }
     }
 
     public void update() {
         if (scenes.size() > 0) {
-            scenes.get(ACTIVE_SCENE).update();
+            scenes.get(activeScene).update();
         }
     }
 
     public void draw(Canvas canvas) {
         if (scenes.size() > 0) {
-            scenes.get(ACTIVE_SCENE).draw(canvas);
+            scenes.get(activeScene).draw(canvas);
         }
 
     }
