@@ -15,6 +15,7 @@ public class MenuScene implements Scene {
     private final Button gameButton, game2Button, game3Button, storeButton, changeUser, scoreButton;
     private int xp;
     private final int xp1;
+    private final int score;
     private final int xp2;
     private final int xp3;
 
@@ -27,6 +28,7 @@ public class MenuScene implements Scene {
         scoreButton = new Button(100, 1600, 880, 150, "Scoreboard");
         changeUser = new Button(100, 1800, 880, 150, "Change User");
         xp = manager.getXp("");
+        score = manager.getXp("score");
         xp1 = manager.getXp("1");
         xp2 = manager.getXp("2");
         xp3 = manager.getXp("3");
@@ -48,9 +50,10 @@ public class MenuScene implements Scene {
         changeUser.draw(canvas);
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
-        paint.setTextSize(70);
+        paint.setTextSize(60);
         canvas.drawText("Total XP: " + xp, 30, 80, paint);
-        paint.setTextSize(70);
+        canvas.drawText("Score: " + score, 30, 140, paint);
+        paint.setTextSize(60);
         canvas.drawText("USER: " + SceneManager.getUserName(), 30, 200, paint);
         paint.setTextSize(200);
         canvas.drawText("BEST", 300, 400, paint);

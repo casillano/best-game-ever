@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.content.SharedPreferences;
-
 import com.example.game.gamecomponents.mazecreator.CollisionChecker;
 import com.example.game.gamecomponents.mazecreator.MazeGenerator;
 import com.example.game.design.Background;
@@ -31,6 +30,7 @@ public class SceneManager {
     private WelcomeScene welcome;
     static private SignIn signIn;
     static private Login login;
+    static private int xpScore;
     static private int xp; //total xp of all games
     static private int xp1; //xp for first game
     static private int xp2; //xp for second game
@@ -61,6 +61,7 @@ public class SceneManager {
         xp3 = 0;
         color = "blue";
         userName = "";
+        xpScore = 0;
         mazeGenerator = new MazeGenerator();
         collisionChecker = new CollisionChecker();
         background = new Background(context, pref.getString(userInfo + "background", "grass"));
@@ -89,6 +90,7 @@ public class SceneManager {
     void resetScenes() {
         // collects the xp gained in the games and adds them up to the total xp
         xp += (game1.getXp() + maze.getXp() + game3.getXp());
+        xpScore += game3.getScore();
         xp2 += maze.getXp();
         xp1 += game1.getXp();
         xp3 += game3.getXp();
@@ -103,6 +105,7 @@ public class SceneManager {
         //sets the xp to display in the menu
         menu.setXp(xp);
         //saves the highscores
+        editor.putInt(userInfo + "xpscore", xpScore);
         editor.putInt(userInfo + "xp", xp);
         editor.putInt(userInfo + "xp1", xp1);
         editor.putInt(userInfo + "xp2", xp2);
@@ -208,6 +211,7 @@ public class SceneManager {
         xp1 = pref.getInt(userInfo + "xp1", 0);
         xp2 = pref.getInt(userInfo + "xp2", 0);
         xp3 = pref.getInt(userInfo + "xp3", 0);
+        xpScore = pref.getInt(userInfo + "xpscore", 0);
         menu.setXp(xp);
         game1.setCostume(color);
         maze.setCostume(color);

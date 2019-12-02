@@ -149,4 +149,6 @@ public class GlassScene implements Scene {
     int getXp() {
         return xp;
     }
+
+    int getScore(){return score;}
 }
