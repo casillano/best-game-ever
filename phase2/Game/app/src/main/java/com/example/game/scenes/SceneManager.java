@@ -168,7 +168,7 @@ public class SceneManager {
         login = new Login(this, new Background(context, "grass"));
         signIn = new SignIn(context, this);
         game1 = new SurvivalScene(context, this, background);
-        menu = new MenuScene(this, new Background(context, "grass"));
+        menu = new MenuScene(this, background);
         maze = new MazeScene(context, this, mazeGenerator, collisionChecker, background,
                 quitButton);
         game3 = new GlassScene(context, this, background);
@@ -258,5 +258,6 @@ public class SceneManager {
     public void setBackground(String type) {
         this.background = new Background(context, type);
         editor.putString(userInfo + "background", type);
+        editor.apply();
     }
 }
