@@ -1,6 +1,6 @@
 package com.example.game.scenes;
 
-import android.content.Context;
+
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
@@ -11,9 +11,8 @@ public class WelcomeScene implements Scene {
     private Background background;
     private Button loginButton, signButton;
     private SceneManager manager;
-    private int xp;
 
-    WelcomeScene(Context context, SceneManager manager, Background background) {
+    WelcomeScene(SceneManager manager, Background background) {
         this.manager = manager;
         this.background = background;
         signButton = new Button(100, 1200, 880, 150, "New User");
@@ -44,14 +43,12 @@ public class WelcomeScene implements Scene {
         if (loginButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 0;
             SceneManager.activeScene = 9;
-            xp = 0;
             manager.resetScenes();
 
         }
         if (signButton.isClicked((int) event.getX(), (int) event.getY())) {
             SceneManager.nextScene = 7;
             SceneManager.activeScene = 9;
-            xp = 0;
             manager.resetScenes();
         }
     }

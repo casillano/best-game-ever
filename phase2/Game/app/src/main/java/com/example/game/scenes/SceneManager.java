@@ -174,7 +174,7 @@ public class SceneManager {
         loading = new Loading(background);
 
         store = new CustomizationScene(this, new Background(context, "store"));
-        welcome = new WelcomeScene(context, this, new Background(context, "login"));
+        welcome = new WelcomeScene(this, new Background(context, "login"));
         scoreScene = new ScoreBoardScene(context, this, new Background(context, "grass"));
         scenes.add(login);
         scenes.add(menu);

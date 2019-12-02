@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 class MainThread extends Thread {
-    private final int MAX_FPS = 31;
+    private final int maxFps = 31;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
     private GamePanel gamePanel;
@@ -24,11 +24,10 @@ class MainThread extends Thread {
     @Override
     public void run() {
         long startTime;
-        long timeMillis = 1000 / MAX_FPS;
         long waitTime;
         int frameCount = 0;
         long totalTime = 0;
-        long targetTime = 1000 / MAX_FPS;
+        long targetTime = 1000 / maxFps;
 
         while (running) {
             startTime = System.nanoTime();
@@ -53,7 +52,7 @@ class MainThread extends Thread {
                     }
                 }
             }
-            timeMillis = (System.nanoTime() - startTime) / 1000000;
+            long timeMillis = (System.nanoTime() - startTime) / 1000000;
             waitTime = targetTime - timeMillis;
             try {
                 if (waitTime > 0)
@@ -63,7 +62,7 @@ class MainThread extends Thread {
             }
             totalTime += System.nanoTime() - startTime;
             frameCount++;
-            if (frameCount == MAX_FPS) {
+            if (frameCount == maxFps) {
                 averageFPS = 1000 / ((totalTime / frameCount) / 1000000);
                 frameCount = 0;
                 totalTime = 0;
