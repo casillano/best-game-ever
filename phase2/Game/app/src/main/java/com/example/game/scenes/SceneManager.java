@@ -98,7 +98,7 @@ public class SceneManager {
         xp1 += game1.getXp();
         xp3 += game3.getXp();
         color = store.getCostume();
-        getHighscores();
+        getHighScores();
         checkHighScore();
         menu.setXp(xp);
         editor.putInt(userInfo + "xp", xp);
@@ -110,7 +110,7 @@ public class SceneManager {
         addAllScenes();
     }
 
-    private void getHighscores() {
+    private void getHighScores() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 highscore[i][j] = pref.getString("highname" + i + "" + j, "");
@@ -122,17 +122,17 @@ public class SceneManager {
     private void checkHighScore() {
         if (game1.getXp() > 0) {
             swapScores(game1.getXp(), 0);
-            setHighscores();
+            setHighScores();
         } else if (maze.getXp() > 0) {
             swapScores(maze.getXp(), 1);
-            setHighscores();
+            setHighScores();
         } else if (game3.getXp() > 0) {
             swapScores(game3.getXp(), 2);
-            setHighscores();
+            setHighScores();
         }
     }
 
-    private void setHighscores() {
+    private void setHighScores() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 System.out.println("Scores: " + highscore[i][j] + highscoreScores[i][j]);
@@ -145,7 +145,6 @@ public class SceneManager {
     }
 
     private void swapScores(int score, int i) {
-//        System.out.println("kaaaaaaaaaaaaaaan" + score);
         if (score >= highscoreScores[i][0]) {
             highscoreScores[i][2] = highscoreScores[i][1];
             highscore[i][2] = highscore[i][1];

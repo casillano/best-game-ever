@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class CollisionChecker {
 
-    //Error. If the character collides with the wall, it becomes stuck.
-    //Need to get mouse movement to check if the character moves away from the wall
     private ArrayList<Rect> walls;
     private Rect finishLine;
 
@@ -35,6 +33,16 @@ public class CollisionChecker {
         return false;
     }
 
+    /**
+     * Uses the Rect.intersect method to check if the player collides with a wall. The collisionBox
+     * is used for the collision detection of the player, and it represents a slightly smaller Rect
+     * than the player. This is so that when the edge of the player Rect hits a wall, it isn't
+     * recognized as a collision (since the corners of the playerRect are invisible to the user, and
+     * only collisions with the visual body of the character should be checked).
+     *
+     * @param player the Rect representing the controllable player.
+     * @return a boolean value representing whether the player has collided with a wall or not.
+     */
     private boolean checkPlayerCollision(Player player) {
         Rect playerRect = player.getRectangle();
         Rect collisionBox = new Rect(playerRect.left + 30, playerRect.top + 30, playerRect.right - 30,

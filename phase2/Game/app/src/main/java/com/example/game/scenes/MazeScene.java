@@ -58,7 +58,7 @@ public class MazeScene implements Scene {
         finishLinePaint.setColor(Color.RED);
         player = new Player(context, SceneManager.getCostume());
         this.background = background;
-        player.changeRectangle(220, 570, 320, 670);
+        player.changeRectangle(200, 570, 300, 670);
         playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
         this.quitButton = quitButton;
         this.mazeGenerator = mazeGenerator;
@@ -111,12 +111,16 @@ public class MazeScene implements Scene {
     public void update() {
         background.update();
         player.update(playerPoint);
+        /*
+         * If the player reaches the finish line, then the current level is wiped, and a new maze is
+         * created. The player gets reset to the top left of the maze.
+         */
         if (collisionChecker.checkFinished(player)) {
             xp += 150;
             gameOver = true;
             resetMazeComponents();
             firstDraw = true;
-            player.changeRectangle(220, 570, 320, 670);
+            player.changeRectangle(200, 570, 300, 670);
             playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
             gameOver = false;
             player.moveHealthBar();
@@ -156,6 +160,13 @@ public class MazeScene implements Scene {
         SceneManager.ACTIVE_SCENE = 9;
     }
 
+    /**
+     * When the player presses, this checks if the mouse is within a certain distance from the
+     * character, and the character moves towards the mouse if this is true. This is checked so
+     * that the character doesn't immediately start moving on the beginning of a new level.
+     *
+     * @param event the type of mouse event (pressing, dragging)
+     */
     @Override
     public void receiveTouch(MotionEvent event) {
         switch (event.getAction()) {
