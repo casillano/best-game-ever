@@ -171,7 +171,7 @@ public class SceneManager {
         maze = new MazeScene(context, this, mazeGenerator, collisionChecker, background,
                 quitButton);
         game3 = new GlassScene(context, this, background);
-        loading = new Loading(this, background);
+        loading = new Loading(background);
 
         store = new CustomizationScene(this, new Background(context, "store"));
         welcome = new WelcomeScene(context, this, new Background(context, "login"));

@@ -7,13 +7,11 @@ import android.view.MotionEvent;
 import com.example.game.design.Background;
 
 public class Loading implements Scene {
-    private Background background;
-    private SceneManager manager;
+    private final Background background;
     private String dots;
     private int counter;
 
-    public Loading(SceneManager manager, Background background) {
-        this.manager = manager;
+    Loading(Background background) {
         this.background = background;
         this.counter = 0;
         dots = "";

@@ -5,12 +5,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class HealthBar implements GameObject {
-    private int maxHealth;
+    private final int maxHealth;
     private int currHealth;
-    private Rect rectangle;
-    private Paint paint;
-    private int length;
-    private Character character;
+    private final Rect rectangle;
+    private final Paint paint;
+    private final int length;
+    private final Character character;
     private int oldCharacterX;
     private int oldCharacterY;
 
