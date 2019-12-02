@@ -101,7 +101,6 @@ public class Player extends Character {
 
 
     private void setAnimations(Context context) {
-        System.out.println("renk: " + col);
         switch (this.col) {
             case "blue":
                 idleImg = BitmapFactory.decodeResource(context.getResources(),
