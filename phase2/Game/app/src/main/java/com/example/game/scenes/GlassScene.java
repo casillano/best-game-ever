@@ -102,7 +102,7 @@ public class GlassScene implements Scene {
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
         canvas.drawText("SCORE: " + score, 30, 100, paint);
-        canvas.drawText("input: " + userInput, 30, 1200, paint);
+        canvas.drawText("input: " + userInput, 30, 1400, paint);
         if(gameOver){
             saveButton.draw(canvas);
             quitButton2.draw(canvas);

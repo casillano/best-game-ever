@@ -11,27 +11,32 @@ import com.example.game.design.Button;
 
 public class Builder {
 
-//  Builds and returns an array of SlimeMeleeMonsters
-    public static ArrayList<SlimeMeleeMonster> buildSlime(Context context) {
-        ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
-        Random rand = new Random();
-        int numMonsters = rand.nextInt(20);
-
-        for (int i = 0; i <= numMonsters; i++) {
-            SlimeMeleeMonster m = new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000));
-            monsters.add(m);
-        }
-        return monsters;
-    }
+////  Builds and returns an array of SlimeMeleeMonsters
+//    public static ArrayList<SlimeMeleeMonster> buildSlime(Context context) {
+//        ArrayList<SlimeMeleeMonster> monsters = new ArrayList<>();
+//        Random rand = new Random();
+//        int numMonsters = rand.nextInt(20);
+//
+//        for (int i = 0; i <= numMonsters; i++) {
+//            SlimeMeleeMonster m = new SlimeMeleeMonster(context, rand.nextInt(1000), rand.nextInt(1000));
+//            monsters.add(m);
+//        }
+//        return monsters;
+//    }
 
 //    Builds and returns an array of BeeStrafingMonsters
     public static ArrayList<BeeStrafingMonster> buildBee(Context context) {
         ArrayList<BeeStrafingMonster> monsters = new ArrayList<>();
         Random rand = new Random();
-        int numMonsters = rand.nextInt(20);
+        int numMonsters = rand.nextInt(30);
 
         for (int i = 0; i <= numMonsters; i++) {
-            BeeStrafingMonster m = new BeeStrafingMonster(context, rand.nextInt(Constants.displaySize.x), rand.nextInt(1000));
+            int x = rand.nextInt(Constants.displaySize.x);
+            int y = rand.nextInt(1100);
+            if (y < 200){
+                y += 200;
+            }
+            BeeStrafingMonster m = new BeeStrafingMonster(context, x, y);
             monsters.add(m);
         }
         return monsters;
