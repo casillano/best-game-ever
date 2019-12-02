@@ -6,8 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.game.backend.Constants;
-import com.example.game.backend.characters.GameObject;
+import com.example.game.gamecomponents.Constants;
+import com.example.game.gamecomponents.characters.GameObject;
 import com.example.game.R;
 
 

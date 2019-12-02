@@ -6,7 +6,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.game.backend.GamePanel;
+import com.example.game.gamecomponents.GamePanel;
 
 public class MainActivity extends AppCompatActivity {
 

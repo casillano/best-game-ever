@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 
-import com.example.game.backend.Builder;
+import com.example.game.gamecomponents.Builder;
 import com.example.game.design.Button;
 import com.example.game.design.Background;
 

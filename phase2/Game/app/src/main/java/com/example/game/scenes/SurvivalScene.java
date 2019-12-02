@@ -7,13 +7,13 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 
-import com.example.game.backend.characters.monsters.BeeStrafingMonster;
+import com.example.game.gamecomponents.characters.monsters.BeeStrafingMonster;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
-import com.example.game.backend.Constants;
-import com.example.game.backend.characters.player.Player;
-import com.example.game.backend.characters.monsters.SlimeMeleeMonster;
-import com.example.game.backend.characters.Character;
+import com.example.game.gamecomponents.Constants;
+import com.example.game.gamecomponents.characters.player.Player;
+import com.example.game.gamecomponents.characters.monsters.SlimeMeleeMonster;
+import com.example.game.gamecomponents.characters.Character;
 
 
 import java.util.ArrayList;

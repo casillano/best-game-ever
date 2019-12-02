@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.game.backend.characters.GameObject;
+import com.example.game.gamecomponents.characters.GameObject;
 
 public class Button implements GameObject {
 

@@ -7,8 +7,8 @@ import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.content.SharedPreferences;
 
-import com.example.game.backend.mazecreator.CollisionChecker;
-import com.example.game.backend.mazecreator.MazeGenerator;
+import com.example.game.gamecomponents.mazecreator.CollisionChecker;
+import com.example.game.gamecomponents.mazecreator.MazeGenerator;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
 

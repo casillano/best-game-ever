@@ -9,11 +9,11 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.view.MotionEvent;
 
-import com.example.game.backend.mazecreator.CollisionChecker;
+import com.example.game.gamecomponents.mazecreator.CollisionChecker;
 import com.example.game.design.Background;
 import com.example.game.design.Button;
-import com.example.game.backend.characters.player.Player;
-import com.example.game.backend.mazecreator.MazeGenerator;
+import com.example.game.gamecomponents.characters.player.Player;
+import com.example.game.gamecomponents.mazecreator.MazeGenerator;
 
 import java.util.ArrayList;
 
