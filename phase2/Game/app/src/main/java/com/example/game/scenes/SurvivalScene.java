@@ -23,14 +23,18 @@ public class SurvivalScene implements Scene {
     private final Player player;
     private final Point playerPoint;
     private final Button quitButton;
+    private final Button quitButton2;
+    private final Button saveButton;
     private final ArrayList<Character> characters = new ArrayList<>();
     private int score = 0;
     private final SceneManager manager;
+    private boolean gameOver;
     private int xp;
     private final Context context;
     private final ArrayList<Character> vanishingCharacters = new ArrayList<>();
 
     SurvivalScene(Context context, SceneManager manager, Background background) {
+        gameOver = false;
         this.context = context;
         player = new Player(context, SceneManager.getCostume());
         player.setCostume(SceneManager.getCostume());
@@ -40,18 +44,18 @@ public class SurvivalScene implements Scene {
         this.background = background;
         playerPoint = new Point(Constants.displaySize.x / 2, Constants.displaySize.y);
         quitButton = new Button(850, 50, 100, 100, "X");
+        saveButton = new Button(300, 500, 500, 100, "Save Score?");
+        quitButton2 = new Button(300, 700, 500, 100, "Quit");
     }
 
     //Updates the scene.
     @Override
     public void update() {
-        score++;
+        if(!gameOver) score++;
         if (player.getHealth() < 1) {
             xp = score;
-            SceneManager.nextScene = 1;
-            SceneManager.activeScene = 9;
-            player.resetHealth();
-            manager.resetScenes();
+            gameOver = true;
+
         }
         background.update();
         player.update(playerPoint);
@@ -102,6 +106,10 @@ public class SurvivalScene implements Scene {
         paint.setColor(Color.BLACK);
         paint.setTextSize(100);
         canvas.drawText("SCORE: " + score, 30, 100, paint);
+        if(gameOver){
+            saveButton.draw(canvas);
+            quitButton2.draw(canvas);
+        }
     }
 
     //Terminates a scene.
@@ -124,6 +132,21 @@ public class SurvivalScene implements Scene {
             SceneManager.activeScene = 9;
             xp = 0;
             manager.resetScenes();
+        }
+        if(gameOver){
+            if (quitButton2.isClicked((int) event.getX(), (int) event.getY())) {
+                xp = 0;
+                SceneManager.nextScene = 1;
+                SceneManager.activeScene = 9;
+                player.resetHealth();
+                manager.resetScenes();
+            }
+            if (saveButton.isClicked((int) event.getX(), (int) event.getY())) {
+                SceneManager.nextScene = 1;
+                SceneManager.activeScene = 9;
+                player.resetHealth();
+                manager.resetScenes();
+            }
         }
     }
 

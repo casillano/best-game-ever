@@ -30,7 +30,10 @@ public class GlassScene implements Scene {
     static private int score;
     private final Button[] buttons;
     private final Button enter;
+    private final Button quitButton2;
+    private final Button saveButton;
     private final Button erase;
+    private boolean gameOver;
     private final SceneManager manager;
     private String userInput;
     private int guess;
@@ -39,6 +42,9 @@ public class GlassScene implements Scene {
     private final ArrayList<BeeStrafingMonster> monsters;
 
     GlassScene(Context context, SceneManager manager, Background background) {
+        gameOver = false;
+        saveButton = new Button(300, 500, 500, 100, "Save Score?");
+        quitButton2 = new Button(300, 700, 500, 100, "Quit");
         guess = 0;
         counter = 0;
         player = new Player(context, SceneManager.getCostume());
@@ -97,6 +103,10 @@ public class GlassScene implements Scene {
         paint.setTextSize(100);
         canvas.drawText("SCORE: " + score, 30, 100, paint);
         canvas.drawText("input: " + userInput, 30, 1200, paint);
+        if(gameOver){
+            saveButton.draw(canvas);
+            quitButton2.draw(canvas);
+        }
     }
 
     @Override
@@ -107,10 +117,7 @@ public class GlassScene implements Scene {
     @Override
     public void receiveTouch(MotionEvent event) {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
-            SceneManager.nextScene = 1;
-            SceneManager.activeScene = 9;
-            xp = 0;
-            manager.resetScenes();
+            gameOver = true;
         }
         for (Button button : buttons) {
             if (button.isClicked((int) event.getX(), (int) event.getY())) {
@@ -139,6 +146,18 @@ public class GlassScene implements Scene {
         }
         if (erase.isClicked((int) event.getX(), (int) event.getY())) {
             userInput = "";
+        }
+        if(gameOver){
+            if (quitButton2.isClicked((int) event.getX(), (int) event.getY())) {
+                xp = 0;
+                SceneManager.nextScene = 1;
+                SceneManager.activeScene = 9;
+            }
+            if (saveButton.isClicked((int) event.getX(), (int) event.getY())) {
+                SceneManager.nextScene = 1;
+                SceneManager.activeScene = 9;
+                manager.resetScenes();
+            }
         }
     }
 

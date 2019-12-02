@@ -29,6 +29,8 @@ public class MazeScene implements Scene {
     private final Player player;
     private Point playerPoint;
     private final Button quitButton;
+    private final Button quitButton2;
+    private final Button saveButton;
     private final SceneManager manager;
     private boolean gameOver = false, movingPlayer = false;
     private final MazeGenerator mazeGenerator;
@@ -65,6 +67,9 @@ public class MazeScene implements Scene {
         this.mazeGenerator = mazeGenerator;
         this.collisionChecker = collisionChecker;
         xp = 0;
+        gameOver = false;
+        saveButton = new Button(300, 500, 500, 100, "Save Score?");
+        quitButton2 = new Button(300, 700, 500, 100, "Quit");
     }
 
     private void setCollisionWalls(ArrayList<Rect> walls, Rect finishLine) {
@@ -128,9 +133,6 @@ public class MazeScene implements Scene {
 
         } else if (collisionChecker.checkCollisions(player)) {
             gameOver = true;
-            terminate();
-            resetMazeComponents();
-            manager.resetScenes();
 
         }
     }
@@ -145,6 +147,11 @@ public class MazeScene implements Scene {
         canvas.drawText("If you hit a wall, you die :(", 30, 150, instructionTextPaint);
         canvas.drawText(String.format("Score: %s", xp), 130, 450, scorePaint);
         drawMaze(canvas);
+
+        if(gameOver){
+            saveButton.draw(canvas);
+            quitButton2.draw(canvas);
+        }
     }
 
     int getXp() {
@@ -193,6 +200,20 @@ public class MazeScene implements Scene {
         if (quitButton.isClicked((int) event.getX(), (int) event.getY())) {
             terminate();
             manager.resetScenes();
+        }
+
+        if(gameOver){
+            if (quitButton2.isClicked((int) event.getX(), (int) event.getY())) {
+                xp = 0;
+                terminate();
+                resetMazeComponents();
+                manager.resetScenes();
+            }
+            if (saveButton.isClicked((int) event.getX(), (int) event.getY())) {
+                terminate();
+                resetMazeComponents();
+                manager.resetScenes();
+            }
         }
     }
 }
