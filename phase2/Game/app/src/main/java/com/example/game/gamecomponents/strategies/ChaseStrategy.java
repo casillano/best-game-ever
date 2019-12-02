@@ -7,7 +7,7 @@ import com.example.game.gamecomponents.characters.player.Player;
 import java.util.ArrayList;
 
 public class ChaseStrategy implements Strategy {
-    private float[] normal = new float[2];
+    private final float[] normal = new float[2];
     private float magnitude;
     private int speed;
 

@@ -18,7 +18,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Background background;
     private Button gameButton;
     private MainActivity myContext;
-    private SceneManager manager;
+    private final SceneManager manager;
 
     public GamePanel(Context context) {
         super(context);

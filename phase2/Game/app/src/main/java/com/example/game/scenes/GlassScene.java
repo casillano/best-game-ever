@@ -23,20 +23,20 @@ import java.util.ArrayList;
 // the player has to guess the number of monsters.
 public class GlassScene implements Scene {
 
-    private Background background;
-    private Player player;
-    private Point playerPoint;
-    private Button quitButton;
+    private final Background background;
+    private final Player player;
+    private final Point playerPoint;
+    private final Button quitButton;
     static private int score;
-    private Button[] buttons;
-    private Button enter;
-    private Button erase;
-    private SceneManager manager;
+    private final Button[] buttons;
+    private final Button enter;
+    private final Button erase;
+    private final SceneManager manager;
     private String userInput;
     private int guess;
     private int xp;
     private int counter;
-    private ArrayList<BeeStrafingMonster> monsters;
+    private final ArrayList<BeeStrafingMonster> monsters;
 
     GlassScene(Context context, SceneManager manager, Background background) {
         guess = 0;

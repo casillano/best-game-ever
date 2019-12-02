@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CollisionChecker {
 
-    private ArrayList<Rect> walls;
+    private final ArrayList<Rect> walls;
     private Rect finishLine;
 
     public CollisionChecker() {

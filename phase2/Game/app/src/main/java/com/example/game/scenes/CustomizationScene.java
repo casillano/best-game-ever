@@ -9,8 +9,8 @@ import com.example.game.design.Background;
 import com.example.game.design.Button;
 
 public class CustomizationScene implements Scene {
-    private Background background;
-    private Button quitButton, custom1Btn, custom2Btn, custom3Btn,  custom4Btn, custom5Btn,
+    private final Background background;
+    private final Button quitButton, custom1Btn, custom2Btn, custom3Btn,  custom4Btn, custom5Btn,
             custom6Btn;
     private SceneManager manager;
     private int xp;
