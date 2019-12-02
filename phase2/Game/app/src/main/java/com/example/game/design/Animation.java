@@ -6,10 +6,10 @@ import android.graphics.Rect;
 import android.graphics.Paint;
 
 public class Animation {
-    private Bitmap[] frames;
+    private final Bitmap[] frames;
     private int frameIndex;
     private boolean isPlaying = false;
-    private float frameTime;
+    private final float frameTime;
     private long lastFrame;
 
     public Animation(Bitmap[] frames, float animationTime) {
