@@ -13,14 +13,12 @@ import com.example.game.design.Button;
 public class MenuScene implements Scene {
     private final Background background;
     private final Button gameButton, game2Button, game3Button, storeButton, changeUser, scoreButton;
-    private final SceneManager manager;
     private int xp;
     private final int xp1;
     private final int xp2;
     private final int xp3;
 
     MenuScene(SceneManager manager, Background background) {
-        this.manager = manager;
         this.background = background;
         gameButton = new Button(100, 800, 880, 150, "Survival");
         game2Button = new Button(100, 1000, 880, 150, "Endless Maze");

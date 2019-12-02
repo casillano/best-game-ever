@@ -59,6 +59,7 @@ public class MazeScene implements Scene {
         player = new Player(context, SceneManager.getCostume());
         this.background = background;
         player.changeRectangle(200, 570, 300, 670);
+        player.healthBar.move();
         playerPoint = new Point(player.getRectangle().centerX(), player.getRectangle().centerY());
         this.quitButton = quitButton;
         this.mazeGenerator = mazeGenerator;
